@@ -1,0 +1,29 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://data.tmsapi.com/v1.1/lineups?country=US&postalCode=60601&api_key=YOUR_API_KEY"
+  },
+  "response": {
+    "status": 200,
+    "body": [
+      {
+        "lineupId": "USA-ILL35278-X",
+        "name": "Comcast Cable - Chicago",
+        "type": "cable",
+        "location": "Chicago, IL",
+        "device": "X",
+        "postalCode": "60601",
+        "country": "USA"
+      },
+      {
+        "lineupId": "USA-ILL35278-D",
+        "name": "DIRECTV - Chicago",
+        "type": "satellite",
+        "location": "Chicago, IL",
+        "device": "D",
+        "postalCode": "60601",
+        "country": "USA"
+      }
+    ]
+  }
+}

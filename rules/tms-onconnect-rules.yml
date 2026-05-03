@@ -1,0 +1,160 @@
+extends: spectral:oas
+rules:
+
+  # All operations must use API key authentication via query parameter
+  tms-api-key-required:
+    description: All TMS OnConnect operations must include the api_key query parameter
+    message: "Operation '{{operationId}}' is missing the required api_key query parameter"
+    severity: error
+    given: "$.paths[*][get,post,put,delete].parameters"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: array
+          contains:
+            type: object
+            properties:
+              name:
+                type: string
+                const: api_key
+              in:
+                type: string
+                const: query
+
+  # All operations must have operationId
+  tms-operation-id-required:
+    description: All operations must have an operationId
+    message: "Operation is missing operationId"
+    severity: error
+    given: "$.paths[*][get,post,put,delete]"
+    then:
+      field: operationId
+      function: truthy
+
+  # operationIds must use camelCase
+  tms-operation-id-camel-case:
+    description: Operation IDs must use camelCase
+    message: "operationId '{{value}}' must use camelCase format"
+    severity: warn
+    given: "$.paths[*][get,post,put,delete].operationId"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-zA-Z0-9]+$"
+
+  # All operations must have at least one tag
+  tms-operation-tags-required:
+    description: All operations must be tagged
+    message: "Operation '{{operationId}}' must have at least one tag"
+    severity: warn
+    given: "$.paths[*][get,post,put,delete]"
+    then:
+      field: tags
+      function: schema
+      functionOptions:
+        schema:
+          type: array
+          minItems: 1
+
+  # Date/time parameters must use ISO 8601 format
+  tms-datetime-parameter-format:
+    description: DateTime parameters must specify format as date-time
+    message: "Parameter '{{value}}' ending in 'DateTime' must have format: date-time"
+    severity: warn
+    given: "$.paths[*][get,post,put,delete].parameters[?(@.name =~ /DateTime$/)]"
+    then:
+      field: schema.format
+      function: enumeration
+      functionOptions:
+        values:
+          - date-time
+
+  # Date parameters must use ISO 8601 date format
+  tms-date-parameter-format:
+    description: Date parameters must specify format as date
+    message: "Parameter ending in 'Date' must have format: date"
+    severity: warn
+    given: "$.paths[*][get,post,put,delete].parameters[?(@.name =~ /Date$/)]"
+    then:
+      field: schema.format
+      function: enumeration
+      functionOptions:
+        values:
+          - date
+
+  # Responses must include 200 and 401 status codes
+  tms-response-200-required:
+    description: All operations must define a 200 response
+    message: "Operation is missing a 200 success response"
+    severity: error
+    given: "$.paths[*][get,post,put,delete].responses"
+    then:
+      field: "200"
+      function: truthy
+
+  # Path parameters must match the path template
+  tms-path-ids-kebab-case:
+    description: Path IDs in curly braces must use camelCase
+    message: "Path parameter '{{value}}' should use camelCase"
+    severity: hint
+    given: "$.paths[*]~"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^(/v[12])?(/[a-z][a-zA-Z0-9-]*|/\\{[a-zA-Z][a-zA-Z0-9_]*\\})*$"
+
+  # All schemas must have descriptions
+  tms-schema-property-descriptions:
+    description: Schema properties should have descriptions
+    message: "Schema property '{{path}}' is missing a description"
+    severity: hint
+    given: "$.components.schemas[*].properties[*]"
+    then:
+      field: description
+      function: truthy
+
+  # imageSize enum values must be standard
+  tms-image-size-enum:
+    description: imageSize parameters must use standard TMS size values
+    message: "imageSize parameter should enumerate valid TMS image sizes"
+    severity: hint
+    given: "$.paths[*][get].parameters[?(@.name == 'imageSize')]"
+    then:
+      field: schema
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+          properties:
+            type:
+              const: string
+
+  # Lineups endpoints must include lineupId
+  tms-lineup-path-parameter:
+    description: Lineup sub-resource paths must have a lineupId path parameter
+    message: "Lineup sub-resource '{{path}}' must define the lineupId path parameter"
+    severity: warn
+    given: "$.paths['/v1.1/lineups/{lineupId}'][*].parameters"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: array
+          contains:
+            type: object
+            properties:
+              name:
+                const: lineupId
+              in:
+                const: path
+
+  # All path parameters must be marked required: true
+  tms-path-params-required:
+    description: Path parameters must be required
+    message: "Path parameter '{{value}}' must be marked as required: true"
+    severity: error
+    given: "$.paths[*][*].parameters[?(@.in == 'path')]"
+    then:
+      field: required
+      function: truthy

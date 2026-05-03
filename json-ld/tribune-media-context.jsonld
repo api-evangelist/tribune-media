@@ -1,0 +1,184 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "tms": "https://data.tmsapi.com/vocab/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+    "Program": "schema:TVSeries",
+    "Movie": "schema:Movie",
+    "Episode": "schema:TVEpisode",
+    "Series": "schema:TVSeries",
+    "Airing": "schema:BroadcastEvent",
+    "Station": "schema:BroadcastService",
+    "Lineup": "tms:Lineup",
+    "Theatre": "schema:MovieTheater",
+    "Celebrity": "schema:Person",
+
+    "tmsId": {
+      "@id": "tms:tmsId",
+      "@type": "xsd:string"
+    },
+    "rootId": {
+      "@id": "tms:rootId",
+      "@type": "xsd:string"
+    },
+    "seriesId": {
+      "@id": "tms:seriesId",
+      "@type": "xsd:string"
+    },
+    "title": {
+      "@id": "schema:name",
+      "@type": "xsd:string"
+    },
+    "description": {
+      "@id": "schema:description",
+      "@type": "xsd:string"
+    },
+    "shortDescription": {
+      "@id": "schema:abstract",
+      "@type": "xsd:string"
+    },
+    "entityType": {
+      "@id": "tms:entityType",
+      "@type": "xsd:string"
+    },
+    "subType": {
+      "@id": "tms:subType",
+      "@type": "xsd:string"
+    },
+    "genres": {
+      "@id": "schema:genre",
+      "@container": "@set"
+    },
+    "releaseYear": {
+      "@id": "schema:datePublished",
+      "@type": "xsd:gYear"
+    },
+    "releaseDate": {
+      "@id": "schema:datePublished",
+      "@type": "xsd:date"
+    },
+    "ratings": {
+      "@id": "schema:contentRating",
+      "@container": "@set"
+    },
+    "preferredImage": {
+      "@id": "schema:image"
+    },
+    "runTime": {
+      "@id": "schema:duration",
+      "@type": "xsd:duration"
+    },
+
+    "startTime": {
+      "@id": "schema:startDate",
+      "@type": "xsd:dateTime"
+    },
+    "endTime": {
+      "@id": "schema:endDate",
+      "@type": "xsd:dateTime"
+    },
+    "duration": {
+      "@id": "schema:duration"
+    },
+    "stationId": {
+      "@id": "tms:stationId",
+      "@type": "xsd:string"
+    },
+    "qualifiers": {
+      "@id": "tms:qualifiers",
+      "@container": "@set"
+    },
+    "lineupId": {
+      "@id": "tms:lineupId",
+      "@type": "xsd:string"
+    },
+
+    "callSign": {
+      "@id": "schema:callSign",
+      "@type": "xsd:string"
+    },
+    "channel": {
+      "@id": "schema:broadcastChannelId",
+      "@type": "xsd:string"
+    },
+
+    "uri": {
+      "@id": "schema:contentUrl",
+      "@type": "@id"
+    },
+    "width": {
+      "@id": "schema:width"
+    },
+    "height": {
+      "@id": "schema:height"
+    },
+    "primary": {
+      "@id": "tms:primary",
+      "@type": "xsd:boolean"
+    },
+    "category": {
+      "@id": "tms:imageCategory",
+      "@type": "xsd:string"
+    },
+
+    "theatreId": {
+      "@id": "tms:theatreId",
+      "@type": "xsd:string"
+    },
+    "address": {
+      "@id": "schema:streetAddress",
+      "@type": "xsd:string"
+    },
+    "city": {
+      "@id": "schema:addressLocality",
+      "@type": "xsd:string"
+    },
+    "state": {
+      "@id": "schema:addressRegion",
+      "@type": "xsd:string"
+    },
+    "postalCode": {
+      "@id": "schema:postalCode",
+      "@type": "xsd:string"
+    },
+    "distance": {
+      "@id": "schema:distance"
+    },
+
+    "personId": {
+      "@id": "tms:personId",
+      "@type": "xsd:string"
+    },
+    "biography": {
+      "@id": "schema:description",
+      "@type": "xsd:string"
+    },
+    "birthDate": {
+      "@id": "schema:birthDate",
+      "@type": "xsd:date"
+    },
+    "birthPlace": {
+      "@id": "schema:birthPlace",
+      "@type": "xsd:string"
+    },
+
+    "sportsId": {
+      "@id": "tms:sportsId",
+      "@type": "xsd:string"
+    },
+    "teamBrandId": {
+      "@id": "tms:teamBrandId",
+      "@type": "xsd:string"
+    },
+    "organizationId": {
+      "@id": "tms:organizationId",
+      "@type": "xsd:string"
+    },
+    "liveEvent": {
+      "@id": "schema:isLiveBroadcast",
+      "@type": "xsd:boolean"
+    }
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://data.tmsapi.com/v1.1/movies/showings?startDate=2026-05-03&numDays=1&zip=60601&radius=5&units=mile&api_key=YOUR_API_KEY"
+  },
+  "response": {
+    "status": 200,
+    "body": [
+      {
+        "movie": {
+          "tmsId": "MV000001",
+          "rootId": "MV000001",
+          "title": "Mission: Impossible - Dead Reckoning Part Two",
+          "description": "Ethan Hunt and his IMF team continue their most dangerous mission.",
+          "releaseYear": 2026,
+          "genres": ["Action", "Adventure", "Thriller"],
+          "runTime": "PT2H30M",
+          "ratings": [
+            { "body": "MPAA", "code": "PG-13" }
+          ],
+          "preferredImage": {
+            "uri": "https://mediacloud.tmsapi.com/img/movies/mission-impossible.jpg",
+            "width": 400,
+            "height": 600,
+            "primary": true,
+            "category": "Poster Art"
+          }
+        },
+        "theatres": [
+          {
+            "theatreId": "TH001",
+            "name": "AMC River East 21",
+            "address": "322 E Illinois St",
+            "city": "Chicago",
+            "state": "IL",
+            "postalCode": "60611",
+            "distance": 0.8
+          }
+        ],
+        "showtimes": [
+          {
+            "startTime": "2026-05-03T14:00:00Z",
+            "endTime": "2026-05-03T16:30:00Z",
+            "movieId": "MV000001",
+            "theatreId": "TH001",
+            "format": "Standard"
+          },
+          {
+            "startTime": "2026-05-03T17:00:00Z",
+            "endTime": "2026-05-03T19:30:00Z",
+            "movieId": "MV000001",
+            "theatreId": "TH001",
+            "format": "IMAX"
+          }
+        ]
+      }
+    ]
+  }
+}

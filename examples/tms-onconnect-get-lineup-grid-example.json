@@ -1,0 +1,36 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://data.tmsapi.com/v1.1/lineups/USA-ILL35278-X/grid?startDateTime=2026-05-03T20:00:00Z&endDateTime=2026-05-03T22:00:00Z&api_key=YOUR_API_KEY"
+  },
+  "response": {
+    "status": 200,
+    "body": [
+      {
+        "startTime": "2026-05-03T20:00:00Z",
+        "endTime": "2026-05-03T21:00:00Z",
+        "duration": 60,
+        "channel": "4",
+        "stationId": "10137",
+        "qualifiers": ["Live"],
+        "program": {
+          "tmsId": "EP000000001",
+          "rootId": "SH000000001",
+          "seriesId": "SH000000001",
+          "title": "60 Minutes",
+          "entityType": "Show",
+          "subType": "Newsmagazine",
+          "genres": ["News", "Newsmagazine"],
+          "preferredImage": {
+            "uri": "https://mediacloud.tmsapi.com/img/3/image.jpg",
+            "width": 360,
+            "height": 270,
+            "primary": true,
+            "category": "Banner-L3",
+            "text": true
+          }
+        }
+      }
+    ]
+  }
+}

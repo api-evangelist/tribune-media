@@ -1,0 +1,27 @@
+{
+  "title": "TMS Airing Structure",
+  "description": "JSON structure documentation for TMS broadcast airing entities",
+  "structure": {
+    "startTime": "string — ISO 8601 datetime of scheduled start (UTC)",
+    "endTime": "string — ISO 8601 datetime of scheduled end (UTC)",
+    "duration": "integer — Duration in minutes",
+    "stationId": "string — Broadcasting station identifier",
+    "channel": "string — Channel number as displayed on lineup",
+    "qualifiers": "array<string> — Airing attributes [New, Live, Finale, Repeat, Premiere, HD, SAP]",
+    "program": "object — Embedded program reference (see tms-program-structure.json)"
+  },
+  "qualifierMeaning": {
+    "New": "First airing of a new episode",
+    "Live": "Live broadcast event",
+    "Finale": "Series or season finale",
+    "Repeat": "Re-airing of a previously broadcast episode",
+    "Premiere": "Series or season premiere",
+    "HD": "High definition broadcast",
+    "SAP": "Secondary audio program available"
+  },
+  "notes": [
+    "All times are expressed in UTC; clients should convert to local timezone",
+    "Duration may differ slightly from endTime - startTime due to broadcast overruns",
+    "Grid endpoint returns up to 6 hours per request, up to 14 days advance"
+  ]
+}

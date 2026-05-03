@@ -1,0 +1,127 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/tribune-media/main/json-schema/tms-program-schema.json",
+  "title": "TMS Program",
+  "description": "A TV program, movie, special, or sports event in the TMS OnConnect API",
+  "type": "object",
+  "required": ["tmsId", "title", "entityType"],
+  "properties": {
+    "tmsId": {
+      "type": "string",
+      "description": "Unique TMS identifier for the program"
+    },
+    "rootId": {
+      "type": "string",
+      "description": "Root identifier linking versions or episodes"
+    },
+    "seriesId": {
+      "type": "string",
+      "description": "Series identifier for episodic content"
+    },
+    "title": {
+      "type": "string",
+      "description": "Program title"
+    },
+    "titleLang": {
+      "type": "string",
+      "description": "Language of the title (BCP 47 code)"
+    },
+    "description": {
+      "type": "string",
+      "description": "Full description of the program"
+    },
+    "shortDescription": {
+      "type": "string",
+      "description": "Short description suitable for guide displays"
+    },
+    "entityType": {
+      "type": "string",
+      "enum": ["Movie", "Show", "Special", "Sports", "Episode"],
+      "description": "Type of entertainment entity"
+    },
+    "subType": {
+      "type": "string",
+      "description": "Sub-classification of the entity type (e.g., Miniseries, Documentary)"
+    },
+    "genres": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Genre classifications for the program"
+    },
+    "releaseYear": {
+      "type": "integer",
+      "minimum": 1900,
+      "maximum": 2100,
+      "description": "Year the program was originally released"
+    },
+    "releaseDate": {
+      "type": "string",
+      "format": "date",
+      "description": "Full release date in ISO 8601 format"
+    },
+    "ratings": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Rating"
+      },
+      "description": "Content ratings from rating bodies"
+    },
+    "preferredImage": {
+      "$ref": "#/definitions/Image",
+      "description": "Primary promotional image for the program"
+    },
+    "runTime": {
+      "type": "string",
+      "description": "Program runtime in ISO 8601 duration format (e.g., PT1H30M)"
+    }
+  },
+  "definitions": {
+    "Rating": {
+      "type": "object",
+      "description": "Content rating from a rating authority",
+      "properties": {
+        "body": {
+          "type": "string",
+          "description": "Rating authority (e.g., MPAA, TV Parental Guidelines)"
+        },
+        "code": {
+          "type": "string",
+          "description": "Rating code (e.g., PG-13, TV-MA, G)"
+        }
+      }
+    },
+    "Image": {
+      "type": "object",
+      "description": "Media image with URI and display metadata",
+      "properties": {
+        "uri": {
+          "type": "string",
+          "format": "uri",
+          "description": "Full URI to the image resource"
+        },
+        "width": {
+          "type": "integer",
+          "description": "Image width in pixels"
+        },
+        "height": {
+          "type": "integer",
+          "description": "Image height in pixels"
+        },
+        "primary": {
+          "type": "boolean",
+          "description": "Whether this is the primary/preferred image"
+        },
+        "category": {
+          "type": "string",
+          "description": "Image category (e.g., Poster Art, Banner-L3, Actor)"
+        },
+        "text": {
+          "type": "boolean",
+          "description": "Whether the image contains text overlay"
+        }
+      }
+    }
+  }
+}

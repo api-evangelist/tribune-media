@@ -1,0 +1,45 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/tribune-media/main/json-schema/tms-airing-schema.json",
+  "title": "TMS Airing",
+  "description": "A scheduled broadcast airing of a program on a TV station",
+  "type": "object",
+  "required": ["startTime", "stationId"],
+  "properties": {
+    "startTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Scheduled start time in ISO 8601 format"
+    },
+    "endTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Scheduled end time in ISO 8601 format"
+    },
+    "duration": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Duration of the airing in minutes"
+    },
+    "stationId": {
+      "type": "string",
+      "description": "Identifier of the broadcasting station"
+    },
+    "qualifiers": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["New", "Live", "Finale", "Repeat", "Premiere", "HD", "SAP"]
+      },
+      "description": "Special airing qualifiers"
+    },
+    "program": {
+      "$ref": "tms-program-schema.json",
+      "description": "The program being aired"
+    },
+    "channel": {
+      "type": "string",
+      "description": "Channel number on the lineup"
+    }
+  }
+}

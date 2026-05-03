@@ -1,0 +1,34 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://data.tmsapi.com/v1.1/programs/search?q=Game+of+Thrones&entityType=show&limit=5&api_key=YOUR_API_KEY"
+  },
+  "response": {
+    "status": 200,
+    "body": [
+      {
+        "tmsId": "EP010856555",
+        "rootId": "SH014480194",
+        "seriesId": "SH014480194",
+        "title": "Game of Thrones",
+        "description": "Nine noble families fight for control of the mythical land of Westeros while an ancient enemy rises.",
+        "shortDescription": "Epic fantasy series based on George R.R. Martin novels.",
+        "entityType": "Show",
+        "subType": "Miniseries",
+        "genres": ["Drama", "Fantasy", "Adventure"],
+        "releaseYear": 2011,
+        "ratings": [
+          { "body": "TV Parental Guidelines", "code": "TV-MA" }
+        ],
+        "preferredImage": {
+          "uri": "https://mediacloud.tmsapi.com/img/programs/gameofthrones.jpg",
+          "width": 360,
+          "height": 270,
+          "primary": true,
+          "category": "Banner-L3",
+          "text": true
+        }
+      }
+    ]
+  }
+}

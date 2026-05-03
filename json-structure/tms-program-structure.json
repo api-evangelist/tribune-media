@@ -1,0 +1,47 @@
+{
+  "title": "TMS Program Structure",
+  "description": "JSON structure documentation for TMS program entities",
+  "structure": {
+    "tmsId": "string — TMS unique identifier (e.g., EP010856555 for episodes, MV000001 for movies)",
+    "rootId": "string — Root content identifier shared across versions",
+    "seriesId": "string — Series identifier for episodic content (prefix SH)",
+    "title": "string — Primary display title",
+    "titleLang": "string — BCP 47 language code for title",
+    "description": "string — Full synopsis (up to 200 characters)",
+    "shortDescription": "string — Brief guide description (up to 100 characters)",
+    "entityType": "enum [Movie, Show, Special, Sports, Episode] — Content type",
+    "subType": "string — Sub-classification (Miniseries, Documentary, News, etc.)",
+    "genres": "array<string> — Genre list from TMS genre taxonomy",
+    "releaseYear": "integer — Original release year (YYYY)",
+    "releaseDate": "string — ISO 8601 date of original release",
+    "ratings": {
+      "_type": "array",
+      "_item": {
+        "body": "string — Rating authority (MPAA, TV Parental Guidelines)",
+        "code": "string — Rating code (G, PG, PG-13, R, TV-MA, TV-14, etc.)"
+      }
+    },
+    "preferredImage": {
+      "uri": "string — Full HTTPS URI to image",
+      "width": "integer — Width in pixels",
+      "height": "integer — Height in pixels",
+      "primary": "boolean — Primary image flag",
+      "category": "string — Image category (Poster Art, Banner-L3, Still, Actor)",
+      "text": "boolean — Contains text overlay"
+    },
+    "runTime": "string — ISO 8601 duration (PT1H30M)"
+  },
+  "idPrefixes": {
+    "EP": "Episode",
+    "SH": "Series/Show",
+    "MV": "Movie",
+    "SP": "Special",
+    "ZZ": "Sports event"
+  },
+  "notes": [
+    "tmsId is the primary lookup key for all program queries",
+    "rootId groups multiple versions of the same underlying content",
+    "seriesId links episodes to their parent series",
+    "Image URIs use TMS Media Cloud CDN at mediacloud.tmsapi.com"
+  ]
+}

@@ -1,0 +1,1886 @@
+openapi: 3.0.3
+info:
+  title: TMS OnConnect API
+  description: >-
+    The Tribune Media Services (TMS) OnConnect API provides comprehensive entertainment
+    metadata for TV programming, movies, celebrities, and sports. It delivers electronic
+    programming guide (EPG) data, movie showtimes, celebrity information, and televised
+    sports schedules. Originally developed by Tribune Media Services, the API is now
+    operated by Gracenote (a Nielsen company) and powers content discovery for consumer
+    electronics manufacturers, cable operators, and entertainment platforms.
+  version: 1.1.0
+  contact:
+    url: https://developer.tmsapi.com/
+  termsOfService: https://developer.tmsapi.com/page/API_Terms_of_Use
+servers:
+  - url: https://data.tmsapi.com
+    description: TMS OnConnect API server
+security:
+  - apiKey: []
+paths:
+  /v1.1/lineups:
+    get:
+      operationId: getLineups
+      summary: Get Lineups by Postal Code
+      description: Returns a list of lineups for a country and postal code.
+      tags:
+        - Lineups
+      parameters:
+        - name: country
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Two-letter country code (e.g., US, CA)
+        - name: postalCode
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Postal or ZIP code to look up lineups for
+        - name: api_key
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Your TMS API key
+      responses:
+        '200':
+          description: Successful response with list of lineups
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Lineup'
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: No lineups found for the given postal code
+
+  /v1.1/lineups/{lineupId}:
+    get:
+      operationId: getLineupById
+      summary: Get Lineup Details
+      description: Retrieves details for a specific lineup by ID.
+      tags:
+        - Lineups
+      parameters:
+        - name: lineupId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Unique lineup identifier
+        - name: api_key
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Lineup details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Lineup'
+        '404':
+          description: Lineup not found
+
+  /v1.1/lineups/{lineupId}/channels:
+    get:
+      operationId: getLineupChannels
+      summary: Get Lineup Channels
+      description: Lists all stations and channels for a given lineup.
+      tags:
+        - Lineups
+      parameters:
+        - name: lineupId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: imageSize
+          in: query
+          schema:
+            type: string
+            enum: [Sm, Md, Lg, Ms]
+          description: Size of station images to include
+        - name: enhancedCallSign
+          in: query
+          schema:
+            type: boolean
+          description: Include enhanced call sign data
+        - name: api_key
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of channels for the lineup
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Channel'
+
+  /v1.1/lineups/{lineupId}/grid:
+    get:
+      operationId: getLineupGrid
+      summary: Get TV Grid Schedule
+      description: Returns the TV grid schedule for a lineup (up to 6 hours, 14 days advance).
+      tags:
+        - Lineups
+      parameters:
+        - name: lineupId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: startDateTime
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date-time
+          description: Start date/time in ISO 8601 format
+        - name: endDateTime
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: stationId
+          in: query
+          schema:
+            type: string
+          description: Filter to a specific station
+        - name: imageSize
+          in: query
+          schema:
+            type: string
+        - name: api_key
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: TV grid schedule
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GridEntry'
+
+  /v1.1/stations/search:
+    get:
+      operationId: searchStations
+      summary: Search TV Stations
+      description: Searches TV stations by name or call sign.
+      tags:
+        - Stations
+      parameters:
+        - name: q
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Search query (station name or call sign)
+        - name: queryFields
+          in: query
+          schema:
+            type: string
+          description: Fields to search (e.g., name, callSign)
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 10
+        - name: offset
+          in: query
+          schema:
+            type: integer
+            default: 0
+        - name: imageSize
+          in: query
+          schema:
+            type: string
+        - name: api_key
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Matching stations
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Station'
+
+  /v1.1/stations/{stationId}:
+    get:
+      operationId: getStationById
+      summary: Get Station Details
+      description: Retrieves details for a specific TV station.
+      tags:
+        - Stations
+      parameters:
+        - name: stationId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: lineupId
+          in: query
+          schema:
+            type: string
+        - name: imageSize
+          in: query
+          schema:
+            type: string
+        - name: api_key
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Station details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Station'
+
+  /v1.1/stations/{stationId}/airings:
+    get:
+      operationId: getStationAirings
+      summary: Get Station Schedule
+      description: Returns the schedule for a single station (up to 14 days ahead).
+      tags:
+        - Stations
+      parameters:
+        - name: stationId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: lineupId
+          in: query
+          schema:
+            type: string
+        - name: startDateTime
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date-time
+        - name: endDateTime
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: imageSize
+          in: query
+          schema:
+            type: string
+        - name: api_key
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Station airing schedule
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Airing'
+
+  /v1.1/programs/search:
+    get:
+      operationId: searchPrograms
+      summary: Search Programs
+      description: Returns basic program metadata based on free-form search criteria.
+      tags:
+        - Programs
+      parameters:
+        - name: q
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Free-form search query
+        - name: queryFields
+          in: query
+          schema:
+            type: string
+        - name: entityType
+          in: query
+          schema:
+            type: string
+            enum: [movie, show, special, sports, episode]
+        - name: genres
+          in: query
+          schema:
+            type: string
+        - name: subType
+          in: query
+          schema:
+            type: string
+        - name: includeAdult
+          in: query
+          schema:
+            type: boolean
+            default: false
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 10
+        - name: offset
+          in: query
+          schema:
+            type: integer
+            default: 0
+        - name: lineupId
+          in: query
+          schema:
+            type: string
+        - name: startDateTime
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: endDateTime
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: imageSize
+          in: query
+          schema:
+            type: string
+        - name: api_key
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Matching programs
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Program'
+
+  /v1.1/programs/genres:
+    get:
+      operationId: getProgramGenres
+      summary: Get Program Genres
+      description: Returns a list of program genres, to be used in conjunction with Program Search.
+      tags:
+        - Programs
+      parameters:
+        - name: api_key
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of genres
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Genre'
+
+  /v1.1/programs/newShowAirings:
+    get:
+      operationId: getNewShowAirings
+      summary: Get New Show Airings
+      description: Retrieves shows and episodes airing new on a lineup (up to 24 hours, 14 days advance).
+      tags:
+        - Programs
+      parameters:
+        - name: lineupId
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: startDateTime
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date-time
+        - name: endDateTime
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: includeAdult
+          in: query
+          schema:
+            type: boolean
+        - name: imageSize
+          in: query
+          schema:
+            type: string
+        - name: api_key
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: New show airings
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Airing'
+
+  /v1.1/programs/{tmsId}:
+    get:
+      operationId: getProgramById
+      summary: Get Program Details
+      description: Retrieves detailed metadata for a specific program by TMS ID.
+      tags:
+        - Programs
+      parameters:
+        - name: tmsId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: TMS program identifier
+        - name: imageSize
+          in: query
+          schema:
+            type: string
+        - name: imageAspectTV
+          in: query
+          schema:
+            type: string
+        - name: imageText
+          in: query
+          schema:
+            type: boolean
+        - name: market
+          in: query
+          schema:
+            type: string
+        - name: api_key
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Program details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Program'
+
+  /v1.1/programs/{tmsId}/airings:
+    get:
+      operationId: getProgramAirings
+      summary: Get Program Airings
+      description: Returns all airings of a specific program (up to 14 days advance).
+      tags:
+        - Programs
+      parameters:
+        - name: tmsId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: lineupId
+          in: query
+          schema:
+            type: string
+        - name: startDateTime
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: endDateTime
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: includeDetail
+          in: query
+          schema:
+            type: boolean
+        - name: imageSize
+          in: query
+          schema:
+            type: string
+        - name: api_key
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Program airings
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Airing'
+
+  /v1.1/series/{seriesId}:
+    get:
+      operationId: getSeriesById
+      summary: Get Series Details
+      description: Returns detailed metadata for a specific TV series.
+      tags:
+        - Series
+      parameters:
+        - name: seriesId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: imageSize
+          in: query
+          schema:
+            type: string
+        - name: titleLang
+          in: query
+          schema:
+            type: string
+        - name: descriptionLang
+          in: query
+          schema:
+            type: string
+        - name: market
+          in: query
+          schema:
+            type: string
+        - name: api_key
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Series details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Series'
+
+  /v1.1/series/{seriesId}/airings:
+    get:
+      operationId: getSeriesAirings
+      summary: Get Series Airings
+      description: Retrieves all airings for a TV series (up to 14 days advance).
+      tags:
+        - Series
+      parameters:
+        - name: seriesId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: lineupId
+          in: query
+          schema:
+            type: string
+        - name: startDateTime
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: endDateTime
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: includeDetail
+          in: query
+          schema:
+            type: boolean
+        - name: imageSize
+          in: query
+          schema:
+            type: string
+        - name: api_key
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Series airings
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Airing'
+
+  /v1.1/series/{seriesId}/episodes:
+    get:
+      operationId: getSeriesEpisodes
+      summary: Get Series Episodes
+      description: Returns episodes for a series sorted by season and episode number.
+      tags:
+        - Series
+      parameters:
+        - name: seriesId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: season
+          in: query
+          schema:
+            type: integer
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 100
+        - name: offset
+          in: query
+          schema:
+            type: integer
+            default: 0
+        - name: imageSize
+          in: query
+          schema:
+            type: string
+        - name: api_key
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Series episodes
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Episode'
+
+  /v1.1/movies/airings:
+    get:
+      operationId: getMovieAirings
+      summary: Get Movies Airing on TV
+      description: Provides movies airing on a lineup (up to 24 hours, 14 days advance).
+      tags:
+        - Movies
+      parameters:
+        - name: lineupId
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: startDateTime
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date-time
+        - name: endDateTime
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: includeAdult
+          in: query
+          schema:
+            type: boolean
+        - name: imageSize
+          in: query
+          schema:
+            type: string
+        - name: imageText
+          in: query
+          schema:
+            type: boolean
+        - name: api_key
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Movies airing on TV
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MovieAiring'
+
+  /v1.1/movies/showings:
+    get:
+      operationId: getMovieShowings
+      summary: Get Movies in Theatres
+      description: Returns movies currently playing in local theatres with showtimes.
+      tags:
+        - Movies
+      parameters:
+        - name: startDate
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date
+        - name: numDays
+          in: query
+          schema:
+            type: integer
+            default: 1
+        - name: zip
+          in: query
+          schema:
+            type: string
+        - name: lat
+          in: query
+          schema:
+            type: number
+            format: float
+        - name: lng
+          in: query
+          schema:
+            type: number
+            format: float
+        - name: radius
+          in: query
+          schema:
+            type: integer
+            default: 10
+        - name: units
+          in: query
+          schema:
+            type: string
+            enum: [mile, km]
+            default: mile
+        - name: imageSize
+          in: query
+          schema:
+            type: string
+        - name: market
+          in: query
+          schema:
+            type: string
+        - name: api_key
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Movies currently in theatres
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MovieShowing'
+
+  /v1.1/theatres:
+    get:
+      operationId: getTheatres
+      summary: Get Theatres by Location
+      description: Retrieves theatre locations via zip/postal code or geographic coordinates.
+      tags:
+        - Theatres
+      parameters:
+        - name: zip
+          in: query
+          schema:
+            type: string
+        - name: lat
+          in: query
+          schema:
+            type: number
+            format: float
+        - name: lng
+          in: query
+          schema:
+            type: number
+            format: float
+        - name: radius
+          in: query
+          schema:
+            type: integer
+            default: 10
+        - name: units
+          in: query
+          schema:
+            type: string
+            enum: [mile, km]
+            default: mile
+        - name: numTheatres
+          in: query
+          schema:
+            type: integer
+            default: 10
+        - name: api_key
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of nearby theatres
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Theatre'
+
+  /v1.1/theatres/{theatreId}/showings:
+    get:
+      operationId: getTheatreShowings
+      summary: Get Theatre Showtimes
+      description: Lists movies and showtimes at a specific theatre.
+      tags:
+        - Theatres
+      parameters:
+        - name: theatreId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: startDate
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date
+        - name: numDays
+          in: query
+          schema:
+            type: integer
+            default: 1
+        - name: imageSize
+          in: query
+          schema:
+            type: string
+        - name: api_key
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Theatre showtimes
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Showing'
+
+  /v1.1/movies/{movieId}/showings:
+    get:
+      operationId: getMovieShowtimes
+      summary: Get Movie Showtimes
+      description: Returns metadata and theatre/showtime information for a specific movie.
+      tags:
+        - Movies
+      parameters:
+        - name: movieId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: startDate
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date
+        - name: numDays
+          in: query
+          schema:
+            type: integer
+            default: 1
+        - name: zip
+          in: query
+          schema:
+            type: string
+        - name: lat
+          in: query
+          schema:
+            type: number
+            format: float
+        - name: lng
+          in: query
+          schema:
+            type: number
+            format: float
+        - name: radius
+          in: query
+          schema:
+            type: integer
+            default: 10
+        - name: units
+          in: query
+          schema:
+            type: string
+            enum: [mile, km]
+            default: mile
+        - name: imageSize
+          in: query
+          schema:
+            type: string
+        - name: api_key
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Movie showtimes
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MovieShowing'
+
+  /v1.1/sports/{sportsId}:
+    get:
+      operationId: getSportById
+      summary: Get Sport Details
+      description: Returns sport details with optional organization information.
+      tags:
+        - Sports
+      parameters:
+        - name: sportsId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: includeOrg
+          in: query
+          schema:
+            type: boolean
+        - name: officialOrg
+          in: query
+          schema:
+            type: boolean
+        - name: imageSize
+          in: query
+          schema:
+            type: string
+        - name: api_key
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Sport details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sport'
+
+  /v1.1/sports/{sportsId}/events/airings:
+    get:
+      operationId: getSportEventAirings
+      summary: Get Sports Event Airings
+      description: Returns live sports events for specified sports on a lineup.
+      tags:
+        - Sports
+      parameters:
+        - name: sportsId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: lineupId
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: startDateTime
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date-time
+        - name: endDateTime
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: liveOnly
+          in: query
+          schema:
+            type: boolean
+        - name: imageSize
+          in: query
+          schema:
+            type: string
+        - name: api_key
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Sports event airings
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SportsAiring'
+
+  /v1.1/sports/{sportsId}/non-events/airings:
+    get:
+      operationId: getSportNonEventAirings
+      summary: Get Sports Non-Event Airings
+      description: Returns sports non-events and taped events (24 hours, 14 days advance).
+      tags:
+        - Sports
+      parameters:
+        - name: sportsId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: lineupId
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: startDateTime
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date-time
+        - name: endDateTime
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: imageSize
+          in: query
+          schema:
+            type: string
+        - name: api_key
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Sports non-event airings
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Airing'
+
+  /v1.1/sports/organizations/{organizationId}/airings:
+    get:
+      operationId: getOrganizationAirings
+      summary: Get Organization Airings
+      description: Returns all airings for a sports organization (e.g., MLB, NBA, NFL).
+      tags:
+        - Sports
+      parameters:
+        - name: organizationId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: lineupId
+          in: query
+          schema:
+            type: string
+        - name: startDateTime
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: endDateTime
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: includeDetail
+          in: query
+          schema:
+            type: boolean
+        - name: imageSize
+          in: query
+          schema:
+            type: string
+        - name: api_key
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Organization airings
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SportsAiring'
+
+  /v1.1/sports/teams/{teamBrandId}/airings:
+    get:
+      operationId: getTeamAirings
+      summary: Get Team Airings
+      description: Returns all airings for a sports team.
+      tags:
+        - Sports
+      parameters:
+        - name: teamBrandId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: lineupId
+          in: query
+          schema:
+            type: string
+        - name: startDateTime
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: endDateTime
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: includeDetail
+          in: query
+          schema:
+            type: boolean
+        - name: imageSize
+          in: query
+          schema:
+            type: string
+        - name: market
+          in: query
+          schema:
+            type: string
+        - name: api_key
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Team airings
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SportsAiring'
+
+  /v1.1/celebs/{personId}:
+    get:
+      operationId: getCelebrityById
+      summary: Get Celebrity Details
+      description: Returns detailed information about a specific celebrity.
+      tags:
+        - Celebrities
+      parameters:
+        - name: personId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: imageSize
+          in: query
+          schema:
+            type: string
+        - name: api_key
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Celebrity details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Celebrity'
+
+  /v1.1/celebs/{personId}/airings:
+    get:
+      operationId: getCelebrityAirings
+      summary: Get Celebrity Airings
+      description: Retrieves all TV airings featuring a specific celebrity (up to 14 days).
+      tags:
+        - Celebrities
+      parameters:
+        - name: personId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: lineupId
+          in: query
+          schema:
+            type: string
+        - name: startDateTime
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: endDateTime
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: imageSize
+          in: query
+          schema:
+            type: string
+        - name: api_key
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Celebrity TV airings
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Airing'
+
+  /v1.1/celebs/talkShowAirings:
+    get:
+      operationId: getTalkShowCelebrityAirings
+      summary: Get Celebrity Talk Show Airings
+      description: Lists celebrities appearing on talk shows (requires R&D or Commercial plan).
+      tags:
+        - Celebrities
+      parameters:
+        - name: lineupId
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: startDateTime
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date-time
+        - name: endDateTime
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: imageSize
+          in: query
+          schema:
+            type: string
+        - name: api_key
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Celebrity talk show airings
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CelebrityAppearance'
+
+  /v2/series/{seriesId}:
+    get:
+      operationId: getOnlineVideoSeries
+      summary: Get Online Video Series
+      description: Returns series information for online video metadata.
+      tags:
+        - Online Video
+      parameters:
+        - name: seriesId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: region
+          in: query
+          schema:
+            type: string
+        - name: api_key
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Online video series information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Series'
+
+  /v2/episodes/{rootId_tmsId}:
+    get:
+      operationId: getOnlineVideoEpisode
+      summary: Get Online Video Episode
+      description: Retrieves single episode information for online video.
+      tags:
+        - Online Video
+      parameters:
+        - name: rootId_tmsId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Root ID combined with TMS ID
+        - name: region
+          in: query
+          schema:
+            type: string
+        - name: api_key
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Episode information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Episode'
+
+  /v2/movies/{rootId_tmsId}:
+    get:
+      operationId: getOnlineVideoMovie
+      summary: Get Online Video Movie
+      description: Retrieves movie information for online video.
+      tags:
+        - Online Video
+      parameters:
+        - name: rootId_tmsId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: region
+          in: query
+          schema:
+            type: string
+        - name: api_key
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Movie information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Movie'
+
+  /social/{rootId_seriesId}:
+    get:
+      operationId: getSocialData
+      summary: Get Social Data
+      description: Obtains social media links for a movie or TV series.
+      tags:
+        - Social
+      parameters:
+        - name: rootId_seriesId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Root ID or series ID
+        - name: api_key
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Social data and links
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SocialData'
+
+components:
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: query
+      name: api_key
+  schemas:
+    Lineup:
+      type: object
+      properties:
+        lineupId:
+          type: string
+          description: Unique lineup identifier
+        name:
+          type: string
+          description: Lineup display name
+        type:
+          type: string
+          description: Lineup type (e.g., cable, satellite, ota)
+        location:
+          type: string
+          description: Geographic location of the lineup
+        device:
+          type: string
+          description: Device or service type
+        postalCode:
+          type: string
+          description: Associated postal code
+        country:
+          type: string
+          description: Country code
+
+    Channel:
+      type: object
+      properties:
+        stationId:
+          type: string
+        channel:
+          type: string
+        callSign:
+          type: string
+        name:
+          type: string
+        preferredImage:
+          $ref: '#/components/schemas/Image'
+
+    Station:
+      type: object
+      properties:
+        stationId:
+          type: string
+          description: Unique station identifier
+        callSign:
+          type: string
+          description: Station call sign (e.g., WNBC)
+        name:
+          type: string
+          description: Station name
+        type:
+          type: string
+          description: Station type
+        city:
+          type: string
+        state:
+          type: string
+        country:
+          type: string
+        preferredImage:
+          $ref: '#/components/schemas/Image'
+
+    Program:
+      type: object
+      properties:
+        tmsId:
+          type: string
+          description: TMS program identifier
+        rootId:
+          type: string
+        seriesId:
+          type: string
+        title:
+          type: string
+          description: Program title
+        titleLang:
+          type: string
+        description:
+          type: string
+          description: Program description
+        shortDescription:
+          type: string
+        entityType:
+          type: string
+          enum: [Movie, Show, Special, Sports, Episode]
+        subType:
+          type: string
+        genres:
+          type: array
+          items:
+            type: string
+        releaseYear:
+          type: integer
+        releaseDate:
+          type: string
+          format: date
+        ratings:
+          type: array
+          items:
+            $ref: '#/components/schemas/Rating'
+        preferredImage:
+          $ref: '#/components/schemas/Image'
+
+    Series:
+      type: object
+      properties:
+        seriesId:
+          type: string
+          description: Unique series identifier
+        title:
+          type: string
+          description: Series title
+        description:
+          type: string
+          description: Series description
+        startAirDate:
+          type: string
+          format: date
+        endAirDate:
+          type: string
+          format: date
+        genres:
+          type: array
+          items:
+            type: string
+        preferredImage:
+          $ref: '#/components/schemas/Image'
+
+    Episode:
+      type: object
+      properties:
+        tmsId:
+          type: string
+        seriesId:
+          type: string
+        title:
+          type: string
+        episodeTitle:
+          type: string
+        description:
+          type: string
+        seasonNum:
+          type: integer
+        episodeNum:
+          type: integer
+        airDate:
+          type: string
+          format: date
+        preferredImage:
+          $ref: '#/components/schemas/Image'
+
+    Movie:
+      type: object
+      properties:
+        tmsId:
+          type: string
+          description: TMS movie identifier
+        rootId:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        releaseYear:
+          type: integer
+        releaseDate:
+          type: string
+          format: date
+        genres:
+          type: array
+          items:
+            type: string
+        runTime:
+          type: string
+          description: Runtime in ISO 8601 duration format
+        ratings:
+          type: array
+          items:
+            $ref: '#/components/schemas/Rating'
+        preferredImage:
+          $ref: '#/components/schemas/Image'
+
+    Theatre:
+      type: object
+      properties:
+        theatreId:
+          type: string
+          description: Unique theatre identifier
+        name:
+          type: string
+          description: Theatre name
+        address:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        postalCode:
+          type: string
+        distance:
+          type: number
+          format: float
+          description: Distance from search origin
+
+    Airing:
+      type: object
+      properties:
+        startTime:
+          type: string
+          format: date-time
+          description: Airing start time in ISO 8601 format
+        endTime:
+          type: string
+          format: date-time
+        duration:
+          type: integer
+          description: Duration in minutes
+        stationId:
+          type: string
+        qualifiers:
+          type: array
+          items:
+            type: string
+          description: Qualifiers such as New, Live, Finale, Repeat
+        program:
+          $ref: '#/components/schemas/Program'
+
+    GridEntry:
+      type: object
+      properties:
+        startTime:
+          type: string
+          format: date-time
+        endTime:
+          type: string
+          format: date-time
+        duration:
+          type: integer
+        channel:
+          type: string
+        stationId:
+          type: string
+        qualifiers:
+          type: array
+          items:
+            type: string
+        program:
+          $ref: '#/components/schemas/Program'
+
+    MovieAiring:
+      type: object
+      properties:
+        startTime:
+          type: string
+          format: date-time
+        endTime:
+          type: string
+          format: date-time
+        duration:
+          type: integer
+        stationId:
+          type: string
+        movie:
+          $ref: '#/components/schemas/Movie'
+
+    MovieShowing:
+      type: object
+      properties:
+        movie:
+          $ref: '#/components/schemas/Movie'
+        theatres:
+          type: array
+          items:
+            $ref: '#/components/schemas/Theatre'
+        showtimes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Showing'
+
+    Showing:
+      type: object
+      properties:
+        startTime:
+          type: string
+          format: date-time
+        endTime:
+          type: string
+          format: date-time
+        movieId:
+          type: string
+        theatreId:
+          type: string
+        format:
+          type: string
+          description: Format (e.g., 3D, IMAX, Standard)
+
+    Sport:
+      type: object
+      properties:
+        sportsId:
+          type: string
+          description: Unique sport identifier
+        name:
+          type: string
+          description: Sport name
+        organizations:
+          type: array
+          items:
+            $ref: '#/components/schemas/SportOrganization'
+        preferredImage:
+          $ref: '#/components/schemas/Image'
+
+    SportOrganization:
+      type: object
+      properties:
+        organizationId:
+          type: string
+        name:
+          type: string
+        abbreviation:
+          type: string
+
+    SportsAiring:
+      type: object
+      properties:
+        startTime:
+          type: string
+          format: date-time
+        endTime:
+          type: string
+          format: date-time
+        duration:
+          type: integer
+        stationId:
+          type: string
+        liveEvent:
+          type: boolean
+        teams:
+          type: array
+          items:
+            type: object
+            properties:
+              teamBrandId:
+                type: string
+              name:
+                type: string
+        program:
+          $ref: '#/components/schemas/Program'
+
+    Celebrity:
+      type: object
+      properties:
+        personId:
+          type: string
+          description: Unique person identifier
+        name:
+          type: string
+          description: Celebrity name
+        biography:
+          type: string
+        birthDate:
+          type: string
+          format: date
+        birthPlace:
+          type: string
+        preferredImage:
+          $ref: '#/components/schemas/Image'
+
+    CelebrityAppearance:
+      type: object
+      properties:
+        startTime:
+          type: string
+          format: date-time
+        stationId:
+          type: string
+        program:
+          $ref: '#/components/schemas/Program'
+        celebrity:
+          $ref: '#/components/schemas/Celebrity'
+
+    Genre:
+      type: object
+      properties:
+        genreId:
+          type: string
+        name:
+          type: string
+          description: Genre name
+
+    Rating:
+      type: object
+      properties:
+        body:
+          type: string
+          description: Rating body (e.g., MPAA, TV Parental Guidelines)
+        code:
+          type: string
+          description: Rating code (e.g., PG-13, TV-14)
+
+    Image:
+      type: object
+      properties:
+        uri:
+          type: string
+          description: Image URI
+        width:
+          type: integer
+        height:
+          type: integer
+        primary:
+          type: boolean
+        category:
+          type: string
+        text:
+          type: boolean
+
+    SocialData:
+      type: object
+      properties:
+        rootId:
+          type: string
+        seriesId:
+          type: string
+        socialLinks:
+          type: array
+          items:
+            type: object
+            properties:
+              platform:
+                type: string
+              url:
+                type: string

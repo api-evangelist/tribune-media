@@ -1,0 +1,404 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "TMS Entertainment Discovery"
+  description: >-
+    Unified entertainment discovery workflow combining TV programming guides, movie
+    showtimes, celebrity appearances, and sports event schedules. Powers content
+    recommendation apps, EPG integrations, and entertainment platform features.
+  tags:
+    - Tribune Media
+    - Entertainment
+    - Television
+    - Movies
+    - Sports
+    - Celebrity
+    - Programming Guide
+    - Content Discovery
+  created: "2026-05-03"
+  modified: "2026-05-03"
+
+binds:
+  - namespace: env
+    keys:
+      TMS_API_KEY: TMS_API_KEY
+
+capability:
+  consumes:
+    - import: tms-onconnect
+      location: ./shared/tms-onconnect.yaml
+
+  exposes:
+    - type: rest
+      port: 8080
+      namespace: entertainment-discovery-api
+      description: "Unified REST API for entertainment content discovery."
+      resources:
+        - path: /v1/lineups
+          name: lineups
+          description: TV lineup and channel information
+          operations:
+            - method: GET
+              name: get-lineups
+              description: Get TV lineups available for a postal code
+              call: "tms-onconnect.get-lineups"
+              with:
+                postalCode: "rest.postalCode"
+                country: "rest.country"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/lineups/{lineupId}/grid
+          name: tv-grid
+          description: TV programming grid schedule
+          operations:
+            - method: GET
+              name: get-tv-grid
+              description: Get the TV programming grid for a lineup
+              call: "tms-onconnect.get-lineup-grid"
+              with:
+                lineupId: "rest.lineupId"
+                startDateTime: "rest.startDateTime"
+                endDateTime: "rest.endDateTime"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/programs
+          name: programs
+          description: TV program search and discovery
+          operations:
+            - method: GET
+              name: search-programs
+              description: Search for TV programs, movies, and shows
+              call: "tms-onconnect.search-programs"
+              with:
+                q: "rest.q"
+                entityType: "rest.entityType"
+                genres: "rest.genres"
+                limit: "rest.limit"
+                offset: "rest.offset"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/programs/{tmsId}
+          name: program-detail
+          description: Detailed program metadata
+          operations:
+            - method: GET
+              name: get-program
+              description: Get detailed metadata for a program
+              call: "tms-onconnect.get-program"
+              with:
+                tmsId: "rest.tmsId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/programs/new-airings
+          name: new-airings
+          description: New show airings on a lineup
+          operations:
+            - method: GET
+              name: get-new-show-airings
+              description: Get new episodes and premieres airing on a lineup
+              call: "tms-onconnect.get-new-show-airings"
+              with:
+                lineupId: "rest.lineupId"
+                startDateTime: "rest.startDateTime"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/movies/showings
+          name: movie-showings
+          description: Movies currently showing in theatres
+          operations:
+            - method: GET
+              name: get-movie-showings
+              description: Get movies in local theatres with showtimes
+              call: "tms-onconnect.get-movie-showings"
+              with:
+                startDate: "rest.startDate"
+                zip: "rest.zip"
+                lat: "rest.lat"
+                lng: "rest.lng"
+                radius: "rest.radius"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/movies/tv-airings
+          name: movie-tv-airings
+          description: Movies airing on TV
+          operations:
+            - method: GET
+              name: get-movie-airings
+              description: Get movies airing on a TV lineup
+              call: "tms-onconnect.get-movie-airings"
+              with:
+                lineupId: "rest.lineupId"
+                startDateTime: "rest.startDateTime"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/sports/{sportsId}/events
+          name: sports-events
+          description: Live sports events on TV
+          operations:
+            - method: GET
+              name: get-sport-event-airings
+              description: Get live sports events for a sport on a lineup
+              call: "tms-onconnect.get-sport-event-airings"
+              with:
+                sportsId: "rest.sportsId"
+                lineupId: "rest.lineupId"
+                startDateTime: "rest.startDateTime"
+                liveOnly: "rest.liveOnly"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/sports/organizations/{organizationId}/airings
+          name: organization-airings
+          description: Sports organization airings (MLB, NBA, NFL, etc.)
+          operations:
+            - method: GET
+              name: get-organization-airings
+              description: Get all airings for a sports organization
+              call: "tms-onconnect.get-organization-airings"
+              with:
+                organizationId: "rest.organizationId"
+                lineupId: "rest.lineupId"
+                startDateTime: "rest.startDateTime"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/celebrities/{personId}
+          name: celebrity-detail
+          description: Celebrity information
+          operations:
+            - method: GET
+              name: get-celebrity
+              description: Get celebrity details and biography
+              call: "tms-onconnect.get-celebrity"
+              with:
+                personId: "rest.personId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/celebrities/{personId}/airings
+          name: celebrity-airings
+          description: Celebrity TV appearances
+          operations:
+            - method: GET
+              name: get-celebrity-airings
+              description: Get TV shows featuring a celebrity
+              call: "tms-onconnect.get-celebrity-airings"
+              with:
+                personId: "rest.personId"
+                lineupId: "rest.lineupId"
+                startDateTime: "rest.startDateTime"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/celebrities/talk-shows
+          name: talk-show-appearances
+          description: Celebrity talk show appearances
+          operations:
+            - method: GET
+              name: get-talk-show-airings
+              description: Get celebrities appearing on talk shows
+              call: "tms-onconnect.get-talk-show-airings"
+              with:
+                lineupId: "rest.lineupId"
+                startDateTime: "rest.startDateTime"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9090
+      namespace: entertainment-discovery-mcp
+      transport: http
+      description: "MCP server for AI-assisted entertainment content discovery and recommendations."
+      tools:
+        - name: get-tv-lineups
+          description: Find TV lineups (cable, satellite, OTA) available for a postal code
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "tms-onconnect.get-lineups"
+          with:
+            postalCode: "tools.postalCode"
+            country: "tools.country"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-tv-grid
+          description: Get the full TV programming grid showing what is on across all channels
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "tms-onconnect.get-lineup-grid"
+          with:
+            lineupId: "tools.lineupId"
+            startDateTime: "tools.startDateTime"
+            endDateTime: "tools.endDateTime"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: search-programs
+          description: Search for TV shows, movies, specials, or sports programs by keyword
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "tms-onconnect.search-programs"
+          with:
+            q: "tools.q"
+            entityType: "tools.entityType"
+            genres: "tools.genres"
+            limit: "tools.limit"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-program-details
+          description: Get detailed metadata for a TV program or movie by TMS ID
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "tms-onconnect.get-program"
+          with:
+            tmsId: "tools.tmsId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-new-show-airings
+          description: Find new episodes and series premieres airing on a TV lineup
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "tms-onconnect.get-new-show-airings"
+          with:
+            lineupId: "tools.lineupId"
+            startDateTime: "tools.startDateTime"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-movie-theatre-showings
+          description: Find movies currently playing at nearby theatres with showtimes
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "tms-onconnect.get-movie-showings"
+          with:
+            startDate: "tools.startDate"
+            zip: "tools.zip"
+            lat: "tools.lat"
+            lng: "tools.lng"
+            radius: "tools.radius"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-movies-on-tv
+          description: Find movies airing on TV channels for a lineup
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "tms-onconnect.get-movie-airings"
+          with:
+            lineupId: "tools.lineupId"
+            startDateTime: "tools.startDateTime"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-live-sports
+          description: Get live sports events airing on TV for a specific sport
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "tms-onconnect.get-sport-event-airings"
+          with:
+            sportsId: "tools.sportsId"
+            lineupId: "tools.lineupId"
+            startDateTime: "tools.startDateTime"
+            liveOnly: "tools.liveOnly"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-sports-league-airings
+          description: Get all TV airings for a sports league or organization (MLB, NFL, NBA, etc.)
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "tms-onconnect.get-organization-airings"
+          with:
+            organizationId: "tools.organizationId"
+            lineupId: "tools.lineupId"
+            startDateTime: "tools.startDateTime"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-celebrity-info
+          description: Get biography and details for a celebrity by their TMS person ID
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "tms-onconnect.get-celebrity"
+          with:
+            personId: "tools.personId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-celebrity-tv-appearances
+          description: Find upcoming TV appearances for a celebrity
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "tms-onconnect.get-celebrity-airings"
+          with:
+            personId: "tools.personId"
+            lineupId: "tools.lineupId"
+            startDateTime: "tools.startDateTime"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-talk-show-guests
+          description: Find which celebrities are appearing on talk shows today
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "tms-onconnect.get-talk-show-airings"
+          with:
+            lineupId: "tools.lineupId"
+            startDateTime: "tools.startDateTime"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-program-genres
+          description: Get the full list of TV program genre categories
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "tms-onconnect.get-program-genres"
+          outputParameters:
+            - type: object
+              mapping: "$."

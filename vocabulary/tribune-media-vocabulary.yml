@@ -1,0 +1,131 @@
+vocabulary:
+  name: Tribune Media Vocabulary
+  description: >-
+    Domain vocabulary for Tribune Media Services (TMS) entertainment data APIs.
+    Covers TV programming, movie distribution, celebrity talent, and sports broadcast
+    scheduling terminology as used in the TMS OnConnect API.
+  version: "1.0.0"
+  created: "2026-05-03"
+  modified: "2026-05-03"
+
+domains:
+  - name: Programming Guide
+    description: Terms related to TV lineup and schedule management
+    terms:
+      - term: Lineup
+        definition: A bundle of TV channels and stations available to a subscriber via a specific delivery method (cable, satellite, OTA)
+        synonyms: [channel lineup, service tier, programming package]
+      - term: Grid
+        definition: A time-based schedule display showing what programs are airing across channels during a specific window
+        synonyms: [EPG, electronic programming guide, TV guide, channel grid]
+      - term: Airing
+        definition: A scheduled broadcast instance of a program on a specific station at a specific time
+        synonyms: [broadcast, showing, telecast, timeslot]
+      - term: Qualifier
+        definition: An attribute describing special properties of an airing (New, Live, Finale, Repeat, Premiere, HD)
+        synonyms: [flag, attribute, indicator]
+      - term: Station
+        definition: A TV broadcasting entity identified by call sign and station ID
+        synonyms: [channel, broadcaster, network affiliate]
+      - term: Call Sign
+        definition: The unique identifier for a broadcast station (e.g., WNBC, WGN-TV)
+        synonyms: [callsign, station identifier]
+
+  - name: Content Entities
+    description: Types of entertainment content tracked by TMS
+    terms:
+      - term: Program
+        definition: Any schedulable content entity in the TMS system, encompassing shows, movies, specials, and sports events
+        synonyms: [content, asset, title]
+      - term: TMS ID
+        definition: A unique alphanumeric identifier assigned by TMS to each program entity (e.g., EP010856555, MV000001)
+        synonyms: [tmsId, content identifier, program ID]
+      - term: Root ID
+        definition: An identifier linking multiple versions or airings of the same underlying content
+        synonyms: [rootId, master identifier]
+      - term: Series ID
+        definition: An identifier linking all episodes of the same TV series
+        synonyms: [seriesId, show ID]
+      - term: Episode
+        definition: A single installment of an episodic TV series, identified by season and episode number
+        synonyms: [episode, installment, segment]
+      - term: Entity Type
+        definition: The classification of a program (Movie, Show, Special, Sports, Episode)
+        synonyms: [content type, program type, asset type]
+      - term: Sub Type
+        definition: A finer classification within an entity type (e.g., Miniseries, Documentary, Newsmagazine)
+        synonyms: [subType, content subtype, format]
+
+  - name: Movie Exhibition
+    description: Terms related to theatrical movie distribution
+    terms:
+      - term: Showing
+        definition: A theatrical screening of a movie at a specific time and location
+        synonyms: [showtime, screening, performance]
+      - term: Theatre
+        definition: A physical location that exhibits movies theatrically
+        synonyms: [cinema, movie theater, multiplex]
+      - term: Theatre ID
+        definition: A TMS unique identifier for a movie theatre location
+        synonyms: [theatreId, venue ID]
+      - term: Format
+        definition: The presentation format of a theatrical showing (Standard, 3D, IMAX, Dolby)
+        synonyms: [presentation format, screen format]
+
+  - name: Sports Broadcasting
+    description: Terms related to sports event scheduling and organization
+    terms:
+      - term: Sports ID
+        definition: A TMS identifier for a sport category (e.g., football, basketball, baseball)
+        synonyms: [sportsId, sport identifier]
+      - term: Organization
+        definition: A sports governing body or league (e.g., NFL, NBA, MLB, NCAA)
+        synonyms: [league, conference, governing body]
+      - term: Team Brand
+        definition: A specific sports team entity with a TMS identifier
+        synonyms: [team, franchise, club]
+      - term: Live Event
+        definition: A sports broadcast airing in real time (as opposed to tape-delayed or recorded)
+        synonyms: [live broadcast, real-time broadcast]
+
+  - name: Talent
+    description: Terms related to entertainment talent and celebrity data
+    terms:
+      - term: Celebrity
+        definition: A person in the entertainment industry tracked by TMS, including actors, hosts, athletes, and personalities
+        synonyms: [talent, performer, celebrity, personality]
+      - term: Person ID
+        definition: TMS unique identifier for a celebrity or entertainment person
+        synonyms: [personId, talent ID]
+      - term: Talk Show Appearance
+        definition: A scheduled guest appearance by a celebrity on a talk show or interview program
+        synonyms: [guest appearance, celebrity appearance, talent booking]
+
+  - name: Media Assets
+    description: Terms related to images and media associated with content
+    terms:
+      - term: Preferred Image
+        definition: The primary promotional image selected by TMS for display representing a program or person
+        synonyms: [primary image, key art, thumbnail]
+      - term: Media Cloud
+        definition: TMS's CDN infrastructure for delivering program and celebrity images
+        synonyms: [TMS Media Cloud, image CDN, asset delivery]
+      - term: Image Category
+        definition: The classification of an image asset (e.g., Poster Art, Banner-L3, Still, Actor)
+        synonyms: [image type, asset category]
+
+  - name: API Access
+    description: Terms related to TMS API plans and access control
+    terms:
+      - term: API Key
+        definition: Authentication credential passed as the api_key query parameter to authorize TMS API requests
+        synonyms: [api_key, access key, developer key]
+      - term: Public Plan
+        definition: The free TMS API tier with rate limits of 1 request/second and 50 requests/day
+        synonyms: [free plan, developer plan]
+      - term: Commercial Plan
+        definition: A paid TMS API tier with higher rate limits and access to additional endpoints
+        synonyms: [paid plan, enterprise plan]
+      - term: Mashery
+        definition: The API management platform used by TMS for developer registration and API key management
+        synonyms: [API gateway, developer portal platform]
