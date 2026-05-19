@@ -1,0 +1,246 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: TMS OnConnect API — Series
+  description: 'TMS OnConnect API — Series. 3 operations. Lead operation: Get Series Details. Self-contained Naftiko capability
+    covering one Tribune Media business surface.'
+  tags:
+  - Tribune Media
+  - Series
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TRIBUNE_MEDIA_API_KEY: TRIBUNE_MEDIA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: tms-onconnect-series
+    baseUri: https://data.tmsapi.com
+    description: TMS OnConnect API — Series business capability. Self-contained, no shared references.
+    resources:
+    - name: v1.1-series-seriesId
+      path: /v1.1/series/{seriesId}
+      operations:
+      - name: getseriesbyid
+        method: GET
+        description: Get Series Details
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: seriesId
+          in: path
+          type: string
+          required: true
+        - name: imageSize
+          in: query
+          type: string
+        - name: titleLang
+          in: query
+          type: string
+        - name: descriptionLang
+          in: query
+          type: string
+        - name: market
+          in: query
+          type: string
+        - name: api_key
+          in: query
+          type: string
+          required: true
+    - name: v1.1-series-seriesId-airings
+      path: /v1.1/series/{seriesId}/airings
+      operations:
+      - name: getseriesairings
+        method: GET
+        description: Get Series Airings
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: seriesId
+          in: path
+          type: string
+          required: true
+        - name: lineupId
+          in: query
+          type: string
+        - name: startDateTime
+          in: query
+          type: string
+        - name: endDateTime
+          in: query
+          type: string
+        - name: includeDetail
+          in: query
+          type: boolean
+        - name: imageSize
+          in: query
+          type: string
+        - name: api_key
+          in: query
+          type: string
+          required: true
+    - name: v1.1-series-seriesId-episodes
+      path: /v1.1/series/{seriesId}/episodes
+      operations:
+      - name: getseriesepisodes
+        method: GET
+        description: Get Series Episodes
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: seriesId
+          in: path
+          type: string
+          required: true
+        - name: season
+          in: query
+          type: integer
+        - name: limit
+          in: query
+          type: integer
+        - name: offset
+          in: query
+          type: integer
+        - name: imageSize
+          in: query
+          type: string
+        - name: api_key
+          in: query
+          type: string
+          required: true
+    authentication:
+      type: apikey
+      key: api_key
+      value: '{{env.TRIBUNE_MEDIA_API_KEY}}'
+      placement: query
+  exposes:
+  - type: rest
+    namespace: tms-onconnect-series-rest
+    port: 8080
+    description: REST adapter for TMS OnConnect API — Series. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/v1-1/series/{seriesid}
+      name: v1-1-series-seriesid
+      description: REST surface for v1.1-series-seriesId.
+      operations:
+      - method: GET
+        name: getseriesbyid
+        description: Get Series Details
+        call: tms-onconnect-series.getseriesbyid
+        with:
+          seriesId: rest.seriesId
+          imageSize: rest.imageSize
+          titleLang: rest.titleLang
+          descriptionLang: rest.descriptionLang
+          market: rest.market
+          api_key: rest.api_key
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1-1/series/{seriesid}/airings
+      name: v1-1-series-seriesid-airings
+      description: REST surface for v1.1-series-seriesId-airings.
+      operations:
+      - method: GET
+        name: getseriesairings
+        description: Get Series Airings
+        call: tms-onconnect-series.getseriesairings
+        with:
+          seriesId: rest.seriesId
+          lineupId: rest.lineupId
+          startDateTime: rest.startDateTime
+          endDateTime: rest.endDateTime
+          includeDetail: rest.includeDetail
+          imageSize: rest.imageSize
+          api_key: rest.api_key
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1-1/series/{seriesid}/episodes
+      name: v1-1-series-seriesid-episodes
+      description: REST surface for v1.1-series-seriesId-episodes.
+      operations:
+      - method: GET
+        name: getseriesepisodes
+        description: Get Series Episodes
+        call: tms-onconnect-series.getseriesepisodes
+        with:
+          seriesId: rest.seriesId
+          season: rest.season
+          limit: rest.limit
+          offset: rest.offset
+          imageSize: rest.imageSize
+          api_key: rest.api_key
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: tms-onconnect-series-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for TMS OnConnect API — Series. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: get-series-details
+      description: Get Series Details
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: tms-onconnect-series.getseriesbyid
+      with:
+        seriesId: tools.seriesId
+        imageSize: tools.imageSize
+        titleLang: tools.titleLang
+        descriptionLang: tools.descriptionLang
+        market: tools.market
+        api_key: tools.api_key
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-series-airings
+      description: Get Series Airings
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: tms-onconnect-series.getseriesairings
+      with:
+        seriesId: tools.seriesId
+        lineupId: tools.lineupId
+        startDateTime: tools.startDateTime
+        endDateTime: tools.endDateTime
+        includeDetail: tools.includeDetail
+        imageSize: tools.imageSize
+        api_key: tools.api_key
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-series-episodes
+      description: Get Series Episodes
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: tms-onconnect-series.getseriesepisodes
+      with:
+        seriesId: tools.seriesId
+        season: tools.season
+        limit: tools.limit
+        offset: tools.offset
+        imageSize: tools.imageSize
+        api_key: tools.api_key
+      outputParameters:
+      - type: object
+        mapping: $.

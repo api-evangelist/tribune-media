@@ -1,0 +1,197 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: TMS OnConnect API — Online Video
+  description: 'TMS OnConnect API — Online Video. 3 operations. Lead operation: Get Online Video Episode. Self-contained Naftiko
+    capability covering one Tribune Media business surface.'
+  tags:
+  - Tribune Media
+  - Online Video
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TRIBUNE_MEDIA_API_KEY: TRIBUNE_MEDIA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: tms-onconnect-online-video
+    baseUri: https://data.tmsapi.com
+    description: TMS OnConnect API — Online Video business capability. Self-contained, no shared references.
+    resources:
+    - name: v2-episodes-rootId_tmsId
+      path: /v2/episodes/{rootId_tmsId}
+      operations:
+      - name: getonlinevideoepisode
+        method: GET
+        description: Get Online Video Episode
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: rootId_tmsId
+          in: path
+          type: string
+          description: Root ID combined with TMS ID
+          required: true
+        - name: region
+          in: query
+          type: string
+        - name: api_key
+          in: query
+          type: string
+          required: true
+    - name: v2-movies-rootId_tmsId
+      path: /v2/movies/{rootId_tmsId}
+      operations:
+      - name: getonlinevideomovie
+        method: GET
+        description: Get Online Video Movie
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: rootId_tmsId
+          in: path
+          type: string
+          required: true
+        - name: region
+          in: query
+          type: string
+        - name: api_key
+          in: query
+          type: string
+          required: true
+    - name: v2-series-seriesId
+      path: /v2/series/{seriesId}
+      operations:
+      - name: getonlinevideoseries
+        method: GET
+        description: Get Online Video Series
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: seriesId
+          in: path
+          type: string
+          required: true
+        - name: region
+          in: query
+          type: string
+        - name: api_key
+          in: query
+          type: string
+          required: true
+    authentication:
+      type: apikey
+      key: api_key
+      value: '{{env.TRIBUNE_MEDIA_API_KEY}}'
+      placement: query
+  exposes:
+  - type: rest
+    namespace: tms-onconnect-online-video-rest
+    port: 8080
+    description: REST adapter for TMS OnConnect API — Online Video. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/v2/episodes/{rootid-tmsid}
+      name: v2-episodes-rootid-tmsid
+      description: REST surface for v2-episodes-rootId_tmsId.
+      operations:
+      - method: GET
+        name: getonlinevideoepisode
+        description: Get Online Video Episode
+        call: tms-onconnect-online-video.getonlinevideoepisode
+        with:
+          rootId_tmsId: rest.rootId_tmsId
+          region: rest.region
+          api_key: rest.api_key
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2/movies/{rootid-tmsid}
+      name: v2-movies-rootid-tmsid
+      description: REST surface for v2-movies-rootId_tmsId.
+      operations:
+      - method: GET
+        name: getonlinevideomovie
+        description: Get Online Video Movie
+        call: tms-onconnect-online-video.getonlinevideomovie
+        with:
+          rootId_tmsId: rest.rootId_tmsId
+          region: rest.region
+          api_key: rest.api_key
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2/series/{seriesid}
+      name: v2-series-seriesid
+      description: REST surface for v2-series-seriesId.
+      operations:
+      - method: GET
+        name: getonlinevideoseries
+        description: Get Online Video Series
+        call: tms-onconnect-online-video.getonlinevideoseries
+        with:
+          seriesId: rest.seriesId
+          region: rest.region
+          api_key: rest.api_key
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: tms-onconnect-online-video-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for TMS OnConnect API — Online Video. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: get-online-video-episode
+      description: Get Online Video Episode
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: tms-onconnect-online-video.getonlinevideoepisode
+      with:
+        rootId_tmsId: tools.rootId_tmsId
+        region: tools.region
+        api_key: tools.api_key
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-online-video-movie
+      description: Get Online Video Movie
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: tms-onconnect-online-video.getonlinevideomovie
+      with:
+        rootId_tmsId: tools.rootId_tmsId
+        region: tools.region
+        api_key: tools.api_key
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-online-video-series
+      description: Get Online Video Series
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: tms-onconnect-online-video.getonlinevideoseries
+      with:
+        seriesId: tools.seriesId
+        region: tools.region
+        api_key: tools.api_key
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,234 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: TMS OnConnect API — Stations
+  description: 'TMS OnConnect API — Stations. 3 operations. Lead operation: Search TV Stations. Self-contained Naftiko capability
+    covering one Tribune Media business surface.'
+  tags:
+  - Tribune Media
+  - Stations
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TRIBUNE_MEDIA_API_KEY: TRIBUNE_MEDIA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: tms-onconnect-stations
+    baseUri: https://data.tmsapi.com
+    description: TMS OnConnect API — Stations business capability. Self-contained, no shared references.
+    resources:
+    - name: v1.1-stations-search
+      path: /v1.1/stations/search
+      operations:
+      - name: searchstations
+        method: GET
+        description: Search TV Stations
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: q
+          in: query
+          type: string
+          description: Search query (station name or call sign)
+          required: true
+        - name: queryFields
+          in: query
+          type: string
+          description: Fields to search (e.g., name, callSign)
+        - name: limit
+          in: query
+          type: integer
+        - name: offset
+          in: query
+          type: integer
+        - name: imageSize
+          in: query
+          type: string
+        - name: api_key
+          in: query
+          type: string
+          required: true
+    - name: v1.1-stations-stationId
+      path: /v1.1/stations/{stationId}
+      operations:
+      - name: getstationbyid
+        method: GET
+        description: Get Station Details
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: stationId
+          in: path
+          type: string
+          required: true
+        - name: lineupId
+          in: query
+          type: string
+        - name: imageSize
+          in: query
+          type: string
+        - name: api_key
+          in: query
+          type: string
+          required: true
+    - name: v1.1-stations-stationId-airings
+      path: /v1.1/stations/{stationId}/airings
+      operations:
+      - name: getstationairings
+        method: GET
+        description: Get Station Schedule
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: stationId
+          in: path
+          type: string
+          required: true
+        - name: lineupId
+          in: query
+          type: string
+        - name: startDateTime
+          in: query
+          type: string
+          required: true
+        - name: endDateTime
+          in: query
+          type: string
+        - name: imageSize
+          in: query
+          type: string
+        - name: api_key
+          in: query
+          type: string
+          required: true
+    authentication:
+      type: apikey
+      key: api_key
+      value: '{{env.TRIBUNE_MEDIA_API_KEY}}'
+      placement: query
+  exposes:
+  - type: rest
+    namespace: tms-onconnect-stations-rest
+    port: 8080
+    description: REST adapter for TMS OnConnect API — Stations. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/v1-1/stations/search
+      name: v1-1-stations-search
+      description: REST surface for v1.1-stations-search.
+      operations:
+      - method: GET
+        name: searchstations
+        description: Search TV Stations
+        call: tms-onconnect-stations.searchstations
+        with:
+          q: rest.q
+          queryFields: rest.queryFields
+          limit: rest.limit
+          offset: rest.offset
+          imageSize: rest.imageSize
+          api_key: rest.api_key
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1-1/stations/{stationid}
+      name: v1-1-stations-stationid
+      description: REST surface for v1.1-stations-stationId.
+      operations:
+      - method: GET
+        name: getstationbyid
+        description: Get Station Details
+        call: tms-onconnect-stations.getstationbyid
+        with:
+          stationId: rest.stationId
+          lineupId: rest.lineupId
+          imageSize: rest.imageSize
+          api_key: rest.api_key
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1-1/stations/{stationid}/airings
+      name: v1-1-stations-stationid-airings
+      description: REST surface for v1.1-stations-stationId-airings.
+      operations:
+      - method: GET
+        name: getstationairings
+        description: Get Station Schedule
+        call: tms-onconnect-stations.getstationairings
+        with:
+          stationId: rest.stationId
+          lineupId: rest.lineupId
+          startDateTime: rest.startDateTime
+          endDateTime: rest.endDateTime
+          imageSize: rest.imageSize
+          api_key: rest.api_key
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: tms-onconnect-stations-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for TMS OnConnect API — Stations. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: search-tv-stations
+      description: Search TV Stations
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: tms-onconnect-stations.searchstations
+      with:
+        q: tools.q
+        queryFields: tools.queryFields
+        limit: tools.limit
+        offset: tools.offset
+        imageSize: tools.imageSize
+        api_key: tools.api_key
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-station-details
+      description: Get Station Details
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: tms-onconnect-stations.getstationbyid
+      with:
+        stationId: tools.stationId
+        lineupId: tools.lineupId
+        imageSize: tools.imageSize
+        api_key: tools.api_key
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-station-schedule
+      description: Get Station Schedule
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: tms-onconnect-stations.getstationairings
+      with:
+        stationId: tools.stationId
+        lineupId: tools.lineupId
+        startDateTime: tools.startDateTime
+        endDateTime: tools.endDateTime
+        imageSize: tools.imageSize
+        api_key: tools.api_key
+      outputParameters:
+      - type: object
+        mapping: $.

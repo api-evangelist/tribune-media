@@ -1,0 +1,392 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: TMS OnConnect API — Programs
+  description: 'TMS OnConnect API — Programs. 5 operations. Lead operation: Get Program Genres. Self-contained Naftiko capability
+    covering one Tribune Media business surface.'
+  tags:
+  - Tribune Media
+  - Programs
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TRIBUNE_MEDIA_API_KEY: TRIBUNE_MEDIA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: tms-onconnect-programs
+    baseUri: https://data.tmsapi.com
+    description: TMS OnConnect API — Programs business capability. Self-contained, no shared references.
+    resources:
+    - name: v1.1-programs-genres
+      path: /v1.1/programs/genres
+      operations:
+      - name: getprogramgenres
+        method: GET
+        description: Get Program Genres
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: api_key
+          in: query
+          type: string
+          required: true
+    - name: v1.1-programs-newShowAirings
+      path: /v1.1/programs/newShowAirings
+      operations:
+      - name: getnewshowairings
+        method: GET
+        description: Get New Show Airings
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: lineupId
+          in: query
+          type: string
+          required: true
+        - name: startDateTime
+          in: query
+          type: string
+          required: true
+        - name: endDateTime
+          in: query
+          type: string
+        - name: includeAdult
+          in: query
+          type: boolean
+        - name: imageSize
+          in: query
+          type: string
+        - name: api_key
+          in: query
+          type: string
+          required: true
+    - name: v1.1-programs-search
+      path: /v1.1/programs/search
+      operations:
+      - name: searchprograms
+        method: GET
+        description: Search Programs
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: q
+          in: query
+          type: string
+          description: Free-form search query
+          required: true
+        - name: queryFields
+          in: query
+          type: string
+        - name: entityType
+          in: query
+          type: string
+        - name: genres
+          in: query
+          type: string
+        - name: subType
+          in: query
+          type: string
+        - name: includeAdult
+          in: query
+          type: boolean
+        - name: limit
+          in: query
+          type: integer
+        - name: offset
+          in: query
+          type: integer
+        - name: lineupId
+          in: query
+          type: string
+        - name: startDateTime
+          in: query
+          type: string
+        - name: endDateTime
+          in: query
+          type: string
+        - name: imageSize
+          in: query
+          type: string
+        - name: api_key
+          in: query
+          type: string
+          required: true
+    - name: v1.1-programs-tmsId
+      path: /v1.1/programs/{tmsId}
+      operations:
+      - name: getprogrambyid
+        method: GET
+        description: Get Program Details
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: tmsId
+          in: path
+          type: string
+          description: TMS program identifier
+          required: true
+        - name: imageSize
+          in: query
+          type: string
+        - name: imageAspectTV
+          in: query
+          type: string
+        - name: imageText
+          in: query
+          type: boolean
+        - name: market
+          in: query
+          type: string
+        - name: api_key
+          in: query
+          type: string
+          required: true
+    - name: v1.1-programs-tmsId-airings
+      path: /v1.1/programs/{tmsId}/airings
+      operations:
+      - name: getprogramairings
+        method: GET
+        description: Get Program Airings
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: tmsId
+          in: path
+          type: string
+          required: true
+        - name: lineupId
+          in: query
+          type: string
+        - name: startDateTime
+          in: query
+          type: string
+        - name: endDateTime
+          in: query
+          type: string
+        - name: includeDetail
+          in: query
+          type: boolean
+        - name: imageSize
+          in: query
+          type: string
+        - name: api_key
+          in: query
+          type: string
+          required: true
+    authentication:
+      type: apikey
+      key: api_key
+      value: '{{env.TRIBUNE_MEDIA_API_KEY}}'
+      placement: query
+  exposes:
+  - type: rest
+    namespace: tms-onconnect-programs-rest
+    port: 8080
+    description: REST adapter for TMS OnConnect API — Programs. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/v1-1/programs/genres
+      name: v1-1-programs-genres
+      description: REST surface for v1.1-programs-genres.
+      operations:
+      - method: GET
+        name: getprogramgenres
+        description: Get Program Genres
+        call: tms-onconnect-programs.getprogramgenres
+        with:
+          api_key: rest.api_key
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1-1/programs/newshowairings
+      name: v1-1-programs-newshowairings
+      description: REST surface for v1.1-programs-newShowAirings.
+      operations:
+      - method: GET
+        name: getnewshowairings
+        description: Get New Show Airings
+        call: tms-onconnect-programs.getnewshowairings
+        with:
+          lineupId: rest.lineupId
+          startDateTime: rest.startDateTime
+          endDateTime: rest.endDateTime
+          includeAdult: rest.includeAdult
+          imageSize: rest.imageSize
+          api_key: rest.api_key
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1-1/programs/search
+      name: v1-1-programs-search
+      description: REST surface for v1.1-programs-search.
+      operations:
+      - method: GET
+        name: searchprograms
+        description: Search Programs
+        call: tms-onconnect-programs.searchprograms
+        with:
+          q: rest.q
+          queryFields: rest.queryFields
+          entityType: rest.entityType
+          genres: rest.genres
+          subType: rest.subType
+          includeAdult: rest.includeAdult
+          limit: rest.limit
+          offset: rest.offset
+          lineupId: rest.lineupId
+          startDateTime: rest.startDateTime
+          endDateTime: rest.endDateTime
+          imageSize: rest.imageSize
+          api_key: rest.api_key
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1-1/programs/{tmsid}
+      name: v1-1-programs-tmsid
+      description: REST surface for v1.1-programs-tmsId.
+      operations:
+      - method: GET
+        name: getprogrambyid
+        description: Get Program Details
+        call: tms-onconnect-programs.getprogrambyid
+        with:
+          tmsId: rest.tmsId
+          imageSize: rest.imageSize
+          imageAspectTV: rest.imageAspectTV
+          imageText: rest.imageText
+          market: rest.market
+          api_key: rest.api_key
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1-1/programs/{tmsid}/airings
+      name: v1-1-programs-tmsid-airings
+      description: REST surface for v1.1-programs-tmsId-airings.
+      operations:
+      - method: GET
+        name: getprogramairings
+        description: Get Program Airings
+        call: tms-onconnect-programs.getprogramairings
+        with:
+          tmsId: rest.tmsId
+          lineupId: rest.lineupId
+          startDateTime: rest.startDateTime
+          endDateTime: rest.endDateTime
+          includeDetail: rest.includeDetail
+          imageSize: rest.imageSize
+          api_key: rest.api_key
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: tms-onconnect-programs-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for TMS OnConnect API — Programs. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: get-program-genres
+      description: Get Program Genres
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: tms-onconnect-programs.getprogramgenres
+      with:
+        api_key: tools.api_key
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-new-show-airings
+      description: Get New Show Airings
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: tms-onconnect-programs.getnewshowairings
+      with:
+        lineupId: tools.lineupId
+        startDateTime: tools.startDateTime
+        endDateTime: tools.endDateTime
+        includeAdult: tools.includeAdult
+        imageSize: tools.imageSize
+        api_key: tools.api_key
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: search-programs
+      description: Search Programs
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: tms-onconnect-programs.searchprograms
+      with:
+        q: tools.q
+        queryFields: tools.queryFields
+        entityType: tools.entityType
+        genres: tools.genres
+        subType: tools.subType
+        includeAdult: tools.includeAdult
+        limit: tools.limit
+        offset: tools.offset
+        lineupId: tools.lineupId
+        startDateTime: tools.startDateTime
+        endDateTime: tools.endDateTime
+        imageSize: tools.imageSize
+        api_key: tools.api_key
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-program-details
+      description: Get Program Details
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: tms-onconnect-programs.getprogrambyid
+      with:
+        tmsId: tools.tmsId
+        imageSize: tools.imageSize
+        imageAspectTV: tools.imageAspectTV
+        imageText: tools.imageText
+        market: tools.market
+        api_key: tools.api_key
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-program-airings
+      description: Get Program Airings
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: tms-onconnect-programs.getprogramairings
+      with:
+        tmsId: tools.tmsId
+        lineupId: tools.lineupId
+        startDateTime: tools.startDateTime
+        endDateTime: tools.endDateTime
+        includeDetail: tools.includeDetail
+        imageSize: tools.imageSize
+        api_key: tools.api_key
+      outputParameters:
+      - type: object
+        mapping: $.

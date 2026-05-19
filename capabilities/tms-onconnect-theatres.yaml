@@ -1,0 +1,174 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: TMS OnConnect API — Theatres
+  description: 'TMS OnConnect API — Theatres. 2 operations. Lead operation: Get Theatres by Location. Self-contained Naftiko
+    capability covering one Tribune Media business surface.'
+  tags:
+  - Tribune Media
+  - Theatres
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TRIBUNE_MEDIA_API_KEY: TRIBUNE_MEDIA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: tms-onconnect-theatres
+    baseUri: https://data.tmsapi.com
+    description: TMS OnConnect API — Theatres business capability. Self-contained, no shared references.
+    resources:
+    - name: v1.1-theatres
+      path: /v1.1/theatres
+      operations:
+      - name: gettheatres
+        method: GET
+        description: Get Theatres by Location
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: zip
+          in: query
+          type: string
+        - name: lat
+          in: query
+          type: number
+        - name: lng
+          in: query
+          type: number
+        - name: radius
+          in: query
+          type: integer
+        - name: units
+          in: query
+          type: string
+        - name: numTheatres
+          in: query
+          type: integer
+        - name: api_key
+          in: query
+          type: string
+          required: true
+    - name: v1.1-theatres-theatreId-showings
+      path: /v1.1/theatres/{theatreId}/showings
+      operations:
+      - name: gettheatreshowings
+        method: GET
+        description: Get Theatre Showtimes
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: theatreId
+          in: path
+          type: string
+          required: true
+        - name: startDate
+          in: query
+          type: string
+          required: true
+        - name: numDays
+          in: query
+          type: integer
+        - name: imageSize
+          in: query
+          type: string
+        - name: api_key
+          in: query
+          type: string
+          required: true
+    authentication:
+      type: apikey
+      key: api_key
+      value: '{{env.TRIBUNE_MEDIA_API_KEY}}'
+      placement: query
+  exposes:
+  - type: rest
+    namespace: tms-onconnect-theatres-rest
+    port: 8080
+    description: REST adapter for TMS OnConnect API — Theatres. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/v1-1/theatres
+      name: v1-1-theatres
+      description: REST surface for v1.1-theatres.
+      operations:
+      - method: GET
+        name: gettheatres
+        description: Get Theatres by Location
+        call: tms-onconnect-theatres.gettheatres
+        with:
+          zip: rest.zip
+          lat: rest.lat
+          lng: rest.lng
+          radius: rest.radius
+          units: rest.units
+          numTheatres: rest.numTheatres
+          api_key: rest.api_key
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1-1/theatres/{theatreid}/showings
+      name: v1-1-theatres-theatreid-showings
+      description: REST surface for v1.1-theatres-theatreId-showings.
+      operations:
+      - method: GET
+        name: gettheatreshowings
+        description: Get Theatre Showtimes
+        call: tms-onconnect-theatres.gettheatreshowings
+        with:
+          theatreId: rest.theatreId
+          startDate: rest.startDate
+          numDays: rest.numDays
+          imageSize: rest.imageSize
+          api_key: rest.api_key
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: tms-onconnect-theatres-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for TMS OnConnect API — Theatres. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: get-theatres-location
+      description: Get Theatres by Location
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: tms-onconnect-theatres.gettheatres
+      with:
+        zip: tools.zip
+        lat: tools.lat
+        lng: tools.lng
+        radius: tools.radius
+        units: tools.units
+        numTheatres: tools.numTheatres
+        api_key: tools.api_key
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-theatre-showtimes
+      description: Get Theatre Showtimes
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: tms-onconnect-theatres.gettheatreshowings
+      with:
+        theatreId: tools.theatreId
+        startDate: tools.startDate
+        numDays: tools.numDays
+        imageSize: tools.imageSize
+        api_key: tools.api_key
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,272 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: TMS OnConnect API — Lineups
+  description: 'TMS OnConnect API — Lineups. 4 operations. Lead operation: Get Lineups by Postal Code. Self-contained Naftiko
+    capability covering one Tribune Media business surface.'
+  tags:
+  - Tribune Media
+  - Lineups
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TRIBUNE_MEDIA_API_KEY: TRIBUNE_MEDIA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: tms-onconnect-lineups
+    baseUri: https://data.tmsapi.com
+    description: TMS OnConnect API — Lineups business capability. Self-contained, no shared references.
+    resources:
+    - name: v1.1-lineups
+      path: /v1.1/lineups
+      operations:
+      - name: getlineups
+        method: GET
+        description: Get Lineups by Postal Code
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: country
+          in: query
+          type: string
+          description: Two-letter country code (e.g., US, CA)
+        - name: postalCode
+          in: query
+          type: string
+          description: Postal or ZIP code to look up lineups for
+          required: true
+        - name: api_key
+          in: query
+          type: string
+          description: Your TMS API key
+          required: true
+    - name: v1.1-lineups-lineupId
+      path: /v1.1/lineups/{lineupId}
+      operations:
+      - name: getlineupbyid
+        method: GET
+        description: Get Lineup Details
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: lineupId
+          in: path
+          type: string
+          description: Unique lineup identifier
+          required: true
+        - name: api_key
+          in: query
+          type: string
+          required: true
+    - name: v1.1-lineups-lineupId-channels
+      path: /v1.1/lineups/{lineupId}/channels
+      operations:
+      - name: getlineupchannels
+        method: GET
+        description: Get Lineup Channels
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: lineupId
+          in: path
+          type: string
+          required: true
+        - name: imageSize
+          in: query
+          type: string
+          description: Size of station images to include
+        - name: enhancedCallSign
+          in: query
+          type: boolean
+          description: Include enhanced call sign data
+        - name: api_key
+          in: query
+          type: string
+          required: true
+    - name: v1.1-lineups-lineupId-grid
+      path: /v1.1/lineups/{lineupId}/grid
+      operations:
+      - name: getlineupgrid
+        method: GET
+        description: Get TV Grid Schedule
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: lineupId
+          in: path
+          type: string
+          required: true
+        - name: startDateTime
+          in: query
+          type: string
+          description: Start date/time in ISO 8601 format
+          required: true
+        - name: endDateTime
+          in: query
+          type: string
+        - name: stationId
+          in: query
+          type: string
+          description: Filter to a specific station
+        - name: imageSize
+          in: query
+          type: string
+        - name: api_key
+          in: query
+          type: string
+          required: true
+    authentication:
+      type: apikey
+      key: api_key
+      value: '{{env.TRIBUNE_MEDIA_API_KEY}}'
+      placement: query
+  exposes:
+  - type: rest
+    namespace: tms-onconnect-lineups-rest
+    port: 8080
+    description: REST adapter for TMS OnConnect API — Lineups. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/v1-1/lineups
+      name: v1-1-lineups
+      description: REST surface for v1.1-lineups.
+      operations:
+      - method: GET
+        name: getlineups
+        description: Get Lineups by Postal Code
+        call: tms-onconnect-lineups.getlineups
+        with:
+          country: rest.country
+          postalCode: rest.postalCode
+          api_key: rest.api_key
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1-1/lineups/{lineupid}
+      name: v1-1-lineups-lineupid
+      description: REST surface for v1.1-lineups-lineupId.
+      operations:
+      - method: GET
+        name: getlineupbyid
+        description: Get Lineup Details
+        call: tms-onconnect-lineups.getlineupbyid
+        with:
+          lineupId: rest.lineupId
+          api_key: rest.api_key
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1-1/lineups/{lineupid}/channels
+      name: v1-1-lineups-lineupid-channels
+      description: REST surface for v1.1-lineups-lineupId-channels.
+      operations:
+      - method: GET
+        name: getlineupchannels
+        description: Get Lineup Channels
+        call: tms-onconnect-lineups.getlineupchannels
+        with:
+          lineupId: rest.lineupId
+          imageSize: rest.imageSize
+          enhancedCallSign: rest.enhancedCallSign
+          api_key: rest.api_key
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1-1/lineups/{lineupid}/grid
+      name: v1-1-lineups-lineupid-grid
+      description: REST surface for v1.1-lineups-lineupId-grid.
+      operations:
+      - method: GET
+        name: getlineupgrid
+        description: Get TV Grid Schedule
+        call: tms-onconnect-lineups.getlineupgrid
+        with:
+          lineupId: rest.lineupId
+          startDateTime: rest.startDateTime
+          endDateTime: rest.endDateTime
+          stationId: rest.stationId
+          imageSize: rest.imageSize
+          api_key: rest.api_key
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: tms-onconnect-lineups-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for TMS OnConnect API — Lineups. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: get-lineups-postal-code
+      description: Get Lineups by Postal Code
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: tms-onconnect-lineups.getlineups
+      with:
+        country: tools.country
+        postalCode: tools.postalCode
+        api_key: tools.api_key
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-lineup-details
+      description: Get Lineup Details
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: tms-onconnect-lineups.getlineupbyid
+      with:
+        lineupId: tools.lineupId
+        api_key: tools.api_key
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-lineup-channels
+      description: Get Lineup Channels
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: tms-onconnect-lineups.getlineupchannels
+      with:
+        lineupId: tools.lineupId
+        imageSize: tools.imageSize
+        enhancedCallSign: tools.enhancedCallSign
+        api_key: tools.api_key
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-tv-grid-schedule
+      description: Get TV Grid Schedule
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: tms-onconnect-lineups.getlineupgrid
+      with:
+        lineupId: tools.lineupId
+        startDateTime: tools.startDateTime
+        endDateTime: tools.endDateTime
+        stationId: tools.stationId
+        imageSize: tools.imageSize
+        api_key: tools.api_key
+      outputParameters:
+      - type: object
+        mapping: $.

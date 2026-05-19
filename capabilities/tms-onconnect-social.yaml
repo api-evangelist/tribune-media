@@ -1,0 +1,88 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: TMS OnConnect API — Social
+  description: 'TMS OnConnect API — Social. 1 operations. Lead operation: Get Social Data. Self-contained Naftiko capability
+    covering one Tribune Media business surface.'
+  tags:
+  - Tribune Media
+  - Social
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TRIBUNE_MEDIA_API_KEY: TRIBUNE_MEDIA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: tms-onconnect-social
+    baseUri: https://data.tmsapi.com
+    description: TMS OnConnect API — Social business capability. Self-contained, no shared references.
+    resources:
+    - name: social-rootId_seriesId
+      path: /social/{rootId_seriesId}
+      operations:
+      - name: getsocialdata
+        method: GET
+        description: Get Social Data
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: rootId_seriesId
+          in: path
+          type: string
+          description: Root ID or series ID
+          required: true
+        - name: api_key
+          in: query
+          type: string
+          required: true
+    authentication:
+      type: apikey
+      key: api_key
+      value: '{{env.TRIBUNE_MEDIA_API_KEY}}'
+      placement: query
+  exposes:
+  - type: rest
+    namespace: tms-onconnect-social-rest
+    port: 8080
+    description: REST adapter for TMS OnConnect API — Social. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/social/{rootid-seriesid}
+      name: social-rootid-seriesid
+      description: REST surface for social-rootId_seriesId.
+      operations:
+      - method: GET
+        name: getsocialdata
+        description: Get Social Data
+        call: tms-onconnect-social.getsocialdata
+        with:
+          rootId_seriesId: rest.rootId_seriesId
+          api_key: rest.api_key
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: tms-onconnect-social-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for TMS OnConnect API — Social. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: get-social-data
+      description: Get Social Data
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: tms-onconnect-social.getsocialdata
+      with:
+        rootId_seriesId: tools.rootId_seriesId
+        api_key: tools.api_key
+      outputParameters:
+      - type: object
+        mapping: $.
