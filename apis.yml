@@ -90,7 +90,7 @@ common:
     url: https://developer.tmsapi.com/Getting_Started
   - type: TermsOfService
     url: https://developer.tmsapi.com/page/API_Terms_of_Use
-  - type: SignUp
+  - type: Signup
     url: https://developer.tmsapi.com/member/register
 maintainers:
   - FN: Kin Lane
