@@ -78,6 +78,10 @@ solutions:
   - Entertainment platform providers building content discovery
   - Application developers integrating TV and movie information
 common:
+  - type: DomainSecurity
+    url: security/tribune-media-domain-security.yml
+  - type: Authentication
+    url: authentication/tribune-media-authentication.yml
   - type: LinkedIn
     url: https://www.linkedin.com/company/tribune-company
   - type: Website
