@@ -78,6 +78,8 @@ solutions:
   - Entertainment platform providers building content discovery
   - Application developers integrating TV and movie information
 common:
+  - type: AgenticAccess
+    url: agentic-access/tribune-media-agentic-access.yml
   - type: DomainSecurity
     url: security/tribune-media-domain-security.yml
   - type: Authentication
