@@ -1,0 +1,308 @@
+openapi: 3.0.3
+info:
+  title: TMS OnConnect Celebrities Lineups API
+  description: The Tribune Media Services (TMS) OnConnect API provides comprehensive entertainment metadata for TV programming, movies, celebrities, and sports. It delivers electronic programming guide (EPG) data, movie showtimes, celebrity information, and televised sports schedules. Originally developed by Tribune Media Services, the API is now operated by Gracenote (a Nielsen company) and powers content discovery for consumer electronics manufacturers, cable operators, and entertainment platforms.
+  version: 1.1.0
+  contact:
+    url: https://developer.tmsapi.com/
+  termsOfService: https://developer.tmsapi.com/page/API_Terms_of_Use
+servers:
+- url: https://data.tmsapi.com
+  description: TMS OnConnect API server
+security:
+- apiKey: []
+tags:
+- name: Lineups
+paths:
+  /v1.1/lineups:
+    get:
+      operationId: getLineups
+      summary: Get Lineups by Postal Code
+      description: Returns a list of lineups for a country and postal code.
+      tags:
+      - Lineups
+      parameters:
+      - name: country
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Two-letter country code (e.g., US, CA)
+      - name: postalCode
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Postal or ZIP code to look up lineups for
+      - name: api_key
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Your TMS API key
+      responses:
+        '200':
+          description: Successful response with list of lineups
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Lineup'
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: No lineups found for the given postal code
+  /v1.1/lineups/{lineupId}:
+    get:
+      operationId: getLineupById
+      summary: Get Lineup Details
+      description: Retrieves details for a specific lineup by ID.
+      tags:
+      - Lineups
+      parameters:
+      - name: lineupId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Unique lineup identifier
+      - name: api_key
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Lineup details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Lineup'
+        '404':
+          description: Lineup not found
+  /v1.1/lineups/{lineupId}/channels:
+    get:
+      operationId: getLineupChannels
+      summary: Get Lineup Channels
+      description: Lists all stations and channels for a given lineup.
+      tags:
+      - Lineups
+      parameters:
+      - name: lineupId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: imageSize
+        in: query
+        schema:
+          type: string
+          enum:
+          - Sm
+          - Md
+          - Lg
+          - Ms
+        description: Size of station images to include
+      - name: enhancedCallSign
+        in: query
+        schema:
+          type: boolean
+        description: Include enhanced call sign data
+      - name: api_key
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of channels for the lineup
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Channel'
+  /v1.1/lineups/{lineupId}/grid:
+    get:
+      operationId: getLineupGrid
+      summary: Get TV Grid Schedule
+      description: Returns the TV grid schedule for a lineup (up to 6 hours, 14 days advance).
+      tags:
+      - Lineups
+      parameters:
+      - name: lineupId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: startDateTime
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date-time
+        description: Start date/time in ISO 8601 format
+      - name: endDateTime
+        in: query
+        schema:
+          type: string
+          format: date-time
+      - name: stationId
+        in: query
+        schema:
+          type: string
+        description: Filter to a specific station
+      - name: imageSize
+        in: query
+        schema:
+          type: string
+      - name: api_key
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: TV grid schedule
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GridEntry'
+components:
+  schemas:
+    Image:
+      type: object
+      properties:
+        uri:
+          type: string
+          description: Image URI
+        width:
+          type: integer
+        height:
+          type: integer
+        primary:
+          type: boolean
+        category:
+          type: string
+        text:
+          type: boolean
+    Program:
+      type: object
+      properties:
+        tmsId:
+          type: string
+          description: TMS program identifier
+        rootId:
+          type: string
+        seriesId:
+          type: string
+        title:
+          type: string
+          description: Program title
+        titleLang:
+          type: string
+        description:
+          type: string
+          description: Program description
+        shortDescription:
+          type: string
+        entityType:
+          type: string
+          enum:
+          - Movie
+          - Show
+          - Special
+          - Sports
+          - Episode
+        subType:
+          type: string
+        genres:
+          type: array
+          items:
+            type: string
+        releaseYear:
+          type: integer
+        releaseDate:
+          type: string
+          format: date
+        ratings:
+          type: array
+          items:
+            $ref: '#/components/schemas/Rating'
+        preferredImage:
+          $ref: '#/components/schemas/Image'
+    GridEntry:
+      type: object
+      properties:
+        startTime:
+          type: string
+          format: date-time
+        endTime:
+          type: string
+          format: date-time
+        duration:
+          type: integer
+        channel:
+          type: string
+        stationId:
+          type: string
+        qualifiers:
+          type: array
+          items:
+            type: string
+        program:
+          $ref: '#/components/schemas/Program'
+    Lineup:
+      type: object
+      properties:
+        lineupId:
+          type: string
+          description: Unique lineup identifier
+        name:
+          type: string
+          description: Lineup display name
+        type:
+          type: string
+          description: Lineup type (e.g., cable, satellite, ota)
+        location:
+          type: string
+          description: Geographic location of the lineup
+        device:
+          type: string
+          description: Device or service type
+        postalCode:
+          type: string
+          description: Associated postal code
+        country:
+          type: string
+          description: Country code
+    Channel:
+      type: object
+      properties:
+        stationId:
+          type: string
+        channel:
+          type: string
+        callSign:
+          type: string
+        name:
+          type: string
+        preferredImage:
+          $ref: '#/components/schemas/Image'
+    Rating:
+      type: object
+      properties:
+        body:
+          type: string
+          description: Rating body (e.g., MPAA, TV Parental Guidelines)
+        code:
+          type: string
+          description: Rating code (e.g., PG-13, TV-14)
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: query
+      name: api_key

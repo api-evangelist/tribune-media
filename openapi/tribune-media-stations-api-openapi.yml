@@ -1,0 +1,264 @@
+openapi: 3.0.3
+info:
+  title: TMS OnConnect Celebrities Stations API
+  description: The Tribune Media Services (TMS) OnConnect API provides comprehensive entertainment metadata for TV programming, movies, celebrities, and sports. It delivers electronic programming guide (EPG) data, movie showtimes, celebrity information, and televised sports schedules. Originally developed by Tribune Media Services, the API is now operated by Gracenote (a Nielsen company) and powers content discovery for consumer electronics manufacturers, cable operators, and entertainment platforms.
+  version: 1.1.0
+  contact:
+    url: https://developer.tmsapi.com/
+  termsOfService: https://developer.tmsapi.com/page/API_Terms_of_Use
+servers:
+- url: https://data.tmsapi.com
+  description: TMS OnConnect API server
+security:
+- apiKey: []
+tags:
+- name: Stations
+paths:
+  /v1.1/stations/search:
+    get:
+      operationId: searchStations
+      summary: Search TV Stations
+      description: Searches TV stations by name or call sign.
+      tags:
+      - Stations
+      parameters:
+      - name: q
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Search query (station name or call sign)
+      - name: queryFields
+        in: query
+        schema:
+          type: string
+        description: Fields to search (e.g., name, callSign)
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          default: 10
+      - name: offset
+        in: query
+        schema:
+          type: integer
+          default: 0
+      - name: imageSize
+        in: query
+        schema:
+          type: string
+      - name: api_key
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Matching stations
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Station'
+  /v1.1/stations/{stationId}:
+    get:
+      operationId: getStationById
+      summary: Get Station Details
+      description: Retrieves details for a specific TV station.
+      tags:
+      - Stations
+      parameters:
+      - name: stationId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: lineupId
+        in: query
+        schema:
+          type: string
+      - name: imageSize
+        in: query
+        schema:
+          type: string
+      - name: api_key
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Station details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Station'
+  /v1.1/stations/{stationId}/airings:
+    get:
+      operationId: getStationAirings
+      summary: Get Station Schedule
+      description: Returns the schedule for a single station (up to 14 days ahead).
+      tags:
+      - Stations
+      parameters:
+      - name: stationId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: lineupId
+        in: query
+        schema:
+          type: string
+      - name: startDateTime
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: endDateTime
+        in: query
+        schema:
+          type: string
+          format: date-time
+      - name: imageSize
+        in: query
+        schema:
+          type: string
+      - name: api_key
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Station airing schedule
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Airing'
+components:
+  schemas:
+    Image:
+      type: object
+      properties:
+        uri:
+          type: string
+          description: Image URI
+        width:
+          type: integer
+        height:
+          type: integer
+        primary:
+          type: boolean
+        category:
+          type: string
+        text:
+          type: boolean
+    Program:
+      type: object
+      properties:
+        tmsId:
+          type: string
+          description: TMS program identifier
+        rootId:
+          type: string
+        seriesId:
+          type: string
+        title:
+          type: string
+          description: Program title
+        titleLang:
+          type: string
+        description:
+          type: string
+          description: Program description
+        shortDescription:
+          type: string
+        entityType:
+          type: string
+          enum:
+          - Movie
+          - Show
+          - Special
+          - Sports
+          - Episode
+        subType:
+          type: string
+        genres:
+          type: array
+          items:
+            type: string
+        releaseYear:
+          type: integer
+        releaseDate:
+          type: string
+          format: date
+        ratings:
+          type: array
+          items:
+            $ref: '#/components/schemas/Rating'
+        preferredImage:
+          $ref: '#/components/schemas/Image'
+    Rating:
+      type: object
+      properties:
+        body:
+          type: string
+          description: Rating body (e.g., MPAA, TV Parental Guidelines)
+        code:
+          type: string
+          description: Rating code (e.g., PG-13, TV-14)
+    Airing:
+      type: object
+      properties:
+        startTime:
+          type: string
+          format: date-time
+          description: Airing start time in ISO 8601 format
+        endTime:
+          type: string
+          format: date-time
+        duration:
+          type: integer
+          description: Duration in minutes
+        stationId:
+          type: string
+        qualifiers:
+          type: array
+          items:
+            type: string
+          description: Qualifiers such as New, Live, Finale, Repeat
+        program:
+          $ref: '#/components/schemas/Program'
+    Station:
+      type: object
+      properties:
+        stationId:
+          type: string
+          description: Unique station identifier
+        callSign:
+          type: string
+          description: Station call sign (e.g., WNBC)
+        name:
+          type: string
+          description: Station name
+        type:
+          type: string
+          description: Station type
+        city:
+          type: string
+        state:
+          type: string
+        country:
+          type: string
+        preferredImage:
+          $ref: '#/components/schemas/Image'
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: query
+      name: api_key

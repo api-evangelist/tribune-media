@@ -1,0 +1,156 @@
+openapi: 3.0.3
+info:
+  title: TMS OnConnect Celebrities Theatres API
+  description: The Tribune Media Services (TMS) OnConnect API provides comprehensive entertainment metadata for TV programming, movies, celebrities, and sports. It delivers electronic programming guide (EPG) data, movie showtimes, celebrity information, and televised sports schedules. Originally developed by Tribune Media Services, the API is now operated by Gracenote (a Nielsen company) and powers content discovery for consumer electronics manufacturers, cable operators, and entertainment platforms.
+  version: 1.1.0
+  contact:
+    url: https://developer.tmsapi.com/
+  termsOfService: https://developer.tmsapi.com/page/API_Terms_of_Use
+servers:
+- url: https://data.tmsapi.com
+  description: TMS OnConnect API server
+security:
+- apiKey: []
+tags:
+- name: Theatres
+paths:
+  /v1.1/theatres:
+    get:
+      operationId: getTheatres
+      summary: Get Theatres by Location
+      description: Retrieves theatre locations via zip/postal code or geographic coordinates.
+      tags:
+      - Theatres
+      parameters:
+      - name: zip
+        in: query
+        schema:
+          type: string
+      - name: lat
+        in: query
+        schema:
+          type: number
+          format: float
+      - name: lng
+        in: query
+        schema:
+          type: number
+          format: float
+      - name: radius
+        in: query
+        schema:
+          type: integer
+          default: 10
+      - name: units
+        in: query
+        schema:
+          type: string
+          enum:
+          - mile
+          - km
+          default: mile
+      - name: numTheatres
+        in: query
+        schema:
+          type: integer
+          default: 10
+      - name: api_key
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of nearby theatres
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Theatre'
+  /v1.1/theatres/{theatreId}/showings:
+    get:
+      operationId: getTheatreShowings
+      summary: Get Theatre Showtimes
+      description: Lists movies and showtimes at a specific theatre.
+      tags:
+      - Theatres
+      parameters:
+      - name: theatreId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: startDate
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date
+      - name: numDays
+        in: query
+        schema:
+          type: integer
+          default: 1
+      - name: imageSize
+        in: query
+        schema:
+          type: string
+      - name: api_key
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Theatre showtimes
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Showing'
+components:
+  schemas:
+    Showing:
+      type: object
+      properties:
+        startTime:
+          type: string
+          format: date-time
+        endTime:
+          type: string
+          format: date-time
+        movieId:
+          type: string
+        theatreId:
+          type: string
+        format:
+          type: string
+          description: Format (e.g., 3D, IMAX, Standard)
+    Theatre:
+      type: object
+      properties:
+        theatreId:
+          type: string
+          description: Unique theatre identifier
+        name:
+          type: string
+          description: Theatre name
+        address:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        postalCode:
+          type: string
+        distance:
+          type: number
+          format: float
+          description: Distance from search origin
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: query
+      name: api_key

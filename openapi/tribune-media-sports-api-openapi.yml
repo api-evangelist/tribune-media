@@ -1,0 +1,402 @@
+openapi: 3.0.3
+info:
+  title: TMS OnConnect Celebrities Sports API
+  description: The Tribune Media Services (TMS) OnConnect API provides comprehensive entertainment metadata for TV programming, movies, celebrities, and sports. It delivers electronic programming guide (EPG) data, movie showtimes, celebrity information, and televised sports schedules. Originally developed by Tribune Media Services, the API is now operated by Gracenote (a Nielsen company) and powers content discovery for consumer electronics manufacturers, cable operators, and entertainment platforms.
+  version: 1.1.0
+  contact:
+    url: https://developer.tmsapi.com/
+  termsOfService: https://developer.tmsapi.com/page/API_Terms_of_Use
+servers:
+- url: https://data.tmsapi.com
+  description: TMS OnConnect API server
+security:
+- apiKey: []
+tags:
+- name: Sports
+paths:
+  /v1.1/sports/{sportsId}:
+    get:
+      operationId: getSportById
+      summary: Get Sport Details
+      description: Returns sport details with optional organization information.
+      tags:
+      - Sports
+      parameters:
+      - name: sportsId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: includeOrg
+        in: query
+        schema:
+          type: boolean
+      - name: officialOrg
+        in: query
+        schema:
+          type: boolean
+      - name: imageSize
+        in: query
+        schema:
+          type: string
+      - name: api_key
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Sport details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sport'
+  /v1.1/sports/{sportsId}/events/airings:
+    get:
+      operationId: getSportEventAirings
+      summary: Get Sports Event Airings
+      description: Returns live sports events for specified sports on a lineup.
+      tags:
+      - Sports
+      parameters:
+      - name: sportsId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: lineupId
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: startDateTime
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: endDateTime
+        in: query
+        schema:
+          type: string
+          format: date-time
+      - name: liveOnly
+        in: query
+        schema:
+          type: boolean
+      - name: imageSize
+        in: query
+        schema:
+          type: string
+      - name: api_key
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Sports event airings
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SportsAiring'
+  /v1.1/sports/{sportsId}/non-events/airings:
+    get:
+      operationId: getSportNonEventAirings
+      summary: Get Sports Non-Event Airings
+      description: Returns sports non-events and taped events (24 hours, 14 days advance).
+      tags:
+      - Sports
+      parameters:
+      - name: sportsId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: lineupId
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: startDateTime
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: endDateTime
+        in: query
+        schema:
+          type: string
+          format: date-time
+      - name: imageSize
+        in: query
+        schema:
+          type: string
+      - name: api_key
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Sports non-event airings
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Airing'
+  /v1.1/sports/organizations/{organizationId}/airings:
+    get:
+      operationId: getOrganizationAirings
+      summary: Get Organization Airings
+      description: Returns all airings for a sports organization (e.g., MLB, NBA, NFL).
+      tags:
+      - Sports
+      parameters:
+      - name: organizationId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: lineupId
+        in: query
+        schema:
+          type: string
+      - name: startDateTime
+        in: query
+        schema:
+          type: string
+          format: date-time
+      - name: endDateTime
+        in: query
+        schema:
+          type: string
+          format: date-time
+      - name: includeDetail
+        in: query
+        schema:
+          type: boolean
+      - name: imageSize
+        in: query
+        schema:
+          type: string
+      - name: api_key
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Organization airings
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SportsAiring'
+  /v1.1/sports/teams/{teamBrandId}/airings:
+    get:
+      operationId: getTeamAirings
+      summary: Get Team Airings
+      description: Returns all airings for a sports team.
+      tags:
+      - Sports
+      parameters:
+      - name: teamBrandId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: lineupId
+        in: query
+        schema:
+          type: string
+      - name: startDateTime
+        in: query
+        schema:
+          type: string
+          format: date-time
+      - name: endDateTime
+        in: query
+        schema:
+          type: string
+          format: date-time
+      - name: includeDetail
+        in: query
+        schema:
+          type: boolean
+      - name: imageSize
+        in: query
+        schema:
+          type: string
+      - name: market
+        in: query
+        schema:
+          type: string
+      - name: api_key
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Team airings
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SportsAiring'
+components:
+  schemas:
+    SportsAiring:
+      type: object
+      properties:
+        startTime:
+          type: string
+          format: date-time
+        endTime:
+          type: string
+          format: date-time
+        duration:
+          type: integer
+        stationId:
+          type: string
+        liveEvent:
+          type: boolean
+        teams:
+          type: array
+          items:
+            type: object
+            properties:
+              teamBrandId:
+                type: string
+              name:
+                type: string
+        program:
+          $ref: '#/components/schemas/Program'
+    Image:
+      type: object
+      properties:
+        uri:
+          type: string
+          description: Image URI
+        width:
+          type: integer
+        height:
+          type: integer
+        primary:
+          type: boolean
+        category:
+          type: string
+        text:
+          type: boolean
+    Program:
+      type: object
+      properties:
+        tmsId:
+          type: string
+          description: TMS program identifier
+        rootId:
+          type: string
+        seriesId:
+          type: string
+        title:
+          type: string
+          description: Program title
+        titleLang:
+          type: string
+        description:
+          type: string
+          description: Program description
+        shortDescription:
+          type: string
+        entityType:
+          type: string
+          enum:
+          - Movie
+          - Show
+          - Special
+          - Sports
+          - Episode
+        subType:
+          type: string
+        genres:
+          type: array
+          items:
+            type: string
+        releaseYear:
+          type: integer
+        releaseDate:
+          type: string
+          format: date
+        ratings:
+          type: array
+          items:
+            $ref: '#/components/schemas/Rating'
+        preferredImage:
+          $ref: '#/components/schemas/Image'
+    Sport:
+      type: object
+      properties:
+        sportsId:
+          type: string
+          description: Unique sport identifier
+        name:
+          type: string
+          description: Sport name
+        organizations:
+          type: array
+          items:
+            $ref: '#/components/schemas/SportOrganization'
+        preferredImage:
+          $ref: '#/components/schemas/Image'
+    SportOrganization:
+      type: object
+      properties:
+        organizationId:
+          type: string
+        name:
+          type: string
+        abbreviation:
+          type: string
+    Rating:
+      type: object
+      properties:
+        body:
+          type: string
+          description: Rating body (e.g., MPAA, TV Parental Guidelines)
+        code:
+          type: string
+          description: Rating code (e.g., PG-13, TV-14)
+    Airing:
+      type: object
+      properties:
+        startTime:
+          type: string
+          format: date-time
+          description: Airing start time in ISO 8601 format
+        endTime:
+          type: string
+          format: date-time
+        duration:
+          type: integer
+          description: Duration in minutes
+        stationId:
+          type: string
+        qualifiers:
+          type: array
+          items:
+            type: string
+          description: Qualifiers such as New, Live, Finale, Repeat
+        program:
+          $ref: '#/components/schemas/Program'
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: query
+      name: api_key

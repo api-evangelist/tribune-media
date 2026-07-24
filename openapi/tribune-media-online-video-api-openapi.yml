@@ -1,0 +1,212 @@
+openapi: 3.0.3
+info:
+  title: TMS OnConnect Celebrities Online Video API
+  description: The Tribune Media Services (TMS) OnConnect API provides comprehensive entertainment metadata for TV programming, movies, celebrities, and sports. It delivers electronic programming guide (EPG) data, movie showtimes, celebrity information, and televised sports schedules. Originally developed by Tribune Media Services, the API is now operated by Gracenote (a Nielsen company) and powers content discovery for consumer electronics manufacturers, cable operators, and entertainment platforms.
+  version: 1.1.0
+  contact:
+    url: https://developer.tmsapi.com/
+  termsOfService: https://developer.tmsapi.com/page/API_Terms_of_Use
+servers:
+- url: https://data.tmsapi.com
+  description: TMS OnConnect API server
+security:
+- apiKey: []
+tags:
+- name: Online Video
+paths:
+  /v2/series/{seriesId}:
+    get:
+      operationId: getOnlineVideoSeries
+      summary: Get Online Video Series
+      description: Returns series information for online video metadata.
+      tags:
+      - Online Video
+      parameters:
+      - name: seriesId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: region
+        in: query
+        schema:
+          type: string
+      - name: api_key
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Online video series information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Series'
+  /v2/episodes/{rootId_tmsId}:
+    get:
+      operationId: getOnlineVideoEpisode
+      summary: Get Online Video Episode
+      description: Retrieves single episode information for online video.
+      tags:
+      - Online Video
+      parameters:
+      - name: rootId_tmsId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Root ID combined with TMS ID
+      - name: region
+        in: query
+        schema:
+          type: string
+      - name: api_key
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Episode information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Episode'
+  /v2/movies/{rootId_tmsId}:
+    get:
+      operationId: getOnlineVideoMovie
+      summary: Get Online Video Movie
+      description: Retrieves movie information for online video.
+      tags:
+      - Online Video
+      parameters:
+      - name: rootId_tmsId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: region
+        in: query
+        schema:
+          type: string
+      - name: api_key
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Movie information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Movie'
+components:
+  schemas:
+    Image:
+      type: object
+      properties:
+        uri:
+          type: string
+          description: Image URI
+        width:
+          type: integer
+        height:
+          type: integer
+        primary:
+          type: boolean
+        category:
+          type: string
+        text:
+          type: boolean
+    Episode:
+      type: object
+      properties:
+        tmsId:
+          type: string
+        seriesId:
+          type: string
+        title:
+          type: string
+        episodeTitle:
+          type: string
+        description:
+          type: string
+        seasonNum:
+          type: integer
+        episodeNum:
+          type: integer
+        airDate:
+          type: string
+          format: date
+        preferredImage:
+          $ref: '#/components/schemas/Image'
+    Rating:
+      type: object
+      properties:
+        body:
+          type: string
+          description: Rating body (e.g., MPAA, TV Parental Guidelines)
+        code:
+          type: string
+          description: Rating code (e.g., PG-13, TV-14)
+    Series:
+      type: object
+      properties:
+        seriesId:
+          type: string
+          description: Unique series identifier
+        title:
+          type: string
+          description: Series title
+        description:
+          type: string
+          description: Series description
+        startAirDate:
+          type: string
+          format: date
+        endAirDate:
+          type: string
+          format: date
+        genres:
+          type: array
+          items:
+            type: string
+        preferredImage:
+          $ref: '#/components/schemas/Image'
+    Movie:
+      type: object
+      properties:
+        tmsId:
+          type: string
+          description: TMS movie identifier
+        rootId:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        releaseYear:
+          type: integer
+        releaseDate:
+          type: string
+          format: date
+        genres:
+          type: array
+          items:
+            type: string
+        runTime:
+          type: string
+          description: Runtime in ISO 8601 duration format
+        ratings:
+          type: array
+          items:
+            $ref: '#/components/schemas/Rating'
+        preferredImage:
+          $ref: '#/components/schemas/Image'
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: query
+      name: api_key

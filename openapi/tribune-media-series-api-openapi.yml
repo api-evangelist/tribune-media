@@ -1,0 +1,296 @@
+openapi: 3.0.3
+info:
+  title: TMS OnConnect Celebrities Series API
+  description: The Tribune Media Services (TMS) OnConnect API provides comprehensive entertainment metadata for TV programming, movies, celebrities, and sports. It delivers electronic programming guide (EPG) data, movie showtimes, celebrity information, and televised sports schedules. Originally developed by Tribune Media Services, the API is now operated by Gracenote (a Nielsen company) and powers content discovery for consumer electronics manufacturers, cable operators, and entertainment platforms.
+  version: 1.1.0
+  contact:
+    url: https://developer.tmsapi.com/
+  termsOfService: https://developer.tmsapi.com/page/API_Terms_of_Use
+servers:
+- url: https://data.tmsapi.com
+  description: TMS OnConnect API server
+security:
+- apiKey: []
+tags:
+- name: Series
+paths:
+  /v1.1/series/{seriesId}:
+    get:
+      operationId: getSeriesById
+      summary: Get Series Details
+      description: Returns detailed metadata for a specific TV series.
+      tags:
+      - Series
+      parameters:
+      - name: seriesId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: imageSize
+        in: query
+        schema:
+          type: string
+      - name: titleLang
+        in: query
+        schema:
+          type: string
+      - name: descriptionLang
+        in: query
+        schema:
+          type: string
+      - name: market
+        in: query
+        schema:
+          type: string
+      - name: api_key
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Series details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Series'
+  /v1.1/series/{seriesId}/airings:
+    get:
+      operationId: getSeriesAirings
+      summary: Get Series Airings
+      description: Retrieves all airings for a TV series (up to 14 days advance).
+      tags:
+      - Series
+      parameters:
+      - name: seriesId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: lineupId
+        in: query
+        schema:
+          type: string
+      - name: startDateTime
+        in: query
+        schema:
+          type: string
+          format: date-time
+      - name: endDateTime
+        in: query
+        schema:
+          type: string
+          format: date-time
+      - name: includeDetail
+        in: query
+        schema:
+          type: boolean
+      - name: imageSize
+        in: query
+        schema:
+          type: string
+      - name: api_key
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Series airings
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Airing'
+  /v1.1/series/{seriesId}/episodes:
+    get:
+      operationId: getSeriesEpisodes
+      summary: Get Series Episodes
+      description: Returns episodes for a series sorted by season and episode number.
+      tags:
+      - Series
+      parameters:
+      - name: seriesId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: season
+        in: query
+        schema:
+          type: integer
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          default: 100
+      - name: offset
+        in: query
+        schema:
+          type: integer
+          default: 0
+      - name: imageSize
+        in: query
+        schema:
+          type: string
+      - name: api_key
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Series episodes
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Episode'
+components:
+  schemas:
+    Image:
+      type: object
+      properties:
+        uri:
+          type: string
+          description: Image URI
+        width:
+          type: integer
+        height:
+          type: integer
+        primary:
+          type: boolean
+        category:
+          type: string
+        text:
+          type: boolean
+    Program:
+      type: object
+      properties:
+        tmsId:
+          type: string
+          description: TMS program identifier
+        rootId:
+          type: string
+        seriesId:
+          type: string
+        title:
+          type: string
+          description: Program title
+        titleLang:
+          type: string
+        description:
+          type: string
+          description: Program description
+        shortDescription:
+          type: string
+        entityType:
+          type: string
+          enum:
+          - Movie
+          - Show
+          - Special
+          - Sports
+          - Episode
+        subType:
+          type: string
+        genres:
+          type: array
+          items:
+            type: string
+        releaseYear:
+          type: integer
+        releaseDate:
+          type: string
+          format: date
+        ratings:
+          type: array
+          items:
+            $ref: '#/components/schemas/Rating'
+        preferredImage:
+          $ref: '#/components/schemas/Image'
+    Episode:
+      type: object
+      properties:
+        tmsId:
+          type: string
+        seriesId:
+          type: string
+        title:
+          type: string
+        episodeTitle:
+          type: string
+        description:
+          type: string
+        seasonNum:
+          type: integer
+        episodeNum:
+          type: integer
+        airDate:
+          type: string
+          format: date
+        preferredImage:
+          $ref: '#/components/schemas/Image'
+    Rating:
+      type: object
+      properties:
+        body:
+          type: string
+          description: Rating body (e.g., MPAA, TV Parental Guidelines)
+        code:
+          type: string
+          description: Rating code (e.g., PG-13, TV-14)
+    Series:
+      type: object
+      properties:
+        seriesId:
+          type: string
+          description: Unique series identifier
+        title:
+          type: string
+          description: Series title
+        description:
+          type: string
+          description: Series description
+        startAirDate:
+          type: string
+          format: date
+        endAirDate:
+          type: string
+          format: date
+        genres:
+          type: array
+          items:
+            type: string
+        preferredImage:
+          $ref: '#/components/schemas/Image'
+    Airing:
+      type: object
+      properties:
+        startTime:
+          type: string
+          format: date-time
+          description: Airing start time in ISO 8601 format
+        endTime:
+          type: string
+          format: date-time
+        duration:
+          type: integer
+          description: Duration in minutes
+        stationId:
+          type: string
+        qualifiers:
+          type: array
+          items:
+            type: string
+          description: Qualifiers such as New, Live, Finale, Repeat
+        program:
+          $ref: '#/components/schemas/Program'
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: query
+      name: api_key

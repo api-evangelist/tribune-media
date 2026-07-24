@@ -1,0 +1,328 @@
+openapi: 3.0.3
+info:
+  title: TMS OnConnect Celebrities Movies API
+  description: The Tribune Media Services (TMS) OnConnect API provides comprehensive entertainment metadata for TV programming, movies, celebrities, and sports. It delivers electronic programming guide (EPG) data, movie showtimes, celebrity information, and televised sports schedules. Originally developed by Tribune Media Services, the API is now operated by Gracenote (a Nielsen company) and powers content discovery for consumer electronics manufacturers, cable operators, and entertainment platforms.
+  version: 1.1.0
+  contact:
+    url: https://developer.tmsapi.com/
+  termsOfService: https://developer.tmsapi.com/page/API_Terms_of_Use
+servers:
+- url: https://data.tmsapi.com
+  description: TMS OnConnect API server
+security:
+- apiKey: []
+tags:
+- name: Movies
+paths:
+  /v1.1/movies/airings:
+    get:
+      operationId: getMovieAirings
+      summary: Get Movies Airing on TV
+      description: Provides movies airing on a lineup (up to 24 hours, 14 days advance).
+      tags:
+      - Movies
+      parameters:
+      - name: lineupId
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: startDateTime
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: endDateTime
+        in: query
+        schema:
+          type: string
+          format: date-time
+      - name: includeAdult
+        in: query
+        schema:
+          type: boolean
+      - name: imageSize
+        in: query
+        schema:
+          type: string
+      - name: imageText
+        in: query
+        schema:
+          type: boolean
+      - name: api_key
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Movies airing on TV
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MovieAiring'
+  /v1.1/movies/showings:
+    get:
+      operationId: getMovieShowings
+      summary: Get Movies in Theatres
+      description: Returns movies currently playing in local theatres with showtimes.
+      tags:
+      - Movies
+      parameters:
+      - name: startDate
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date
+      - name: numDays
+        in: query
+        schema:
+          type: integer
+          default: 1
+      - name: zip
+        in: query
+        schema:
+          type: string
+      - name: lat
+        in: query
+        schema:
+          type: number
+          format: float
+      - name: lng
+        in: query
+        schema:
+          type: number
+          format: float
+      - name: radius
+        in: query
+        schema:
+          type: integer
+          default: 10
+      - name: units
+        in: query
+        schema:
+          type: string
+          enum:
+          - mile
+          - km
+          default: mile
+      - name: imageSize
+        in: query
+        schema:
+          type: string
+      - name: market
+        in: query
+        schema:
+          type: string
+      - name: api_key
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Movies currently in theatres
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MovieShowing'
+  /v1.1/movies/{movieId}/showings:
+    get:
+      operationId: getMovieShowtimes
+      summary: Get Movie Showtimes
+      description: Returns metadata and theatre/showtime information for a specific movie.
+      tags:
+      - Movies
+      parameters:
+      - name: movieId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: startDate
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date
+      - name: numDays
+        in: query
+        schema:
+          type: integer
+          default: 1
+      - name: zip
+        in: query
+        schema:
+          type: string
+      - name: lat
+        in: query
+        schema:
+          type: number
+          format: float
+      - name: lng
+        in: query
+        schema:
+          type: number
+          format: float
+      - name: radius
+        in: query
+        schema:
+          type: integer
+          default: 10
+      - name: units
+        in: query
+        schema:
+          type: string
+          enum:
+          - mile
+          - km
+          default: mile
+      - name: imageSize
+        in: query
+        schema:
+          type: string
+      - name: api_key
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Movie showtimes
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MovieShowing'
+components:
+  schemas:
+    Image:
+      type: object
+      properties:
+        uri:
+          type: string
+          description: Image URI
+        width:
+          type: integer
+        height:
+          type: integer
+        primary:
+          type: boolean
+        category:
+          type: string
+        text:
+          type: boolean
+    MovieAiring:
+      type: object
+      properties:
+        startTime:
+          type: string
+          format: date-time
+        endTime:
+          type: string
+          format: date-time
+        duration:
+          type: integer
+        stationId:
+          type: string
+        movie:
+          $ref: '#/components/schemas/Movie'
+    Showing:
+      type: object
+      properties:
+        startTime:
+          type: string
+          format: date-time
+        endTime:
+          type: string
+          format: date-time
+        movieId:
+          type: string
+        theatreId:
+          type: string
+        format:
+          type: string
+          description: Format (e.g., 3D, IMAX, Standard)
+    Theatre:
+      type: object
+      properties:
+        theatreId:
+          type: string
+          description: Unique theatre identifier
+        name:
+          type: string
+          description: Theatre name
+        address:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        postalCode:
+          type: string
+        distance:
+          type: number
+          format: float
+          description: Distance from search origin
+    MovieShowing:
+      type: object
+      properties:
+        movie:
+          $ref: '#/components/schemas/Movie'
+        theatres:
+          type: array
+          items:
+            $ref: '#/components/schemas/Theatre'
+        showtimes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Showing'
+    Rating:
+      type: object
+      properties:
+        body:
+          type: string
+          description: Rating body (e.g., MPAA, TV Parental Guidelines)
+        code:
+          type: string
+          description: Rating code (e.g., PG-13, TV-14)
+    Movie:
+      type: object
+      properties:
+        tmsId:
+          type: string
+          description: TMS movie identifier
+        rootId:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        releaseYear:
+          type: integer
+        releaseDate:
+          type: string
+          format: date
+        genres:
+          type: array
+          items:
+            type: string
+        runTime:
+          type: string
+          description: Runtime in ISO 8601 duration format
+        ratings:
+          type: array
+          items:
+            $ref: '#/components/schemas/Rating'
+        preferredImage:
+          $ref: '#/components/schemas/Image'
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: query
+      name: api_key

@@ -1,0 +1,65 @@
+openapi: 3.0.3
+info:
+  title: TMS OnConnect Celebrities Social API
+  description: The Tribune Media Services (TMS) OnConnect API provides comprehensive entertainment metadata for TV programming, movies, celebrities, and sports. It delivers electronic programming guide (EPG) data, movie showtimes, celebrity information, and televised sports schedules. Originally developed by Tribune Media Services, the API is now operated by Gracenote (a Nielsen company) and powers content discovery for consumer electronics manufacturers, cable operators, and entertainment platforms.
+  version: 1.1.0
+  contact:
+    url: https://developer.tmsapi.com/
+  termsOfService: https://developer.tmsapi.com/page/API_Terms_of_Use
+servers:
+- url: https://data.tmsapi.com
+  description: TMS OnConnect API server
+security:
+- apiKey: []
+tags:
+- name: Social
+paths:
+  /social/{rootId_seriesId}:
+    get:
+      operationId: getSocialData
+      summary: Get Social Data
+      description: Obtains social media links for a movie or TV series.
+      tags:
+      - Social
+      parameters:
+      - name: rootId_seriesId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Root ID or series ID
+      - name: api_key
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Social data and links
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SocialData'
+components:
+  schemas:
+    SocialData:
+      type: object
+      properties:
+        rootId:
+          type: string
+        seriesId:
+          type: string
+        socialLinks:
+          type: array
+          items:
+            type: object
+            properties:
+              platform:
+                type: string
+              url:
+                type: string
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: query
+      name: api_key

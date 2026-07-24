@@ -1,0 +1,365 @@
+openapi: 3.0.3
+info:
+  title: TMS OnConnect Celebrities Programs API
+  description: The Tribune Media Services (TMS) OnConnect API provides comprehensive entertainment metadata for TV programming, movies, celebrities, and sports. It delivers electronic programming guide (EPG) data, movie showtimes, celebrity information, and televised sports schedules. Originally developed by Tribune Media Services, the API is now operated by Gracenote (a Nielsen company) and powers content discovery for consumer electronics manufacturers, cable operators, and entertainment platforms.
+  version: 1.1.0
+  contact:
+    url: https://developer.tmsapi.com/
+  termsOfService: https://developer.tmsapi.com/page/API_Terms_of_Use
+servers:
+- url: https://data.tmsapi.com
+  description: TMS OnConnect API server
+security:
+- apiKey: []
+tags:
+- name: Programs
+paths:
+  /v1.1/programs/search:
+    get:
+      operationId: searchPrograms
+      summary: Search Programs
+      description: Returns basic program metadata based on free-form search criteria.
+      tags:
+      - Programs
+      parameters:
+      - name: q
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Free-form search query
+      - name: queryFields
+        in: query
+        schema:
+          type: string
+      - name: entityType
+        in: query
+        schema:
+          type: string
+          enum:
+          - movie
+          - show
+          - special
+          - sports
+          - episode
+      - name: genres
+        in: query
+        schema:
+          type: string
+      - name: subType
+        in: query
+        schema:
+          type: string
+      - name: includeAdult
+        in: query
+        schema:
+          type: boolean
+          default: false
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          default: 10
+      - name: offset
+        in: query
+        schema:
+          type: integer
+          default: 0
+      - name: lineupId
+        in: query
+        schema:
+          type: string
+      - name: startDateTime
+        in: query
+        schema:
+          type: string
+          format: date-time
+      - name: endDateTime
+        in: query
+        schema:
+          type: string
+          format: date-time
+      - name: imageSize
+        in: query
+        schema:
+          type: string
+      - name: api_key
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Matching programs
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Program'
+  /v1.1/programs/genres:
+    get:
+      operationId: getProgramGenres
+      summary: Get Program Genres
+      description: Returns a list of program genres, to be used in conjunction with Program Search.
+      tags:
+      - Programs
+      parameters:
+      - name: api_key
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of genres
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Genre'
+  /v1.1/programs/newShowAirings:
+    get:
+      operationId: getNewShowAirings
+      summary: Get New Show Airings
+      description: Retrieves shows and episodes airing new on a lineup (up to 24 hours, 14 days advance).
+      tags:
+      - Programs
+      parameters:
+      - name: lineupId
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: startDateTime
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: endDateTime
+        in: query
+        schema:
+          type: string
+          format: date-time
+      - name: includeAdult
+        in: query
+        schema:
+          type: boolean
+      - name: imageSize
+        in: query
+        schema:
+          type: string
+      - name: api_key
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: New show airings
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Airing'
+  /v1.1/programs/{tmsId}:
+    get:
+      operationId: getProgramById
+      summary: Get Program Details
+      description: Retrieves detailed metadata for a specific program by TMS ID.
+      tags:
+      - Programs
+      parameters:
+      - name: tmsId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: TMS program identifier
+      - name: imageSize
+        in: query
+        schema:
+          type: string
+      - name: imageAspectTV
+        in: query
+        schema:
+          type: string
+      - name: imageText
+        in: query
+        schema:
+          type: boolean
+      - name: market
+        in: query
+        schema:
+          type: string
+      - name: api_key
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Program details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Program'
+  /v1.1/programs/{tmsId}/airings:
+    get:
+      operationId: getProgramAirings
+      summary: Get Program Airings
+      description: Returns all airings of a specific program (up to 14 days advance).
+      tags:
+      - Programs
+      parameters:
+      - name: tmsId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: lineupId
+        in: query
+        schema:
+          type: string
+      - name: startDateTime
+        in: query
+        schema:
+          type: string
+          format: date-time
+      - name: endDateTime
+        in: query
+        schema:
+          type: string
+          format: date-time
+      - name: includeDetail
+        in: query
+        schema:
+          type: boolean
+      - name: imageSize
+        in: query
+        schema:
+          type: string
+      - name: api_key
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Program airings
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Airing'
+components:
+  schemas:
+    Image:
+      type: object
+      properties:
+        uri:
+          type: string
+          description: Image URI
+        width:
+          type: integer
+        height:
+          type: integer
+        primary:
+          type: boolean
+        category:
+          type: string
+        text:
+          type: boolean
+    Program:
+      type: object
+      properties:
+        tmsId:
+          type: string
+          description: TMS program identifier
+        rootId:
+          type: string
+        seriesId:
+          type: string
+        title:
+          type: string
+          description: Program title
+        titleLang:
+          type: string
+        description:
+          type: string
+          description: Program description
+        shortDescription:
+          type: string
+        entityType:
+          type: string
+          enum:
+          - Movie
+          - Show
+          - Special
+          - Sports
+          - Episode
+        subType:
+          type: string
+        genres:
+          type: array
+          items:
+            type: string
+        releaseYear:
+          type: integer
+        releaseDate:
+          type: string
+          format: date
+        ratings:
+          type: array
+          items:
+            $ref: '#/components/schemas/Rating'
+        preferredImage:
+          $ref: '#/components/schemas/Image'
+    Genre:
+      type: object
+      properties:
+        genreId:
+          type: string
+        name:
+          type: string
+          description: Genre name
+    Rating:
+      type: object
+      properties:
+        body:
+          type: string
+          description: Rating body (e.g., MPAA, TV Parental Guidelines)
+        code:
+          type: string
+          description: Rating code (e.g., PG-13, TV-14)
+    Airing:
+      type: object
+      properties:
+        startTime:
+          type: string
+          format: date-time
+          description: Airing start time in ISO 8601 format
+        endTime:
+          type: string
+          format: date-time
+        duration:
+          type: integer
+          description: Duration in minutes
+        stationId:
+          type: string
+        qualifiers:
+          type: array
+          items:
+            type: string
+          description: Qualifiers such as New, Live, Finale, Repeat
+        program:
+          $ref: '#/components/schemas/Program'
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: query
+      name: api_key
