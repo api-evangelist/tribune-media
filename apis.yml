@@ -8,7 +8,20 @@ description: >-
   celebrities, and televised sports to consumer electronics manufacturers, cable operators, entertainment platforms, and
   application developers.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/tribune-media.png
 tags:
   - Media
   - Entertainment
@@ -23,34 +36,176 @@ created: '2026-05-03'
 modified: '2026-05-19'
 specificationVersion: '0.19'
 apis:
-  - aid: tribune-media:tms-onconnect
-    name: TMS OnConnect API
-    description: >-
-      The Tribune Media Services (TMS) OnConnect API provides comprehensive entertainment metadata for TV programming,
-      movies, celebrities, and sports. It delivers electronic programming guide (EPG) data, movie showtimes, celebrity
-      information, and televised sports schedules. Originally developed by Tribune Media Services, the API is now
-      operated by Gracenote (a Nielsen company) and powers content discovery for consumer electronics manufacturers,
-      cable operators, and entertainment platforms.
-    humanURL: https://developer.tmsapi.com/
-    tags:
-      - Entertainment
-      - Television
-      - Movies
-      - Sports
-      - Celebrity
-      - Programming Guide
-      - Metadata
-    properties:
-      - type: Documentation
-        url: https://developer.tmsapi.com/docs
-      - type: GettingStarted
-        url: https://developer.tmsapi.com/Getting_Started
-      - type: TermsOfService
-        url: https://developer.tmsapi.com/page/API_Terms_of_Use
-      - type: FAQ
-        url: https://developer.tmsapi.com/page/Frequently_Asked_Questions
-      - type: OpenAPI
-        url: openapi/tms-onconnect-openapi.yml
+- aid: tribune-media:tribune-media-celebrities-api
+  name: Tribune Media Celebrities API
+  description: The Celebrities API from Tribune Media — 3 operation(s) for celebrities.
+  humanURL: https://developer.tmsapi.com/
+  tags:
+  - Celebrities
+  properties:
+  - type: OpenAPI
+    url: openapi/tribune-media-celebrities-api-openapi.yml
+  - type: Documentation
+    url: https://developer.tmsapi.com/docs
+  - type: GettingStarted
+    url: https://developer.tmsapi.com/Getting_Started
+  - type: TermsOfService
+    url: https://developer.tmsapi.com/page/API_Terms_of_Use
+  - type: FAQ
+    url: https://developer.tmsapi.com/page/Frequently_Asked_Questions
+- aid: tribune-media:tribune-media-lineups-api
+  name: Tribune Media Lineups API
+  description: The Lineups API from Tribune Media — 4 operation(s) for lineups.
+  humanURL: https://developer.tmsapi.com/
+  tags:
+  - Lineups
+  properties:
+  - type: OpenAPI
+    url: openapi/tribune-media-lineups-api-openapi.yml
+  - type: Documentation
+    url: https://developer.tmsapi.com/docs
+  - type: GettingStarted
+    url: https://developer.tmsapi.com/Getting_Started
+  - type: TermsOfService
+    url: https://developer.tmsapi.com/page/API_Terms_of_Use
+  - type: FAQ
+    url: https://developer.tmsapi.com/page/Frequently_Asked_Questions
+- aid: tribune-media:tribune-media-movies-api
+  name: Tribune Media Movies API
+  description: The Movies API from Tribune Media — 3 operation(s) for movies.
+  humanURL: https://developer.tmsapi.com/
+  tags:
+  - Movies
+  properties:
+  - type: OpenAPI
+    url: openapi/tribune-media-movies-api-openapi.yml
+  - type: Documentation
+    url: https://developer.tmsapi.com/docs
+  - type: GettingStarted
+    url: https://developer.tmsapi.com/Getting_Started
+  - type: TermsOfService
+    url: https://developer.tmsapi.com/page/API_Terms_of_Use
+  - type: FAQ
+    url: https://developer.tmsapi.com/page/Frequently_Asked_Questions
+- aid: tribune-media:tribune-media-online-video-api
+  name: Tribune Media Online Video API
+  description: The Online Video API from Tribune Media — 3 operation(s) for online video.
+  humanURL: https://developer.tmsapi.com/
+  tags:
+  - Online Video
+  properties:
+  - type: OpenAPI
+    url: openapi/tribune-media-online-video-api-openapi.yml
+  - type: Documentation
+    url: https://developer.tmsapi.com/docs
+  - type: GettingStarted
+    url: https://developer.tmsapi.com/Getting_Started
+  - type: TermsOfService
+    url: https://developer.tmsapi.com/page/API_Terms_of_Use
+  - type: FAQ
+    url: https://developer.tmsapi.com/page/Frequently_Asked_Questions
+- aid: tribune-media:tribune-media-programs-api
+  name: Tribune Media Programs API
+  description: The Programs API from Tribune Media — 5 operation(s) for programs.
+  humanURL: https://developer.tmsapi.com/
+  tags:
+  - Programs
+  properties:
+  - type: OpenAPI
+    url: openapi/tribune-media-programs-api-openapi.yml
+  - type: Documentation
+    url: https://developer.tmsapi.com/docs
+  - type: GettingStarted
+    url: https://developer.tmsapi.com/Getting_Started
+  - type: TermsOfService
+    url: https://developer.tmsapi.com/page/API_Terms_of_Use
+  - type: FAQ
+    url: https://developer.tmsapi.com/page/Frequently_Asked_Questions
+- aid: tribune-media:tribune-media-series-api
+  name: Tribune Media Series API
+  description: The Series API from Tribune Media — 3 operation(s) for series.
+  humanURL: https://developer.tmsapi.com/
+  tags:
+  - Series
+  properties:
+  - type: OpenAPI
+    url: openapi/tribune-media-series-api-openapi.yml
+  - type: Documentation
+    url: https://developer.tmsapi.com/docs
+  - type: GettingStarted
+    url: https://developer.tmsapi.com/Getting_Started
+  - type: TermsOfService
+    url: https://developer.tmsapi.com/page/API_Terms_of_Use
+  - type: FAQ
+    url: https://developer.tmsapi.com/page/Frequently_Asked_Questions
+- aid: tribune-media:tribune-media-social-api
+  name: Tribune Media Social API
+  description: The Social API from Tribune Media — 1 operation(s) for social.
+  humanURL: https://developer.tmsapi.com/
+  tags:
+  - Social
+  properties:
+  - type: OpenAPI
+    url: openapi/tribune-media-social-api-openapi.yml
+  - type: Documentation
+    url: https://developer.tmsapi.com/docs
+  - type: GettingStarted
+    url: https://developer.tmsapi.com/Getting_Started
+  - type: TermsOfService
+    url: https://developer.tmsapi.com/page/API_Terms_of_Use
+  - type: FAQ
+    url: https://developer.tmsapi.com/page/Frequently_Asked_Questions
+- aid: tribune-media:tribune-media-sports-api
+  name: Tribune Media Sports API
+  description: The Sports API from Tribune Media — 5 operation(s) for sports.
+  humanURL: https://developer.tmsapi.com/
+  tags:
+  - Sports
+  properties:
+  - type: OpenAPI
+    url: openapi/tribune-media-sports-api-openapi.yml
+  - type: Documentation
+    url: https://developer.tmsapi.com/docs
+  - type: GettingStarted
+    url: https://developer.tmsapi.com/Getting_Started
+  - type: TermsOfService
+    url: https://developer.tmsapi.com/page/API_Terms_of_Use
+  - type: FAQ
+    url: https://developer.tmsapi.com/page/Frequently_Asked_Questions
+- aid: tribune-media:tribune-media-stations-api
+  name: Tribune Media Stations API
+  description: The Stations API from Tribune Media — 3 operation(s) for stations.
+  humanURL: https://developer.tmsapi.com/
+  tags:
+  - Stations
+  properties:
+  - type: OpenAPI
+    url: openapi/tribune-media-stations-api-openapi.yml
+  - type: Documentation
+    url: https://developer.tmsapi.com/docs
+  - type: GettingStarted
+    url: https://developer.tmsapi.com/Getting_Started
+  - type: TermsOfService
+    url: https://developer.tmsapi.com/page/API_Terms_of_Use
+  - type: FAQ
+    url: https://developer.tmsapi.com/page/Frequently_Asked_Questions
+- aid: tribune-media:tribune-media-theatres-api
+  name: Tribune Media Theatres API
+  description: The Theatres API from Tribune Media — 2 operation(s) for theatres.
+  humanURL: https://developer.tmsapi.com/
+  tags:
+  - Theatres
+  properties:
+  - type: OpenAPI
+    url: openapi/tribune-media-theatres-api-openapi.yml
+  - type: Documentation
+    url: https://developer.tmsapi.com/docs
+  - type: GettingStarted
+    url: https://developer.tmsapi.com/Getting_Started
+  - type: TermsOfService
+    url: https://developer.tmsapi.com/page/API_Terms_of_Use
+  - type: FAQ
+    url: https://developer.tmsapi.com/page/Frequently_Asked_Questions
 features:
   - TV lineup and electronic programming guide (EPG) data
   - Movie showtimes and theatre location lookups
