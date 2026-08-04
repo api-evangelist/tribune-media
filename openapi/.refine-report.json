@@ -1,0 +1,32 @@
+{
+  "provider": "tribune-media",
+  "sources": [
+    "tribune-media-celebrities-api-openapi.yml",
+    "tribune-media-lineups-api-openapi.yml",
+    "tribune-media-movies-api-openapi.yml",
+    "tribune-media-online-video-api-openapi.yml",
+    "tribune-media-programs-api-openapi.yml",
+    "tribune-media-series-api-openapi.yml",
+    "tribune-media-social-api-openapi.yml",
+    "tribune-media-sports-api-openapi.yml",
+    "tribune-media-stations-api-openapi.yml",
+    "tribune-media-theatres-api-openapi.yml"
+  ],
+  "outputs": [
+    "tribune-media-celebrities-api-openapi.yml",
+    "tribune-media-lineups-api-openapi.yml",
+    "tribune-media-movies-api-openapi.yml",
+    "tribune-media-online-video-api-openapi.yml",
+    "tribune-media-programs-api-openapi.yml",
+    "tribune-media-series-api-openapi.yml",
+    "tribune-media-social-api-openapi.yml",
+    "tribune-media-sports-api-openapi.yml",
+    "tribune-media-stations-api-openapi.yml",
+    "tribune-media-theatres-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
