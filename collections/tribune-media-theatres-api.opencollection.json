@@ -1,0 +1,112 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "TMS OnConnect Celebrities Theatres API",
+    "version": "1.1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "api_key",
+      "value": "{{api_key}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Theatres",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Theatres by Location",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data.tmsapi.com/v1.1/theatres",
+            "params": [
+              {
+                "name": "zip",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "lat",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "lng",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "radius",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "units",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "numTheatres",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieves theatre locations via zip/postal code or geographic coordinates."
+        },
+        {
+          "info": {
+            "name": "Get Theatre Showtimes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data.tmsapi.com/v1.1/theatres/:theatreId/showings",
+            "params": [
+              {
+                "name": "theatreId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "numDays",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "imageSize",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Lists movies and showtimes at a specific theatre."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

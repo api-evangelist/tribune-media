@@ -1,0 +1,153 @@
+{
+  "item": [
+    {
+      "id": "58f73ff4-7a8f-4b79-a888-53eba1a29883",
+      "name": "Social",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f28749bd-b9f3-469a-bbc1-0423f54d8e9e",
+          "name": "Get Social Data",
+          "request": {
+            "name": "Get Social Data",
+            "description": {
+              "content": "Obtains social media links for a movie or TV series.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "social",
+                ":rootId_seriesId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "api_key",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "rootId_seriesId",
+                  "description": "(Required) Root ID or series ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "72df054e-5596-4f81-809d-6a8c67295dd8",
+              "name": "Social data and links",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "social",
+                    ":rootId_seriesId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "rootId_seriesId",
+                      "description": "(Required) Root ID or series ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"rootId\": \"string\",\n  \"seriesId\": \"string\",\n  \"socialLinks\": [\n    {\n      \"platform\": \"string\",\n      \"url\": \"string\"\n    },\n    {\n      \"platform\": \"string\",\n      \"url\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://data.tmsapi.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "api_key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f4113119-c06f-4e89-9c87-50bff51e1ccf",
+    "name": "TMS OnConnect Celebrities Social API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Tribune Media Services (TMS) OnConnect API provides comprehensive entertainment metadata for TV programming, movies, celebrities, and sports. It delivers electronic programming guide (EPG) data, movie showtimes, celebrity information, and televised sports schedules. Originally developed by Tribune Media Services, the API is now operated by Gracenote (a Nielsen company) and powers content discovery for consumer electronics manufacturers, cable operators, and entertainment platforms.",
+      "type": "text/plain"
+    }
+  }
+}

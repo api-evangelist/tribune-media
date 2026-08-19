@@ -1,0 +1,327 @@
+{
+  "item": [
+    {
+      "id": "4408e2f8-b8ee-45e6-a828-7c73c6b99658",
+      "name": "Theatres",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b6cb2fa3-5433-4092-8936-dc439395c4f8",
+          "name": "Get Theatres by Location",
+          "request": {
+            "name": "Get Theatres by Location",
+            "description": {
+              "content": "Retrieves theatre locations via zip/postal code or geographic coordinates.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1.1",
+                "theatres"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "zip",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "lat",
+                  "value": "<float>"
+                },
+                {
+                  "disabled": false,
+                  "key": "lng",
+                  "value": "<float>"
+                },
+                {
+                  "disabled": false,
+                  "key": "radius",
+                  "value": "10"
+                },
+                {
+                  "disabled": false,
+                  "key": "units",
+                  "value": "mile"
+                },
+                {
+                  "disabled": false,
+                  "key": "numTheatres",
+                  "value": "10"
+                },
+                {
+                  "disabled": false,
+                  "key": "api_key",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a2e27f8f-8655-4fbd-8e01-fc6bcee9e621",
+              "name": "List of nearby theatres",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1.1",
+                    "theatres"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "zip",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "lat",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "lng",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "radius",
+                      "value": "10"
+                    },
+                    {
+                      "key": "units",
+                      "value": "mile"
+                    },
+                    {
+                      "key": "numTheatres",
+                      "value": "10"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"theatreId\": \"string\",\n    \"name\": \"string\",\n    \"address\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"string\",\n    \"postalCode\": \"string\",\n    \"distance\": 7593.625115613661\n  },\n  {\n    \"theatreId\": \"string\",\n    \"name\": \"string\",\n    \"address\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"string\",\n    \"postalCode\": \"string\",\n    \"distance\": 9326.865551687652\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0a7f835b-3561-4b57-adfe-faa35aa641b4",
+          "name": "Get Theatre Showtimes",
+          "request": {
+            "name": "Get Theatre Showtimes",
+            "description": {
+              "content": "Lists movies and showtimes at a specific theatre.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1.1",
+                "theatres",
+                ":theatreId",
+                "showings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "startDate",
+                  "value": "<date>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "numDays",
+                  "value": "1"
+                },
+                {
+                  "disabled": false,
+                  "key": "imageSize",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "api_key",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "theatreId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "884e7f0a-7244-4895-9f0d-0e451ceff512",
+              "name": "Theatre showtimes",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1.1",
+                    "theatres",
+                    ":theatreId",
+                    "showings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "numDays",
+                      "value": "1"
+                    },
+                    {
+                      "key": "imageSize",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "theatreId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"startTime\": \"1985-02-06T23:00:38.305Z\",\n    \"endTime\": \"1946-09-08T14:57:46.095Z\",\n    \"movieId\": \"string\",\n    \"theatreId\": \"string\",\n    \"format\": \"string\"\n  },\n  {\n    \"startTime\": \"1961-03-14T18:15:40.447Z\",\n    \"endTime\": \"1978-09-09T11:08:16.885Z\",\n    \"movieId\": \"string\",\n    \"theatreId\": \"string\",\n    \"format\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://data.tmsapi.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "api_key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "667cbb9e-c33f-4c47-b583-3d5819cf7aa2",
+    "name": "TMS OnConnect Celebrities Theatres API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Tribune Media Services (TMS) OnConnect API provides comprehensive entertainment metadata for TV programming, movies, celebrities, and sports. It delivers electronic programming guide (EPG) data, movie showtimes, celebrity information, and televised sports schedules. Originally developed by Tribune Media Services, the API is now operated by Gracenote (a Nielsen company) and powers content discovery for consumer electronics manufacturers, cable operators, and entertainment platforms.",
+      "type": "text/plain"
+    }
+  }
+}

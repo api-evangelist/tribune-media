@@ -1,0 +1,161 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "TMS OnConnect Celebrities Lineups API",
+    "version": "1.1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "api_key",
+      "value": "{{api_key}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Lineups",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Lineups by Postal Code",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data.tmsapi.com/v1.1/lineups",
+            "params": [
+              {
+                "name": "country",
+                "value": "",
+                "type": "query",
+                "description": "Two-letter country code (e.g., US, CA)"
+              },
+              {
+                "name": "postalCode",
+                "value": "",
+                "type": "query",
+                "description": "Postal or ZIP code to look up lineups for"
+              },
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "Your TMS API key"
+              }
+            ]
+          },
+          "docs": "Returns a list of lineups for a country and postal code."
+        },
+        {
+          "info": {
+            "name": "Get Lineup Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data.tmsapi.com/v1.1/lineups/:lineupId",
+            "params": [
+              {
+                "name": "lineupId",
+                "value": "",
+                "type": "path",
+                "description": "Unique lineup identifier"
+              },
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieves details for a specific lineup by ID."
+        },
+        {
+          "info": {
+            "name": "Get Lineup Channels",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data.tmsapi.com/v1.1/lineups/:lineupId/channels",
+            "params": [
+              {
+                "name": "lineupId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "imageSize",
+                "value": "",
+                "type": "query",
+                "description": "Size of station images to include"
+              },
+              {
+                "name": "enhancedCallSign",
+                "value": "",
+                "type": "query",
+                "description": "Include enhanced call sign data"
+              },
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Lists all stations and channels for a given lineup."
+        },
+        {
+          "info": {
+            "name": "Get TV Grid Schedule",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data.tmsapi.com/v1.1/lineups/:lineupId/grid",
+            "params": [
+              {
+                "name": "lineupId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "startDateTime",
+                "value": "",
+                "type": "query",
+                "description": "Start date/time in ISO 8601 format"
+              },
+              {
+                "name": "endDateTime",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "stationId",
+                "value": "",
+                "type": "query",
+                "description": "Filter to a specific station"
+              },
+              {
+                "name": "imageSize",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns the TV grid schedule for a lineup (up to 6 hours, 14 days advance)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

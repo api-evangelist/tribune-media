@@ -1,0 +1,160 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "TMS OnConnect Celebrities Series API",
+    "version": "1.1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "api_key",
+      "value": "{{api_key}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Series",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Series Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data.tmsapi.com/v1.1/series/:seriesId",
+            "params": [
+              {
+                "name": "seriesId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "imageSize",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "titleLang",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "descriptionLang",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "market",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns detailed metadata for a specific TV series."
+        },
+        {
+          "info": {
+            "name": "Get Series Airings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data.tmsapi.com/v1.1/series/:seriesId/airings",
+            "params": [
+              {
+                "name": "seriesId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "lineupId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "startDateTime",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endDateTime",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "includeDetail",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "imageSize",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieves all airings for a TV series (up to 14 days advance)."
+        },
+        {
+          "info": {
+            "name": "Get Series Episodes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data.tmsapi.com/v1.1/series/:seriesId/episodes",
+            "params": [
+              {
+                "name": "seriesId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "season",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "imageSize",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns episodes for a series sorted by season and episode number."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

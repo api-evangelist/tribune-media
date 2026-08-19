@@ -1,0 +1,256 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "TMS OnConnect Celebrities Sports API",
+    "version": "1.1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "api_key",
+      "value": "{{api_key}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Sports",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Sport Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data.tmsapi.com/v1.1/sports/:sportsId",
+            "params": [
+              {
+                "name": "sportsId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "includeOrg",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "officialOrg",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "imageSize",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns sport details with optional organization information."
+        },
+        {
+          "info": {
+            "name": "Get Sports Event Airings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data.tmsapi.com/v1.1/sports/:sportsId/events/airings",
+            "params": [
+              {
+                "name": "sportsId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "lineupId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "startDateTime",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endDateTime",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "liveOnly",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "imageSize",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns live sports events for specified sports on a lineup."
+        },
+        {
+          "info": {
+            "name": "Get Sports Non-Event Airings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data.tmsapi.com/v1.1/sports/:sportsId/non-events/airings",
+            "params": [
+              {
+                "name": "sportsId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "lineupId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "startDateTime",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endDateTime",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "imageSize",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns sports non-events and taped events (24 hours, 14 days advance)."
+        },
+        {
+          "info": {
+            "name": "Get Organization Airings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data.tmsapi.com/v1.1/sports/organizations/:organizationId/airings",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "lineupId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "startDateTime",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endDateTime",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "includeDetail",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "imageSize",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns all airings for a sports organization (e.g., MLB, NBA, NFL)."
+        },
+        {
+          "info": {
+            "name": "Get Team Airings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data.tmsapi.com/v1.1/sports/teams/:teamBrandId/airings",
+            "params": [
+              {
+                "name": "teamBrandId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "lineupId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "startDateTime",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endDateTime",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "includeDetail",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "imageSize",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "market",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns all airings for a sports team."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

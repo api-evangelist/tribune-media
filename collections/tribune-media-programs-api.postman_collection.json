@@ -1,0 +1,770 @@
+{
+  "item": [
+    {
+      "id": "28628e61-46db-47ea-84c0-5a3cd3b7b199",
+      "name": "Programs",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "505c5122-1fd6-4afa-a16a-939789e1ed61",
+          "name": "Search Programs",
+          "request": {
+            "name": "Search Programs",
+            "description": {
+              "content": "Returns basic program metadata based on free-form search criteria.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1.1",
+                "programs",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "<string>",
+                  "description": "(Required) Free-form search query"
+                },
+                {
+                  "disabled": false,
+                  "key": "queryFields",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "entityType",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "genres",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "subType",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "includeAdult",
+                  "value": "false"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0"
+                },
+                {
+                  "disabled": false,
+                  "key": "lineupId",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "startDateTime",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "endDateTime",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "imageSize",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "api_key",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "15371b01-fc13-4fe0-ae94-4597ecb990ce",
+              "name": "Matching programs",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1.1",
+                    "programs",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "queryFields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "entityType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "genres",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "subType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includeAdult",
+                      "value": "false"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "lineupId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startDateTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDateTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "imageSize",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"tmsId\": \"string\",\n    \"rootId\": \"string\",\n    \"seriesId\": \"string\",\n    \"title\": \"string\",\n    \"titleLang\": \"string\",\n    \"description\": \"string\",\n    \"shortDescription\": \"string\",\n    \"entityType\": \"Movie\",\n    \"subType\": \"string\",\n    \"genres\": [\n      \"string\",\n      \"string\"\n    ],\n    \"releaseYear\": 4801,\n    \"releaseDate\": \"1961-01-22\",\n    \"ratings\": [\n      {\n        \"body\": \"string\",\n        \"code\": \"string\"\n      },\n      {\n        \"body\": \"string\",\n        \"code\": \"string\"\n      }\n    ],\n    \"preferredImage\": {\n      \"uri\": \"string\",\n      \"width\": 2767,\n      \"height\": 272,\n      \"primary\": false,\n      \"category\": \"string\",\n      \"text\": false\n    }\n  },\n  {\n    \"tmsId\": \"string\",\n    \"rootId\": \"string\",\n    \"seriesId\": \"string\",\n    \"title\": \"string\",\n    \"titleLang\": \"string\",\n    \"description\": \"string\",\n    \"shortDescription\": \"string\",\n    \"entityType\": \"Episode\",\n    \"subType\": \"string\",\n    \"genres\": [\n      \"string\",\n      \"string\"\n    ],\n    \"releaseYear\": 4096,\n    \"releaseDate\": \"2007-09-30\",\n    \"ratings\": [\n      {\n        \"body\": \"string\",\n        \"code\": \"string\"\n      },\n      {\n        \"body\": \"string\",\n        \"code\": \"string\"\n      }\n    ],\n    \"preferredImage\": {\n      \"uri\": \"string\",\n      \"width\": 713,\n      \"height\": 2336,\n      \"primary\": false,\n      \"category\": \"string\",\n      \"text\": true\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "83527113-37c7-43bb-8e64-46278d7c859b",
+          "name": "Get Program Genres",
+          "request": {
+            "name": "Get Program Genres",
+            "description": {
+              "content": "Returns a list of program genres, to be used in conjunction with Program Search.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1.1",
+                "programs",
+                "genres"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "api_key",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "01616bd2-01ef-404a-a073-2153f2d15643",
+              "name": "List of genres",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1.1",
+                    "programs",
+                    "genres"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"genreId\": \"string\",\n    \"name\": \"string\"\n  },\n  {\n    \"genreId\": \"string\",\n    \"name\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2641ef3d-6afb-4fe6-b5f6-d8942e976284",
+          "name": "Get New Show Airings",
+          "request": {
+            "name": "Get New Show Airings",
+            "description": {
+              "content": "Retrieves shows and episodes airing new on a lineup (up to 24 hours, 14 days advance).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1.1",
+                "programs",
+                "newShowAirings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "lineupId",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "startDateTime",
+                  "value": "<dateTime>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "endDateTime",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "includeAdult",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "imageSize",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "api_key",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6238ff3f-7195-4b1e-9c3c-2bbe4849d17b",
+              "name": "New show airings",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1.1",
+                    "programs",
+                    "newShowAirings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "lineupId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startDateTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDateTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "includeAdult",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "imageSize",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"startTime\": \"1967-08-20T01:09:07.732Z\",\n    \"endTime\": \"2020-07-15T04:34:31.899Z\",\n    \"duration\": 8454,\n    \"stationId\": \"string\",\n    \"qualifiers\": [\n      \"string\",\n      \"string\"\n    ],\n    \"program\": {\n      \"tmsId\": \"string\",\n      \"rootId\": \"string\",\n      \"seriesId\": \"string\",\n      \"title\": \"string\",\n      \"titleLang\": \"string\",\n      \"description\": \"string\",\n      \"shortDescription\": \"string\",\n      \"entityType\": \"Show\",\n      \"subType\": \"string\",\n      \"genres\": [\n        \"string\",\n        \"string\"\n      ],\n      \"releaseYear\": 1724,\n      \"releaseDate\": \"2021-01-18\",\n      \"ratings\": [\n        {\n          \"body\": \"string\",\n          \"code\": \"string\"\n        },\n        {\n          \"body\": \"string\",\n          \"code\": \"string\"\n        }\n      ],\n      \"preferredImage\": {\n        \"uri\": \"string\",\n        \"width\": 5139,\n        \"height\": 6328,\n        \"primary\": true,\n        \"category\": \"string\",\n        \"text\": true\n      }\n    }\n  },\n  {\n    \"startTime\": \"1971-07-15T01:34:06.490Z\",\n    \"endTime\": \"2011-04-06T06:00:43.790Z\",\n    \"duration\": 9261,\n    \"stationId\": \"string\",\n    \"qualifiers\": [\n      \"string\",\n      \"string\"\n    ],\n    \"program\": {\n      \"tmsId\": \"string\",\n      \"rootId\": \"string\",\n      \"seriesId\": \"string\",\n      \"title\": \"string\",\n      \"titleLang\": \"string\",\n      \"description\": \"string\",\n      \"shortDescription\": \"string\",\n      \"entityType\": \"Special\",\n      \"subType\": \"string\",\n      \"genres\": [\n        \"string\",\n        \"string\"\n      ],\n      \"releaseYear\": 3250,\n      \"releaseDate\": \"1992-04-30\",\n      \"ratings\": [\n        {\n          \"body\": \"string\",\n          \"code\": \"string\"\n        },\n        {\n          \"body\": \"string\",\n          \"code\": \"string\"\n        }\n      ],\n      \"preferredImage\": {\n        \"uri\": \"string\",\n        \"width\": 5122,\n        \"height\": 5099,\n        \"primary\": true,\n        \"category\": \"string\",\n        \"text\": false\n      }\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7c41be5b-d505-4cb3-a26d-218b52c48aab",
+          "name": "Get Program Details",
+          "request": {
+            "name": "Get Program Details",
+            "description": {
+              "content": "Retrieves detailed metadata for a specific program by TMS ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1.1",
+                "programs",
+                ":tmsId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "imageSize",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "imageAspectTV",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "imageText",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "market",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "api_key",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "tmsId",
+                  "description": "(Required) TMS program identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bd3438f7-85b5-400b-8bdd-8c41deece690",
+              "name": "Program details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1.1",
+                    "programs",
+                    ":tmsId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "imageSize",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "imageAspectTV",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "imageText",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "market",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tmsId",
+                      "description": "(Required) TMS program identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"tmsId\": \"string\",\n  \"rootId\": \"string\",\n  \"seriesId\": \"string\",\n  \"title\": \"string\",\n  \"titleLang\": \"string\",\n  \"description\": \"string\",\n  \"shortDescription\": \"string\",\n  \"entityType\": \"Episode\",\n  \"subType\": \"string\",\n  \"genres\": [\n    \"string\",\n    \"string\"\n  ],\n  \"releaseYear\": 6281,\n  \"releaseDate\": \"1950-01-18\",\n  \"ratings\": [\n    {\n      \"body\": \"string\",\n      \"code\": \"string\"\n    },\n    {\n      \"body\": \"string\",\n      \"code\": \"string\"\n    }\n  ],\n  \"preferredImage\": {\n    \"uri\": \"string\",\n    \"width\": 6324,\n    \"height\": 8212,\n    \"primary\": false,\n    \"category\": \"string\",\n    \"text\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8ed31caa-8247-4f40-aed7-59d386b37f9f",
+          "name": "Get Program Airings",
+          "request": {
+            "name": "Get Program Airings",
+            "description": {
+              "content": "Returns all airings of a specific program (up to 14 days advance).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1.1",
+                "programs",
+                ":tmsId",
+                "airings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "lineupId",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "startDateTime",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "endDateTime",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "includeDetail",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "imageSize",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "api_key",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "tmsId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "78cfa571-18de-4eb3-bbf6-24333018fd52",
+              "name": "Program airings",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1.1",
+                    "programs",
+                    ":tmsId",
+                    "airings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "lineupId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startDateTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDateTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "includeDetail",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "imageSize",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tmsId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"startTime\": \"1975-01-11T06:37:27.784Z\",\n    \"endTime\": \"2018-03-09T10:53:01.652Z\",\n    \"duration\": 3812,\n    \"stationId\": \"string\",\n    \"qualifiers\": [\n      \"string\",\n      \"string\"\n    ],\n    \"program\": {\n      \"tmsId\": \"string\",\n      \"rootId\": \"string\",\n      \"seriesId\": \"string\",\n      \"title\": \"string\",\n      \"titleLang\": \"string\",\n      \"description\": \"string\",\n      \"shortDescription\": \"string\",\n      \"entityType\": \"Movie\",\n      \"subType\": \"string\",\n      \"genres\": [\n        \"string\",\n        \"string\"\n      ],\n      \"releaseYear\": 4893,\n      \"releaseDate\": \"2023-05-27\",\n      \"ratings\": [\n        {\n          \"body\": \"string\",\n          \"code\": \"string\"\n        },\n        {\n          \"body\": \"string\",\n          \"code\": \"string\"\n        }\n      ],\n      \"preferredImage\": {\n        \"uri\": \"string\",\n        \"width\": 6883,\n        \"height\": 7329,\n        \"primary\": false,\n        \"category\": \"string\",\n        \"text\": false\n      }\n    }\n  },\n  {\n    \"startTime\": \"1995-08-14T03:45:54.541Z\",\n    \"endTime\": \"1948-07-10T03:33:56.054Z\",\n    \"duration\": 8625,\n    \"stationId\": \"string\",\n    \"qualifiers\": [\n      \"string\",\n      \"string\"\n    ],\n    \"program\": {\n      \"tmsId\": \"string\",\n      \"rootId\": \"string\",\n      \"seriesId\": \"string\",\n      \"title\": \"string\",\n      \"titleLang\": \"string\",\n      \"description\": \"string\",\n      \"shortDescription\": \"string\",\n      \"entityType\": \"Special\",\n      \"subType\": \"string\",\n      \"genres\": [\n        \"string\",\n        \"string\"\n      ],\n      \"releaseYear\": 7429,\n      \"releaseDate\": \"1957-11-30\",\n      \"ratings\": [\n        {\n          \"body\": \"string\",\n          \"code\": \"string\"\n        },\n        {\n          \"body\": \"string\",\n          \"code\": \"string\"\n        }\n      ],\n      \"preferredImage\": {\n        \"uri\": \"string\",\n        \"width\": 7299,\n        \"height\": 2056,\n        \"primary\": false,\n        \"category\": \"string\",\n        \"text\": true\n      }\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://data.tmsapi.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "api_key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "e6a9bb8f-8b57-47c5-9899-2bc93b83424e",
+    "name": "TMS OnConnect Celebrities Programs API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Tribune Media Services (TMS) OnConnect API provides comprehensive entertainment metadata for TV programming, movies, celebrities, and sports. It delivers electronic programming guide (EPG) data, movie showtimes, celebrity information, and televised sports schedules. Originally developed by Tribune Media Services, the API is now operated by Gracenote (a Nielsen company) and powers content discovery for consumer electronics manufacturers, cable operators, and entertainment platforms.",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,548 @@
+{
+  "item": [
+    {
+      "id": "b3a0b15a-c608-437b-91c3-ebdc1b662fdd",
+      "name": "Movies",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "abb25dfa-0d67-40af-8f90-b0d21207ef33",
+          "name": "Get Movies Airing on TV",
+          "request": {
+            "name": "Get Movies Airing on TV",
+            "description": {
+              "content": "Provides movies airing on a lineup (up to 24 hours, 14 days advance).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1.1",
+                "movies",
+                "airings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "lineupId",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "startDateTime",
+                  "value": "<dateTime>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "endDateTime",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "includeAdult",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "imageSize",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "imageText",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "api_key",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1934f1d4-dc84-4466-8efb-656a2f9ec667",
+              "name": "Movies airing on TV",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1.1",
+                    "movies",
+                    "airings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "lineupId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startDateTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDateTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "includeAdult",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "imageSize",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "imageText",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"startTime\": \"1989-09-29T12:41:24.942Z\",\n    \"endTime\": \"2022-04-16T18:21:10.958Z\",\n    \"duration\": 9646,\n    \"stationId\": \"string\",\n    \"movie\": {\n      \"tmsId\": \"string\",\n      \"rootId\": \"string\",\n      \"title\": \"string\",\n      \"description\": \"string\",\n      \"releaseYear\": 2619,\n      \"releaseDate\": \"2022-05-19\",\n      \"genres\": [\n        \"string\",\n        \"string\"\n      ],\n      \"runTime\": \"string\",\n      \"ratings\": [\n        {\n          \"body\": \"string\",\n          \"code\": \"string\"\n        },\n        {\n          \"body\": \"string\",\n          \"code\": \"string\"\n        }\n      ],\n      \"preferredImage\": {\n        \"uri\": \"string\",\n        \"width\": 1942,\n        \"height\": 8955,\n        \"primary\": true,\n        \"category\": \"string\",\n        \"text\": false\n      }\n    }\n  },\n  {\n    \"startTime\": \"2002-12-14T13:35:35.304Z\",\n    \"endTime\": \"2020-11-30T20:15:09.126Z\",\n    \"duration\": 5765,\n    \"stationId\": \"string\",\n    \"movie\": {\n      \"tmsId\": \"string\",\n      \"rootId\": \"string\",\n      \"title\": \"string\",\n      \"description\": \"string\",\n      \"releaseYear\": 9040,\n      \"releaseDate\": \"1956-06-03\",\n      \"genres\": [\n        \"string\",\n        \"string\"\n      ],\n      \"runTime\": \"string\",\n      \"ratings\": [\n        {\n          \"body\": \"string\",\n          \"code\": \"string\"\n        },\n        {\n          \"body\": \"string\",\n          \"code\": \"string\"\n        }\n      ],\n      \"preferredImage\": {\n        \"uri\": \"string\",\n        \"width\": 5901,\n        \"height\": 5891,\n        \"primary\": false,\n        \"category\": \"string\",\n        \"text\": true\n      }\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bfb8956c-21a5-4434-95f3-fadd545036d4",
+          "name": "Get Movies in Theatres",
+          "request": {
+            "name": "Get Movies in Theatres",
+            "description": {
+              "content": "Returns movies currently playing in local theatres with showtimes.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1.1",
+                "movies",
+                "showings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "startDate",
+                  "value": "<date>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "numDays",
+                  "value": "1"
+                },
+                {
+                  "disabled": false,
+                  "key": "zip",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "lat",
+                  "value": "<float>"
+                },
+                {
+                  "disabled": false,
+                  "key": "lng",
+                  "value": "<float>"
+                },
+                {
+                  "disabled": false,
+                  "key": "radius",
+                  "value": "10"
+                },
+                {
+                  "disabled": false,
+                  "key": "units",
+                  "value": "mile"
+                },
+                {
+                  "disabled": false,
+                  "key": "imageSize",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "market",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "api_key",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "95221b78-ccfe-4a77-bff2-3adc5dae4198",
+              "name": "Movies currently in theatres",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1.1",
+                    "movies",
+                    "showings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "numDays",
+                      "value": "1"
+                    },
+                    {
+                      "key": "zip",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "lat",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "lng",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "radius",
+                      "value": "10"
+                    },
+                    {
+                      "key": "units",
+                      "value": "mile"
+                    },
+                    {
+                      "key": "imageSize",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "market",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"movie\": {\n      \"tmsId\": \"string\",\n      \"rootId\": \"string\",\n      \"title\": \"string\",\n      \"description\": \"string\",\n      \"releaseYear\": 8832,\n      \"releaseDate\": \"1992-03-13\",\n      \"genres\": [\n        \"string\",\n        \"string\"\n      ],\n      \"runTime\": \"string\",\n      \"ratings\": [\n        {\n          \"body\": \"string\",\n          \"code\": \"string\"\n        },\n        {\n          \"body\": \"string\",\n          \"code\": \"string\"\n        }\n      ],\n      \"preferredImage\": {\n        \"uri\": \"string\",\n        \"width\": 9909,\n        \"height\": 4179,\n        \"primary\": false,\n        \"category\": \"string\",\n        \"text\": true\n      }\n    },\n    \"theatres\": [\n      {\n        \"theatreId\": \"string\",\n        \"name\": \"string\",\n        \"address\": \"string\",\n        \"city\": \"string\",\n        \"state\": \"string\",\n        \"postalCode\": \"string\",\n        \"distance\": 2515.467637187915\n      },\n      {\n        \"theatreId\": \"string\",\n        \"name\": \"string\",\n        \"address\": \"string\",\n        \"city\": \"string\",\n        \"state\": \"string\",\n        \"postalCode\": \"string\",\n        \"distance\": 2186.230331143383\n      }\n    ],\n    \"showtimes\": [\n      {\n        \"startTime\": \"1966-08-08T18:19:43.425Z\",\n        \"endTime\": \"2000-11-08T05:14:08.385Z\",\n        \"movieId\": \"string\",\n        \"theatreId\": \"string\",\n        \"format\": \"string\"\n      },\n      {\n        \"startTime\": \"2003-03-22T21:40:40.538Z\",\n        \"endTime\": \"2015-08-02T11:22:24.707Z\",\n        \"movieId\": \"string\",\n        \"theatreId\": \"string\",\n        \"format\": \"string\"\n      }\n    ]\n  },\n  {\n    \"movie\": {\n      \"tmsId\": \"string\",\n      \"rootId\": \"string\",\n      \"title\": \"string\",\n      \"description\": \"string\",\n      \"releaseYear\": 6001,\n      \"releaseDate\": \"2014-10-10\",\n      \"genres\": [\n        \"string\",\n        \"string\"\n      ],\n      \"runTime\": \"string\",\n      \"ratings\": [\n        {\n          \"body\": \"string\",\n          \"code\": \"string\"\n        },\n        {\n          \"body\": \"string\",\n          \"code\": \"string\"\n        }\n      ],\n      \"preferredImage\": {\n        \"uri\": \"string\",\n        \"width\": 4142,\n        \"height\": 8319,\n        \"primary\": true,\n        \"category\": \"string\",\n        \"text\": false\n      }\n    },\n    \"theatres\": [\n      {\n        \"theatreId\": \"string\",\n        \"name\": \"string\",\n        \"address\": \"string\",\n        \"city\": \"string\",\n        \"state\": \"string\",\n        \"postalCode\": \"string\",\n        \"distance\": 4825.6924731309855\n      },\n      {\n        \"theatreId\": \"string\",\n        \"name\": \"string\",\n        \"address\": \"string\",\n        \"city\": \"string\",\n        \"state\": \"string\",\n        \"postalCode\": \"string\",\n        \"distance\": 2196.689825411353\n      }\n    ],\n    \"showtimes\": [\n      {\n        \"startTime\": \"1999-09-16T21:53:52.057Z\",\n        \"endTime\": \"1965-01-30T21:53:16.259Z\",\n        \"movieId\": \"string\",\n        \"theatreId\": \"string\",\n        \"format\": \"string\"\n      },\n      {\n        \"startTime\": \"1959-11-01T20:55:55.048Z\",\n        \"endTime\": \"2012-09-27T15:49:47.486Z\",\n        \"movieId\": \"string\",\n        \"theatreId\": \"string\",\n        \"format\": \"string\"\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d3b94e60-8323-4611-aca5-0e67b2c983fa",
+          "name": "Get Movie Showtimes",
+          "request": {
+            "name": "Get Movie Showtimes",
+            "description": {
+              "content": "Returns metadata and theatre/showtime information for a specific movie.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1.1",
+                "movies",
+                ":movieId",
+                "showings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "startDate",
+                  "value": "<date>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "numDays",
+                  "value": "1"
+                },
+                {
+                  "disabled": false,
+                  "key": "zip",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "lat",
+                  "value": "<float>"
+                },
+                {
+                  "disabled": false,
+                  "key": "lng",
+                  "value": "<float>"
+                },
+                {
+                  "disabled": false,
+                  "key": "radius",
+                  "value": "10"
+                },
+                {
+                  "disabled": false,
+                  "key": "units",
+                  "value": "mile"
+                },
+                {
+                  "disabled": false,
+                  "key": "imageSize",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "api_key",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "movieId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6b8f926f-ff28-4179-900b-312eec6f20df",
+              "name": "Movie showtimes",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1.1",
+                    "movies",
+                    ":movieId",
+                    "showings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "numDays",
+                      "value": "1"
+                    },
+                    {
+                      "key": "zip",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "lat",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "lng",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "radius",
+                      "value": "10"
+                    },
+                    {
+                      "key": "units",
+                      "value": "mile"
+                    },
+                    {
+                      "key": "imageSize",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "movieId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"movie\": {\n    \"tmsId\": \"string\",\n    \"rootId\": \"string\",\n    \"title\": \"string\",\n    \"description\": \"string\",\n    \"releaseYear\": 2791,\n    \"releaseDate\": \"1976-10-21\",\n    \"genres\": [\n      \"string\",\n      \"string\"\n    ],\n    \"runTime\": \"string\",\n    \"ratings\": [\n      {\n        \"body\": \"string\",\n        \"code\": \"string\"\n      },\n      {\n        \"body\": \"string\",\n        \"code\": \"string\"\n      }\n    ],\n    \"preferredImage\": {\n      \"uri\": \"string\",\n      \"width\": 5242,\n      \"height\": 8869,\n      \"primary\": true,\n      \"category\": \"string\",\n      \"text\": false\n    }\n  },\n  \"theatres\": [\n    {\n      \"theatreId\": \"string\",\n      \"name\": \"string\",\n      \"address\": \"string\",\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"postalCode\": \"string\",\n      \"distance\": 6771.098600468543\n    },\n    {\n      \"theatreId\": \"string\",\n      \"name\": \"string\",\n      \"address\": \"string\",\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"postalCode\": \"string\",\n      \"distance\": 9167.37656016624\n    }\n  ],\n  \"showtimes\": [\n    {\n      \"startTime\": \"1999-06-20T10:18:50.988Z\",\n      \"endTime\": \"1977-08-18T21:27:31.533Z\",\n      \"movieId\": \"string\",\n      \"theatreId\": \"string\",\n      \"format\": \"string\"\n    },\n    {\n      \"startTime\": \"1947-06-30T22:29:34.274Z\",\n      \"endTime\": \"2021-10-25T15:33:48.830Z\",\n      \"movieId\": \"string\",\n      \"theatreId\": \"string\",\n      \"format\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://data.tmsapi.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "api_key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "fa70df9a-0e41-4155-bec9-13ca02f4e46b",
+    "name": "TMS OnConnect Celebrities Movies API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Tribune Media Services (TMS) OnConnect API provides comprehensive entertainment metadata for TV programming, movies, celebrities, and sports. It delivers electronic programming guide (EPG) data, movie showtimes, celebrity information, and televised sports schedules. Originally developed by Tribune Media Services, the API is now operated by Gracenote (a Nielsen company) and powers content discovery for consumer electronics manufacturers, cable operators, and entertainment platforms.",
+      "type": "text/plain"
+    }
+  }
+}

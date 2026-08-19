@@ -1,0 +1,147 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "TMS OnConnect Celebrities Stations API",
+    "version": "1.1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "api_key",
+      "value": "{{api_key}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Stations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search TV Stations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data.tmsapi.com/v1.1/stations/search",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Search query (station name or call sign)"
+              },
+              {
+                "name": "queryFields",
+                "value": "",
+                "type": "query",
+                "description": "Fields to search (e.g., name, callSign)"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "imageSize",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Searches TV stations by name or call sign."
+        },
+        {
+          "info": {
+            "name": "Get Station Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data.tmsapi.com/v1.1/stations/:stationId",
+            "params": [
+              {
+                "name": "stationId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "lineupId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "imageSize",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieves details for a specific TV station."
+        },
+        {
+          "info": {
+            "name": "Get Station Schedule",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data.tmsapi.com/v1.1/stations/:stationId/airings",
+            "params": [
+              {
+                "name": "stationId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "lineupId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "startDateTime",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endDateTime",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "imageSize",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns the schedule for a single station (up to 14 days ahead)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

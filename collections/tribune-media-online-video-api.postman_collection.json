@@ -1,0 +1,394 @@
+{
+  "item": [
+    {
+      "id": "8b27d5bf-c4ec-437b-ac66-b76b6768e3bb",
+      "name": "Online Video",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e329755e-a2f7-4968-96c8-fde41f596bbb",
+          "name": "Get Online Video Series",
+          "request": {
+            "name": "Get Online Video Series",
+            "description": {
+              "content": "Returns series information for online video metadata.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "series",
+                ":seriesId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "region",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "api_key",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "seriesId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b8801ede-5889-4984-af10-23780f93007d",
+              "name": "Online video series information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "series",
+                    ":seriesId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "region",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "seriesId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"seriesId\": \"string\",\n  \"title\": \"string\",\n  \"description\": \"string\",\n  \"startAirDate\": \"1988-12-04\",\n  \"endAirDate\": \"1970-11-10\",\n  \"genres\": [\n    \"string\",\n    \"string\"\n  ],\n  \"preferredImage\": {\n    \"uri\": \"string\",\n    \"width\": 6715,\n    \"height\": 2504,\n    \"primary\": false,\n    \"category\": \"string\",\n    \"text\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "83f7f2d0-667e-46d8-801d-78120973e7be",
+          "name": "Get Online Video Episode",
+          "request": {
+            "name": "Get Online Video Episode",
+            "description": {
+              "content": "Retrieves single episode information for online video.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "episodes",
+                ":rootId_tmsId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "region",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "api_key",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "rootId_tmsId",
+                  "description": "(Required) Root ID combined with TMS ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ab2ccd51-b171-4969-b2e0-a6ab4c76111f",
+              "name": "Episode information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "episodes",
+                    ":rootId_tmsId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "region",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "rootId_tmsId",
+                      "description": "(Required) Root ID combined with TMS ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"tmsId\": \"string\",\n  \"seriesId\": \"string\",\n  \"title\": \"string\",\n  \"episodeTitle\": \"string\",\n  \"description\": \"string\",\n  \"seasonNum\": 36,\n  \"episodeNum\": 7561,\n  \"airDate\": \"1958-11-20\",\n  \"preferredImage\": {\n    \"uri\": \"string\",\n    \"width\": 6462,\n    \"height\": 1058,\n    \"primary\": true,\n    \"category\": \"string\",\n    \"text\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "86c8e620-7ba9-45d5-9ae9-76496985b6f1",
+          "name": "Get Online Video Movie",
+          "request": {
+            "name": "Get Online Video Movie",
+            "description": {
+              "content": "Retrieves movie information for online video.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "movies",
+                ":rootId_tmsId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "region",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "api_key",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "rootId_tmsId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2c2ffd1d-8ed4-4c7d-86d3-b38f6efd8522",
+              "name": "Movie information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "movies",
+                    ":rootId_tmsId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "region",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "rootId_tmsId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"tmsId\": \"string\",\n  \"rootId\": \"string\",\n  \"title\": \"string\",\n  \"description\": \"string\",\n  \"releaseYear\": 7744,\n  \"releaseDate\": \"1970-09-08\",\n  \"genres\": [\n    \"string\",\n    \"string\"\n  ],\n  \"runTime\": \"string\",\n  \"ratings\": [\n    {\n      \"body\": \"string\",\n      \"code\": \"string\"\n    },\n    {\n      \"body\": \"string\",\n      \"code\": \"string\"\n    }\n  ],\n  \"preferredImage\": {\n    \"uri\": \"string\",\n    \"width\": 2298,\n    \"height\": 9817,\n    \"primary\": true,\n    \"category\": \"string\",\n    \"text\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://data.tmsapi.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "api_key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "4e1a4270-d39d-4b1d-8e93-192cfb55de25",
+    "name": "TMS OnConnect Celebrities Online Video API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Tribune Media Services (TMS) OnConnect API provides comprehensive entertainment metadata for TV programming, movies, celebrities, and sports. It delivers electronic programming guide (EPG) data, movie showtimes, celebrity information, and televised sports schedules. Originally developed by Tribune Media Services, the API is now operated by Gracenote (a Nielsen company) and powers content discovery for consumer electronics manufacturers, cable operators, and entertainment platforms.",
+      "type": "text/plain"
+    }
+  }
+}

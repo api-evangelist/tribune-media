@@ -1,0 +1,258 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "TMS OnConnect Celebrities Programs API",
+    "version": "1.1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "api_key",
+      "value": "{{api_key}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Programs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search Programs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data.tmsapi.com/v1.1/programs/search",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Free-form search query"
+              },
+              {
+                "name": "queryFields",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "entityType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "genres",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "subType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "includeAdult",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "lineupId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "startDateTime",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endDateTime",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "imageSize",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns basic program metadata based on free-form search criteria."
+        },
+        {
+          "info": {
+            "name": "Get Program Genres",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data.tmsapi.com/v1.1/programs/genres",
+            "params": [
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns a list of program genres, to be used in conjunction with Program Search."
+        },
+        {
+          "info": {
+            "name": "Get New Show Airings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data.tmsapi.com/v1.1/programs/newShowAirings",
+            "params": [
+              {
+                "name": "lineupId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "startDateTime",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endDateTime",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "includeAdult",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "imageSize",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieves shows and episodes airing new on a lineup (up to 24 hours, 14 days advance)."
+        },
+        {
+          "info": {
+            "name": "Get Program Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data.tmsapi.com/v1.1/programs/:tmsId",
+            "params": [
+              {
+                "name": "tmsId",
+                "value": "",
+                "type": "path",
+                "description": "TMS program identifier"
+              },
+              {
+                "name": "imageSize",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "imageAspectTV",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "imageText",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "market",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieves detailed metadata for a specific program by TMS ID."
+        },
+        {
+          "info": {
+            "name": "Get Program Airings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data.tmsapi.com/v1.1/programs/:tmsId/airings",
+            "params": [
+              {
+                "name": "tmsId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "lineupId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "startDateTime",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endDateTime",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "includeDetail",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "imageSize",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns all airings of a specific program (up to 14 days advance)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

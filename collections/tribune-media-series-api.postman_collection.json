@@ -1,0 +1,488 @@
+{
+  "item": [
+    {
+      "id": "f347fa8b-93c2-4dd7-9478-968eef4b5038",
+      "name": "Series",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "534a18c7-f4f7-47e9-8341-2c01142b1537",
+          "name": "Get Series Details",
+          "request": {
+            "name": "Get Series Details",
+            "description": {
+              "content": "Returns detailed metadata for a specific TV series.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1.1",
+                "series",
+                ":seriesId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "imageSize",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "titleLang",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "descriptionLang",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "market",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "api_key",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "seriesId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "121735ec-bad5-4dd2-89ab-5bb4d566267e",
+              "name": "Series details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1.1",
+                    "series",
+                    ":seriesId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "imageSize",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "titleLang",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "descriptionLang",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "market",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "seriesId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"seriesId\": \"string\",\n  \"title\": \"string\",\n  \"description\": \"string\",\n  \"startAirDate\": \"1987-09-16\",\n  \"endAirDate\": \"1947-11-02\",\n  \"genres\": [\n    \"string\",\n    \"string\"\n  ],\n  \"preferredImage\": {\n    \"uri\": \"string\",\n    \"width\": 2210,\n    \"height\": 5220,\n    \"primary\": false,\n    \"category\": \"string\",\n    \"text\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "55e7d06f-f1e9-4860-88da-37d1efbba8d5",
+          "name": "Get Series Airings",
+          "request": {
+            "name": "Get Series Airings",
+            "description": {
+              "content": "Retrieves all airings for a TV series (up to 14 days advance).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1.1",
+                "series",
+                ":seriesId",
+                "airings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "lineupId",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "startDateTime",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "endDateTime",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "includeDetail",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "imageSize",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "api_key",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "seriesId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8c44c34f-229e-4c3f-8b2d-5cfb5943efab",
+              "name": "Series airings",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1.1",
+                    "series",
+                    ":seriesId",
+                    "airings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "lineupId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startDateTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDateTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "includeDetail",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "imageSize",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "seriesId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"startTime\": \"1973-01-31T04:44:06.219Z\",\n    \"endTime\": \"1986-05-09T01:47:34.235Z\",\n    \"duration\": 8512,\n    \"stationId\": \"string\",\n    \"qualifiers\": [\n      \"string\",\n      \"string\"\n    ],\n    \"program\": {\n      \"tmsId\": \"string\",\n      \"rootId\": \"string\",\n      \"seriesId\": \"string\",\n      \"title\": \"string\",\n      \"titleLang\": \"string\",\n      \"description\": \"string\",\n      \"shortDescription\": \"string\",\n      \"entityType\": \"Episode\",\n      \"subType\": \"string\",\n      \"genres\": [\n        \"string\",\n        \"string\"\n      ],\n      \"releaseYear\": 9004,\n      \"releaseDate\": \"1973-03-22\",\n      \"ratings\": [\n        {\n          \"body\": \"string\",\n          \"code\": \"string\"\n        },\n        {\n          \"body\": \"string\",\n          \"code\": \"string\"\n        }\n      ],\n      \"preferredImage\": {\n        \"uri\": \"string\",\n        \"width\": 7809,\n        \"height\": 7436,\n        \"primary\": false,\n        \"category\": \"string\",\n        \"text\": true\n      }\n    }\n  },\n  {\n    \"startTime\": \"1983-11-15T06:22:47.443Z\",\n    \"endTime\": \"1988-06-01T09:22:36.551Z\",\n    \"duration\": 2888,\n    \"stationId\": \"string\",\n    \"qualifiers\": [\n      \"string\",\n      \"string\"\n    ],\n    \"program\": {\n      \"tmsId\": \"string\",\n      \"rootId\": \"string\",\n      \"seriesId\": \"string\",\n      \"title\": \"string\",\n      \"titleLang\": \"string\",\n      \"description\": \"string\",\n      \"shortDescription\": \"string\",\n      \"entityType\": \"Episode\",\n      \"subType\": \"string\",\n      \"genres\": [\n        \"string\",\n        \"string\"\n      ],\n      \"releaseYear\": 3696,\n      \"releaseDate\": \"2020-01-23\",\n      \"ratings\": [\n        {\n          \"body\": \"string\",\n          \"code\": \"string\"\n        },\n        {\n          \"body\": \"string\",\n          \"code\": \"string\"\n        }\n      ],\n      \"preferredImage\": {\n        \"uri\": \"string\",\n        \"width\": 3681,\n        \"height\": 4091,\n        \"primary\": true,\n        \"category\": \"string\",\n        \"text\": true\n      }\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4ed38a69-6362-4c89-ab23-0b706ebf52d7",
+          "name": "Get Series Episodes",
+          "request": {
+            "name": "Get Series Episodes",
+            "description": {
+              "content": "Returns episodes for a series sorted by season and episode number.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1.1",
+                "series",
+                ":seriesId",
+                "episodes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "season",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0"
+                },
+                {
+                  "disabled": false,
+                  "key": "imageSize",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "api_key",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "seriesId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b107003f-5795-477a-aa76-38562bbd4bdf",
+              "name": "Series episodes",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1.1",
+                    "series",
+                    ":seriesId",
+                    "episodes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "season",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "imageSize",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "seriesId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"tmsId\": \"string\",\n    \"seriesId\": \"string\",\n    \"title\": \"string\",\n    \"episodeTitle\": \"string\",\n    \"description\": \"string\",\n    \"seasonNum\": 5128,\n    \"episodeNum\": 3855,\n    \"airDate\": \"1960-02-21\",\n    \"preferredImage\": {\n      \"uri\": \"string\",\n      \"width\": 555,\n      \"height\": 6614,\n      \"primary\": false,\n      \"category\": \"string\",\n      \"text\": true\n    }\n  },\n  {\n    \"tmsId\": \"string\",\n    \"seriesId\": \"string\",\n    \"title\": \"string\",\n    \"episodeTitle\": \"string\",\n    \"description\": \"string\",\n    \"seasonNum\": 7890,\n    \"episodeNum\": 8278,\n    \"airDate\": \"2017-04-03\",\n    \"preferredImage\": {\n      \"uri\": \"string\",\n      \"width\": 7943,\n      \"height\": 5219,\n      \"primary\": false,\n      \"category\": \"string\",\n      \"text\": false\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://data.tmsapi.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "api_key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "640091f3-b3fa-44e5-9090-4f80ff72f499",
+    "name": "TMS OnConnect Celebrities Series API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Tribune Media Services (TMS) OnConnect API provides comprehensive entertainment metadata for TV programming, movies, celebrities, and sports. It delivers electronic programming guide (EPG) data, movie showtimes, celebrity information, and televised sports schedules. Originally developed by Tribune Media Services, the API is now operated by Gracenote (a Nielsen company) and powers content discovery for consumer electronics manufacturers, cable operators, and entertainment platforms.",
+      "type": "text/plain"
+    }
+  }
+}

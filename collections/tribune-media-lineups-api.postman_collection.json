@@ -1,0 +1,679 @@
+{
+  "item": [
+    {
+      "id": "93db7ea9-d459-4b42-99f9-eee676db6d4d",
+      "name": "Lineups",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "453c824b-3e40-4506-9e76-53725c68225e",
+          "name": "Get Lineups by Postal Code",
+          "request": {
+            "name": "Get Lineups by Postal Code",
+            "description": {
+              "content": "Returns a list of lineups for a country and postal code.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1.1",
+                "lineups"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "country",
+                  "value": "<string>",
+                  "description": "Two-letter country code (e.g., US, CA)"
+                },
+                {
+                  "disabled": false,
+                  "key": "postalCode",
+                  "value": "<string>",
+                  "description": "(Required) Postal or ZIP code to look up lineups for"
+                },
+                {
+                  "disabled": false,
+                  "key": "api_key",
+                  "value": "<string>",
+                  "description": "(Required) Your TMS API key"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "35ba938f-8884-4ff7-8901-177690f9f6ad",
+              "name": "Successful response with list of lineups",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1.1",
+                    "lineups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "country",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "postalCode",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"lineupId\": \"string\",\n    \"name\": \"string\",\n    \"type\": \"string\",\n    \"location\": \"string\",\n    \"device\": \"string\",\n    \"postalCode\": \"string\",\n    \"country\": \"string\"\n  },\n  {\n    \"lineupId\": \"string\",\n    \"name\": \"string\",\n    \"type\": \"string\",\n    \"location\": \"string\",\n    \"device\": \"string\",\n    \"postalCode\": \"string\",\n    \"country\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f4a1687b-b6ba-4563-9ec7-6f0bd2bbbfb6",
+              "name": "Unauthorized - invalid or missing API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1.1",
+                    "lineups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "country",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "postalCode",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8b44abf9-0c64-4afa-87d6-95b35a0ac592",
+              "name": "No lineups found for the given postal code",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1.1",
+                    "lineups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "country",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "postalCode",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fae66003-1e78-4df2-a056-2aeab1a7f80c",
+          "name": "Get Lineup Details",
+          "request": {
+            "name": "Get Lineup Details",
+            "description": {
+              "content": "Retrieves details for a specific lineup by ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1.1",
+                "lineups",
+                ":lineupId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "api_key",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "lineupId",
+                  "description": "(Required) Unique lineup identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "258cad8c-5213-412c-b363-8b83abc34c77",
+              "name": "Lineup details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1.1",
+                    "lineups",
+                    ":lineupId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lineupId",
+                      "description": "(Required) Unique lineup identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"lineupId\": \"string\",\n  \"name\": \"string\",\n  \"type\": \"string\",\n  \"location\": \"string\",\n  \"device\": \"string\",\n  \"postalCode\": \"string\",\n  \"country\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9cec474e-05eb-40b4-867a-4b1b8f9ba912",
+              "name": "Lineup not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1.1",
+                    "lineups",
+                    ":lineupId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lineupId",
+                      "description": "(Required) Unique lineup identifier"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9564723b-1748-4c70-8759-040a38109ef6",
+          "name": "Get Lineup Channels",
+          "request": {
+            "name": "Get Lineup Channels",
+            "description": {
+              "content": "Lists all stations and channels for a given lineup.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1.1",
+                "lineups",
+                ":lineupId",
+                "channels"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "imageSize",
+                  "value": "<string>",
+                  "description": "Size of station images to include"
+                },
+                {
+                  "disabled": false,
+                  "key": "enhancedCallSign",
+                  "value": "<boolean>",
+                  "description": "Include enhanced call sign data"
+                },
+                {
+                  "disabled": false,
+                  "key": "api_key",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "lineupId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8c23ba40-ccc1-4008-9cf1-6989b696f56b",
+              "name": "List of channels for the lineup",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1.1",
+                    "lineups",
+                    ":lineupId",
+                    "channels"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "imageSize",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "enhancedCallSign",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lineupId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"stationId\": \"string\",\n    \"channel\": \"string\",\n    \"callSign\": \"string\",\n    \"name\": \"string\",\n    \"preferredImage\": {\n      \"uri\": \"string\",\n      \"width\": 8130,\n      \"height\": 1570,\n      \"primary\": false,\n      \"category\": \"string\",\n      \"text\": true\n    }\n  },\n  {\n    \"stationId\": \"string\",\n    \"channel\": \"string\",\n    \"callSign\": \"string\",\n    \"name\": \"string\",\n    \"preferredImage\": {\n      \"uri\": \"string\",\n      \"width\": 8115,\n      \"height\": 9591,\n      \"primary\": true,\n      \"category\": \"string\",\n      \"text\": false\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6fd9f282-b8be-4c3d-9419-ea4f797dc7e7",
+          "name": "Get TV Grid Schedule",
+          "request": {
+            "name": "Get TV Grid Schedule",
+            "description": {
+              "content": "Returns the TV grid schedule for a lineup (up to 6 hours, 14 days advance).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1.1",
+                "lineups",
+                ":lineupId",
+                "grid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "startDateTime",
+                  "value": "<dateTime>",
+                  "description": "(Required) Start date/time in ISO 8601 format"
+                },
+                {
+                  "disabled": false,
+                  "key": "endDateTime",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "stationId",
+                  "value": "<string>",
+                  "description": "Filter to a specific station"
+                },
+                {
+                  "disabled": false,
+                  "key": "imageSize",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "api_key",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "lineupId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "847372c0-95b8-4146-a4c8-be15b6e97c2b",
+              "name": "TV grid schedule",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1.1",
+                    "lineups",
+                    ":lineupId",
+                    "grid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDateTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDateTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "stationId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "imageSize",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lineupId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"startTime\": \"1965-12-11T16:44:56.167Z\",\n    \"endTime\": \"2021-12-21T10:06:01.613Z\",\n    \"duration\": 1688,\n    \"channel\": \"string\",\n    \"stationId\": \"string\",\n    \"qualifiers\": [\n      \"string\",\n      \"string\"\n    ],\n    \"program\": {\n      \"tmsId\": \"string\",\n      \"rootId\": \"string\",\n      \"seriesId\": \"string\",\n      \"title\": \"string\",\n      \"titleLang\": \"string\",\n      \"description\": \"string\",\n      \"shortDescription\": \"string\",\n      \"entityType\": \"Episode\",\n      \"subType\": \"string\",\n      \"genres\": [\n        \"string\",\n        \"string\"\n      ],\n      \"releaseYear\": 7561,\n      \"releaseDate\": \"1989-03-03\",\n      \"ratings\": [\n        {\n          \"body\": \"string\",\n          \"code\": \"string\"\n        },\n        {\n          \"body\": \"string\",\n          \"code\": \"string\"\n        }\n      ],\n      \"preferredImage\": {\n        \"uri\": \"string\",\n        \"width\": 278,\n        \"height\": 8562,\n        \"primary\": true,\n        \"category\": \"string\",\n        \"text\": false\n      }\n    }\n  },\n  {\n    \"startTime\": \"2016-12-31T22:08:17.573Z\",\n    \"endTime\": \"2009-05-26T23:08:27.082Z\",\n    \"duration\": 237,\n    \"channel\": \"string\",\n    \"stationId\": \"string\",\n    \"qualifiers\": [\n      \"string\",\n      \"string\"\n    ],\n    \"program\": {\n      \"tmsId\": \"string\",\n      \"rootId\": \"string\",\n      \"seriesId\": \"string\",\n      \"title\": \"string\",\n      \"titleLang\": \"string\",\n      \"description\": \"string\",\n      \"shortDescription\": \"string\",\n      \"entityType\": \"Special\",\n      \"subType\": \"string\",\n      \"genres\": [\n        \"string\",\n        \"string\"\n      ],\n      \"releaseYear\": 4168,\n      \"releaseDate\": \"1947-02-04\",\n      \"ratings\": [\n        {\n          \"body\": \"string\",\n          \"code\": \"string\"\n        },\n        {\n          \"body\": \"string\",\n          \"code\": \"string\"\n        }\n      ],\n      \"preferredImage\": {\n        \"uri\": \"string\",\n        \"width\": 6183,\n        \"height\": 9333,\n        \"primary\": true,\n        \"category\": \"string\",\n        \"text\": false\n      }\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://data.tmsapi.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "api_key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "2778a4e9-68eb-4ff2-90c8-3fa988e09eea",
+    "name": "TMS OnConnect Celebrities Lineups API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Tribune Media Services (TMS) OnConnect API provides comprehensive entertainment metadata for TV programming, movies, celebrities, and sports. It delivers electronic programming guide (EPG) data, movie showtimes, celebrity information, and televised sports schedules. Originally developed by Tribune Media Services, the API is now operated by Gracenote (a Nielsen company) and powers content discovery for consumer electronics manufacturers, cable operators, and entertainment platforms.",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,111 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "TMS OnConnect Celebrities Online Video API",
+    "version": "1.1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "api_key",
+      "value": "{{api_key}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Online Video",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Online Video Series",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data.tmsapi.com/v2/series/:seriesId",
+            "params": [
+              {
+                "name": "seriesId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "region",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns series information for online video metadata."
+        },
+        {
+          "info": {
+            "name": "Get Online Video Episode",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data.tmsapi.com/v2/episodes/:rootId_tmsId",
+            "params": [
+              {
+                "name": "rootId_tmsId",
+                "value": "",
+                "type": "path",
+                "description": "Root ID combined with TMS ID"
+              },
+              {
+                "name": "region",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieves single episode information for online video."
+        },
+        {
+          "info": {
+            "name": "Get Online Video Movie",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data.tmsapi.com/v2/movies/:rootId_tmsId",
+            "params": [
+              {
+                "name": "rootId_tmsId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "region",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieves movie information for online video."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

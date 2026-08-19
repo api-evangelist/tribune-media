@@ -1,0 +1,455 @@
+{
+  "item": [
+    {
+      "id": "5958fc15-569e-44cb-a046-624fbbc86e1a",
+      "name": "Stations",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "64105f30-375f-46ce-b6ba-f043e480fcf2",
+          "name": "Search TV Stations",
+          "request": {
+            "name": "Search TV Stations",
+            "description": {
+              "content": "Searches TV stations by name or call sign.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1.1",
+                "stations",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "<string>",
+                  "description": "(Required) Search query (station name or call sign)"
+                },
+                {
+                  "disabled": false,
+                  "key": "queryFields",
+                  "value": "<string>",
+                  "description": "Fields to search (e.g., name, callSign)"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0"
+                },
+                {
+                  "disabled": false,
+                  "key": "imageSize",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "api_key",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "00251c18-ac3b-477f-a619-dee2e6ef2753",
+              "name": "Matching stations",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1.1",
+                    "stations",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "queryFields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "imageSize",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"stationId\": \"string\",\n    \"callSign\": \"string\",\n    \"name\": \"string\",\n    \"type\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"string\",\n    \"country\": \"string\",\n    \"preferredImage\": {\n      \"uri\": \"string\",\n      \"width\": 2209,\n      \"height\": 6901,\n      \"primary\": false,\n      \"category\": \"string\",\n      \"text\": true\n    }\n  },\n  {\n    \"stationId\": \"string\",\n    \"callSign\": \"string\",\n    \"name\": \"string\",\n    \"type\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"string\",\n    \"country\": \"string\",\n    \"preferredImage\": {\n      \"uri\": \"string\",\n      \"width\": 7815,\n      \"height\": 6469,\n      \"primary\": true,\n      \"category\": \"string\",\n      \"text\": false\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bd267da8-345f-4fcc-ae5b-50a6594e29fd",
+          "name": "Get Station Details",
+          "request": {
+            "name": "Get Station Details",
+            "description": {
+              "content": "Retrieves details for a specific TV station.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1.1",
+                "stations",
+                ":stationId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "lineupId",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "imageSize",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "api_key",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "stationId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c51a657c-cd91-4cde-8ea1-85c3724ed60f",
+              "name": "Station details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1.1",
+                    "stations",
+                    ":stationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "lineupId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "imageSize",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "stationId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"stationId\": \"string\",\n  \"callSign\": \"string\",\n  \"name\": \"string\",\n  \"type\": \"string\",\n  \"city\": \"string\",\n  \"state\": \"string\",\n  \"country\": \"string\",\n  \"preferredImage\": {\n    \"uri\": \"string\",\n    \"width\": 9723,\n    \"height\": 8983,\n    \"primary\": true,\n    \"category\": \"string\",\n    \"text\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dd38d54f-042d-4bbe-85b0-8f0774824f55",
+          "name": "Get Station Schedule",
+          "request": {
+            "name": "Get Station Schedule",
+            "description": {
+              "content": "Returns the schedule for a single station (up to 14 days ahead).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1.1",
+                "stations",
+                ":stationId",
+                "airings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "lineupId",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "startDateTime",
+                  "value": "<dateTime>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "endDateTime",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "imageSize",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "api_key",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "stationId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "053a1fe6-a79c-4558-84c5-f6d1fdb56b2c",
+              "name": "Station airing schedule",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1.1",
+                    "stations",
+                    ":stationId",
+                    "airings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "lineupId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startDateTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDateTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "imageSize",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "stationId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"startTime\": \"1981-06-11T19:25:24.968Z\",\n    \"endTime\": \"1982-10-28T23:33:20.489Z\",\n    \"duration\": 1030,\n    \"stationId\": \"string\",\n    \"qualifiers\": [\n      \"string\",\n      \"string\"\n    ],\n    \"program\": {\n      \"tmsId\": \"string\",\n      \"rootId\": \"string\",\n      \"seriesId\": \"string\",\n      \"title\": \"string\",\n      \"titleLang\": \"string\",\n      \"description\": \"string\",\n      \"shortDescription\": \"string\",\n      \"entityType\": \"Special\",\n      \"subType\": \"string\",\n      \"genres\": [\n        \"string\",\n        \"string\"\n      ],\n      \"releaseYear\": 4606,\n      \"releaseDate\": \"1971-07-14\",\n      \"ratings\": [\n        {\n          \"body\": \"string\",\n          \"code\": \"string\"\n        },\n        {\n          \"body\": \"string\",\n          \"code\": \"string\"\n        }\n      ],\n      \"preferredImage\": {\n        \"uri\": \"string\",\n        \"width\": 7202,\n        \"height\": 3557,\n        \"primary\": true,\n        \"category\": \"string\",\n        \"text\": true\n      }\n    }\n  },\n  {\n    \"startTime\": \"2011-01-24T15:50:50.418Z\",\n    \"endTime\": \"2009-10-12T10:49:16.866Z\",\n    \"duration\": 9671,\n    \"stationId\": \"string\",\n    \"qualifiers\": [\n      \"string\",\n      \"string\"\n    ],\n    \"program\": {\n      \"tmsId\": \"string\",\n      \"rootId\": \"string\",\n      \"seriesId\": \"string\",\n      \"title\": \"string\",\n      \"titleLang\": \"string\",\n      \"description\": \"string\",\n      \"shortDescription\": \"string\",\n      \"entityType\": \"Special\",\n      \"subType\": \"string\",\n      \"genres\": [\n        \"string\",\n        \"string\"\n      ],\n      \"releaseYear\": 593,\n      \"releaseDate\": \"2024-11-17\",\n      \"ratings\": [\n        {\n          \"body\": \"string\",\n          \"code\": \"string\"\n        },\n        {\n          \"body\": \"string\",\n          \"code\": \"string\"\n        }\n      ],\n      \"preferredImage\": {\n        \"uri\": \"string\",\n        \"width\": 6044,\n        \"height\": 3172,\n        \"primary\": false,\n        \"category\": \"string\",\n        \"text\": true\n      }\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://data.tmsapi.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "api_key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a92ce993-378a-4b61-846a-3ac063642ea5",
+    "name": "TMS OnConnect Celebrities Stations API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Tribune Media Services (TMS) OnConnect API provides comprehensive entertainment metadata for TV programming, movies, celebrities, and sports. It delivers electronic programming guide (EPG) data, movie showtimes, celebrity information, and televised sports schedules. Originally developed by Tribune Media Services, the API is now operated by Gracenote (a Nielsen company) and powers content discovery for consumer electronics manufacturers, cable operators, and entertainment platforms.",
+      "type": "text/plain"
+    }
+  }
+}

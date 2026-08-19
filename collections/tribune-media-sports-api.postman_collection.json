@@ -1,0 +1,806 @@
+{
+  "item": [
+    {
+      "id": "51c7567f-b11f-49bc-8011-bcc74e0bdd1c",
+      "name": "Sports",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "45b7f2a4-b80a-4843-b2bb-4ce9e787562d",
+          "name": "Get Sport Details",
+          "request": {
+            "name": "Get Sport Details",
+            "description": {
+              "content": "Returns sport details with optional organization information.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1.1",
+                "sports",
+                ":sportsId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "includeOrg",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "officialOrg",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "imageSize",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "api_key",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "sportsId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c5697ac1-04f4-406d-9d12-6afe326c46ab",
+              "name": "Sport details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1.1",
+                    "sports",
+                    ":sportsId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "includeOrg",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "officialOrg",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "imageSize",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sportsId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"sportsId\": \"string\",\n  \"name\": \"string\",\n  \"organizations\": [\n    {\n      \"organizationId\": \"string\",\n      \"name\": \"string\",\n      \"abbreviation\": \"string\"\n    },\n    {\n      \"organizationId\": \"string\",\n      \"name\": \"string\",\n      \"abbreviation\": \"string\"\n    }\n  ],\n  \"preferredImage\": {\n    \"uri\": \"string\",\n    \"width\": 2921,\n    \"height\": 7315,\n    \"primary\": true,\n    \"category\": \"string\",\n    \"text\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5688f5a0-0518-4d99-857e-3e27ff9dc175",
+          "name": "Get Sports Event Airings",
+          "request": {
+            "name": "Get Sports Event Airings",
+            "description": {
+              "content": "Returns live sports events for specified sports on a lineup.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1.1",
+                "sports",
+                ":sportsId",
+                "events",
+                "airings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "lineupId",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "startDateTime",
+                  "value": "<dateTime>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "endDateTime",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "liveOnly",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "imageSize",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "api_key",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "sportsId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e0f4f558-deb0-482d-ab76-23eae29da3cc",
+              "name": "Sports event airings",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1.1",
+                    "sports",
+                    ":sportsId",
+                    "events",
+                    "airings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "lineupId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startDateTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDateTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "liveOnly",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "imageSize",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sportsId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"startTime\": \"1954-10-13T14:53:10.524Z\",\n    \"endTime\": \"1988-01-18T00:24:28.375Z\",\n    \"duration\": 6531,\n    \"stationId\": \"string\",\n    \"liveEvent\": false,\n    \"teams\": [\n      {\n        \"teamBrandId\": \"string\",\n        \"name\": \"string\"\n      },\n      {\n        \"teamBrandId\": \"string\",\n        \"name\": \"string\"\n      }\n    ],\n    \"program\": {\n      \"tmsId\": \"string\",\n      \"rootId\": \"string\",\n      \"seriesId\": \"string\",\n      \"title\": \"string\",\n      \"titleLang\": \"string\",\n      \"description\": \"string\",\n      \"shortDescription\": \"string\",\n      \"entityType\": \"Movie\",\n      \"subType\": \"string\",\n      \"genres\": [\n        \"string\",\n        \"string\"\n      ],\n      \"releaseYear\": 4332,\n      \"releaseDate\": \"1971-03-02\",\n      \"ratings\": [\n        {\n          \"body\": \"string\",\n          \"code\": \"string\"\n        },\n        {\n          \"body\": \"string\",\n          \"code\": \"string\"\n        }\n      ],\n      \"preferredImage\": {\n        \"uri\": \"string\",\n        \"width\": 8539,\n        \"height\": 4127,\n        \"primary\": true,\n        \"category\": \"string\",\n        \"text\": true\n      }\n    }\n  },\n  {\n    \"startTime\": \"1987-05-08T23:52:56.733Z\",\n    \"endTime\": \"2007-08-24T09:25:10.065Z\",\n    \"duration\": 1180,\n    \"stationId\": \"string\",\n    \"liveEvent\": false,\n    \"teams\": [\n      {\n        \"teamBrandId\": \"string\",\n        \"name\": \"string\"\n      },\n      {\n        \"teamBrandId\": \"string\",\n        \"name\": \"string\"\n      }\n    ],\n    \"program\": {\n      \"tmsId\": \"string\",\n      \"rootId\": \"string\",\n      \"seriesId\": \"string\",\n      \"title\": \"string\",\n      \"titleLang\": \"string\",\n      \"description\": \"string\",\n      \"shortDescription\": \"string\",\n      \"entityType\": \"Special\",\n      \"subType\": \"string\",\n      \"genres\": [\n        \"string\",\n        \"string\"\n      ],\n      \"releaseYear\": 3240,\n      \"releaseDate\": \"1965-03-06\",\n      \"ratings\": [\n        {\n          \"body\": \"string\",\n          \"code\": \"string\"\n        },\n        {\n          \"body\": \"string\",\n          \"code\": \"string\"\n        }\n      ],\n      \"preferredImage\": {\n        \"uri\": \"string\",\n        \"width\": 3536,\n        \"height\": 6892,\n        \"primary\": true,\n        \"category\": \"string\",\n        \"text\": false\n      }\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c4069e39-3731-469c-ac21-978b86ebe2df",
+          "name": "Get Sports Non-Event Airings",
+          "request": {
+            "name": "Get Sports Non-Event Airings",
+            "description": {
+              "content": "Returns sports non-events and taped events (24 hours, 14 days advance).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1.1",
+                "sports",
+                ":sportsId",
+                "non-events",
+                "airings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "lineupId",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "startDateTime",
+                  "value": "<dateTime>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "endDateTime",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "imageSize",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "api_key",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "sportsId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3d91fade-4ab8-46cc-82cb-9823708ec85a",
+              "name": "Sports non-event airings",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1.1",
+                    "sports",
+                    ":sportsId",
+                    "non-events",
+                    "airings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "lineupId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startDateTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDateTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "imageSize",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sportsId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"startTime\": \"1999-09-09T08:16:04.802Z\",\n    \"endTime\": \"1999-08-24T17:35:44.213Z\",\n    \"duration\": 9028,\n    \"stationId\": \"string\",\n    \"qualifiers\": [\n      \"string\",\n      \"string\"\n    ],\n    \"program\": {\n      \"tmsId\": \"string\",\n      \"rootId\": \"string\",\n      \"seriesId\": \"string\",\n      \"title\": \"string\",\n      \"titleLang\": \"string\",\n      \"description\": \"string\",\n      \"shortDescription\": \"string\",\n      \"entityType\": \"Sports\",\n      \"subType\": \"string\",\n      \"genres\": [\n        \"string\",\n        \"string\"\n      ],\n      \"releaseYear\": 2763,\n      \"releaseDate\": \"1993-11-11\",\n      \"ratings\": [\n        {\n          \"body\": \"string\",\n          \"code\": \"string\"\n        },\n        {\n          \"body\": \"string\",\n          \"code\": \"string\"\n        }\n      ],\n      \"preferredImage\": {\n        \"uri\": \"string\",\n        \"width\": 3746,\n        \"height\": 3210,\n        \"primary\": true,\n        \"category\": \"string\",\n        \"text\": false\n      }\n    }\n  },\n  {\n    \"startTime\": \"2024-02-13T23:04:04.439Z\",\n    \"endTime\": \"1969-03-10T23:06:19.773Z\",\n    \"duration\": 3140,\n    \"stationId\": \"string\",\n    \"qualifiers\": [\n      \"string\",\n      \"string\"\n    ],\n    \"program\": {\n      \"tmsId\": \"string\",\n      \"rootId\": \"string\",\n      \"seriesId\": \"string\",\n      \"title\": \"string\",\n      \"titleLang\": \"string\",\n      \"description\": \"string\",\n      \"shortDescription\": \"string\",\n      \"entityType\": \"Sports\",\n      \"subType\": \"string\",\n      \"genres\": [\n        \"string\",\n        \"string\"\n      ],\n      \"releaseYear\": 6357,\n      \"releaseDate\": \"1951-11-20\",\n      \"ratings\": [\n        {\n          \"body\": \"string\",\n          \"code\": \"string\"\n        },\n        {\n          \"body\": \"string\",\n          \"code\": \"string\"\n        }\n      ],\n      \"preferredImage\": {\n        \"uri\": \"string\",\n        \"width\": 310,\n        \"height\": 8419,\n        \"primary\": true,\n        \"category\": \"string\",\n        \"text\": false\n      }\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fadb554c-de3f-472c-b906-2ab2445cceb2",
+          "name": "Get Organization Airings",
+          "request": {
+            "name": "Get Organization Airings",
+            "description": {
+              "content": "Returns all airings for a sports organization (e.g., MLB, NBA, NFL).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1.1",
+                "sports",
+                "organizations",
+                ":organizationId",
+                "airings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "lineupId",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "startDateTime",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "endDateTime",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "includeDetail",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "imageSize",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "api_key",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "organizationId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "868a92d8-0ec9-4ca8-8fd9-7fcfb7fa7512",
+              "name": "Organization airings",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1.1",
+                    "sports",
+                    "organizations",
+                    ":organizationId",
+                    "airings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "lineupId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startDateTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDateTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "includeDetail",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "imageSize",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organizationId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"startTime\": \"1953-09-21T04:33:14.841Z\",\n    \"endTime\": \"1977-09-20T10:35:59.894Z\",\n    \"duration\": 5362,\n    \"stationId\": \"string\",\n    \"liveEvent\": true,\n    \"teams\": [\n      {\n        \"teamBrandId\": \"string\",\n        \"name\": \"string\"\n      },\n      {\n        \"teamBrandId\": \"string\",\n        \"name\": \"string\"\n      }\n    ],\n    \"program\": {\n      \"tmsId\": \"string\",\n      \"rootId\": \"string\",\n      \"seriesId\": \"string\",\n      \"title\": \"string\",\n      \"titleLang\": \"string\",\n      \"description\": \"string\",\n      \"shortDescription\": \"string\",\n      \"entityType\": \"Sports\",\n      \"subType\": \"string\",\n      \"genres\": [\n        \"string\",\n        \"string\"\n      ],\n      \"releaseYear\": 3934,\n      \"releaseDate\": \"1947-06-04\",\n      \"ratings\": [\n        {\n          \"body\": \"string\",\n          \"code\": \"string\"\n        },\n        {\n          \"body\": \"string\",\n          \"code\": \"string\"\n        }\n      ],\n      \"preferredImage\": {\n        \"uri\": \"string\",\n        \"width\": 2021,\n        \"height\": 4469,\n        \"primary\": false,\n        \"category\": \"string\",\n        \"text\": false\n      }\n    }\n  },\n  {\n    \"startTime\": \"1988-02-24T15:28:14.477Z\",\n    \"endTime\": \"1991-04-24T01:23:05.809Z\",\n    \"duration\": 1634,\n    \"stationId\": \"string\",\n    \"liveEvent\": false,\n    \"teams\": [\n      {\n        \"teamBrandId\": \"string\",\n        \"name\": \"string\"\n      },\n      {\n        \"teamBrandId\": \"string\",\n        \"name\": \"string\"\n      }\n    ],\n    \"program\": {\n      \"tmsId\": \"string\",\n      \"rootId\": \"string\",\n      \"seriesId\": \"string\",\n      \"title\": \"string\",\n      \"titleLang\": \"string\",\n      \"description\": \"string\",\n      \"shortDescription\": \"string\",\n      \"entityType\": \"Special\",\n      \"subType\": \"string\",\n      \"genres\": [\n        \"string\",\n        \"string\"\n      ],\n      \"releaseYear\": 200,\n      \"releaseDate\": \"1953-01-11\",\n      \"ratings\": [\n        {\n          \"body\": \"string\",\n          \"code\": \"string\"\n        },\n        {\n          \"body\": \"string\",\n          \"code\": \"string\"\n        }\n      ],\n      \"preferredImage\": {\n        \"uri\": \"string\",\n        \"width\": 6787,\n        \"height\": 9991,\n        \"primary\": true,\n        \"category\": \"string\",\n        \"text\": true\n      }\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6cd667c1-3a14-4b34-9b69-1ff6bcf15c1f",
+          "name": "Get Team Airings",
+          "request": {
+            "name": "Get Team Airings",
+            "description": {
+              "content": "Returns all airings for a sports team.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1.1",
+                "sports",
+                "teams",
+                ":teamBrandId",
+                "airings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "lineupId",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "startDateTime",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "endDateTime",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "includeDetail",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "imageSize",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "market",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "api_key",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "teamBrandId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c63e0e59-ea1e-47be-afec-d4b96d568cc7",
+              "name": "Team airings",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1.1",
+                    "sports",
+                    "teams",
+                    ":teamBrandId",
+                    "airings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "lineupId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startDateTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDateTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "includeDetail",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "imageSize",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "market",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "teamBrandId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"startTime\": \"1953-09-21T04:33:14.841Z\",\n    \"endTime\": \"1977-09-20T10:35:59.894Z\",\n    \"duration\": 5362,\n    \"stationId\": \"string\",\n    \"liveEvent\": true,\n    \"teams\": [\n      {\n        \"teamBrandId\": \"string\",\n        \"name\": \"string\"\n      },\n      {\n        \"teamBrandId\": \"string\",\n        \"name\": \"string\"\n      }\n    ],\n    \"program\": {\n      \"tmsId\": \"string\",\n      \"rootId\": \"string\",\n      \"seriesId\": \"string\",\n      \"title\": \"string\",\n      \"titleLang\": \"string\",\n      \"description\": \"string\",\n      \"shortDescription\": \"string\",\n      \"entityType\": \"Sports\",\n      \"subType\": \"string\",\n      \"genres\": [\n        \"string\",\n        \"string\"\n      ],\n      \"releaseYear\": 3934,\n      \"releaseDate\": \"1947-06-04\",\n      \"ratings\": [\n        {\n          \"body\": \"string\",\n          \"code\": \"string\"\n        },\n        {\n          \"body\": \"string\",\n          \"code\": \"string\"\n        }\n      ],\n      \"preferredImage\": {\n        \"uri\": \"string\",\n        \"width\": 2021,\n        \"height\": 4469,\n        \"primary\": false,\n        \"category\": \"string\",\n        \"text\": false\n      }\n    }\n  },\n  {\n    \"startTime\": \"1988-02-24T15:28:14.477Z\",\n    \"endTime\": \"1991-04-24T01:23:05.809Z\",\n    \"duration\": 1634,\n    \"stationId\": \"string\",\n    \"liveEvent\": false,\n    \"teams\": [\n      {\n        \"teamBrandId\": \"string\",\n        \"name\": \"string\"\n      },\n      {\n        \"teamBrandId\": \"string\",\n        \"name\": \"string\"\n      }\n    ],\n    \"program\": {\n      \"tmsId\": \"string\",\n      \"rootId\": \"string\",\n      \"seriesId\": \"string\",\n      \"title\": \"string\",\n      \"titleLang\": \"string\",\n      \"description\": \"string\",\n      \"shortDescription\": \"string\",\n      \"entityType\": \"Special\",\n      \"subType\": \"string\",\n      \"genres\": [\n        \"string\",\n        \"string\"\n      ],\n      \"releaseYear\": 200,\n      \"releaseDate\": \"1953-01-11\",\n      \"ratings\": [\n        {\n          \"body\": \"string\",\n          \"code\": \"string\"\n        },\n        {\n          \"body\": \"string\",\n          \"code\": \"string\"\n        }\n      ],\n      \"preferredImage\": {\n        \"uri\": \"string\",\n        \"width\": 6787,\n        \"height\": 9991,\n        \"primary\": true,\n        \"category\": \"string\",\n        \"text\": true\n      }\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://data.tmsapi.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "api_key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "5a438a88-aaf2-477b-8075-582337a6c29a",
+    "name": "TMS OnConnect Celebrities Sports API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Tribune Media Services (TMS) OnConnect API provides comprehensive entertainment metadata for TV programming, movies, celebrities, and sports. It delivers electronic programming guide (EPG) data, movie showtimes, celebrity information, and televised sports schedules. Originally developed by Tribune Media Services, the API is now operated by Gracenote (a Nielsen company) and powers content discovery for consumer electronics manufacturers, cable operators, and entertainment platforms.",
+      "type": "text/plain"
+    }
+  }
+}
