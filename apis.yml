@@ -245,6 +245,9 @@ solutions:
   - Entertainment platform providers building content discovery
   - Application developers integrating TV and movie information
 common:
+  - type: CapabilityMap
+    url: capabilities/tribune-media-capability-edges.yml
+    name: Tribune Media Business Capability Map
   - type: AgenticAccess
     url: agentic-access/tribune-media-agentic-access.yml
   - type: DomainSecurity
