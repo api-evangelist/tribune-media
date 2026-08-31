@@ -245,6 +245,11 @@ solutions:
   - Entertainment platform providers building content discovery
   - Application developers integrating TV and movie information
 common:
+  - type: ParentCompany
+    url: https://apis.io/providers/nexstar-media-group/
+    name: Nexstar Media Group
+    x-relationship: acquired
+    x-evidence: "Tribune Media was acquired by Nexstar Media Group in 2019."
   - type: CapabilityMap
     url: capabilities/tribune-media-capability-edges.yml
     name: Tribune Media Business Capability Map
