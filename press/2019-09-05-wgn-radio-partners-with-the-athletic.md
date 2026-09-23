@@ -1,7 +1,9 @@
 ---
 title: WGN Radio Partners with The Athletic
 url: http://www.tribunemedia.com/wgn-radio-partners-with-the-athletic/
-date: '2019-09-05'
+published: ''
+date_basis: harvested
+harvested: '2019-09-05'
 author: WGN Radio
 feed_url: http://www.tribunemedia.com/feed/
 ---

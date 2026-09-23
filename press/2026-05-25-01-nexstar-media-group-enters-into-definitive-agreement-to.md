@@ -1,7 +1,9 @@
 ---
 title: Nexstar Media Group Enters into Definitive Agreement to ...
 url: https://www.nexstar.tv/nexstar_agrees_to_acquire_tribune/
-date: '2026-05-25'
+published: ''
+date_basis: harvested
+harvested: '2026-05-25'
 query: '"Tribune Media" press release artificial intelligence'
 position: 1
 source: serpapi-google

@@ -2,7 +2,9 @@
 title: WGN America Unleashes “Dog’s Most Wanted” Fans Can Stream Premiere Episode
   Online
 url: http://www.tribunemedia.com/wgn-america-unleashes-dogs-most-wanted-so-fans-can-stream-premiere-episode-online/
-date: '2019-09-09'
+published: ''
+date_basis: harvested
+harvested: '2019-09-09'
 author: Tribune Media
 feed_url: http://www.tribunemedia.com/feed/
 ---

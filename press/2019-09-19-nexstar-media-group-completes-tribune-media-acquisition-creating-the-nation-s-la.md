@@ -2,7 +2,9 @@
 title: Nexstar Media Group Completes Tribune Media Acquisition Creating the Nation’s
   Largest Local Television Broadcaster
 url: http://www.tribunemedia.com/nexstar-media-group-completes-tribune-media-acquisition-creating-the-nations-largest-local-television-broadcaster/
-date: '2019-09-19'
+published: ''
+date_basis: harvested
+harvested: '2019-09-19'
 author: Corporate Relations
 feed_url: http://www.tribunemedia.com/feed/
 ---

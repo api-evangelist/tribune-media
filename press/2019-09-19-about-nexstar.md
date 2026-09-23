@@ -1,7 +1,9 @@
 ---
 title: About Nexstar
 url: http://nexstar.tv#new_tab
-date: '2019-09-19'
+published: ''
+date_basis: harvested
+harvested: '2019-09-19'
 author: Tribune Media
 feed_url: http://www.tribunemedia.com/feed/
 ---

@@ -1,7 +1,9 @@
 ---
 title: Daily Tribune's media snowflakery and AI articles
 url: https://www.facebook.com/groups/708242270391120/posts/1450915709457102/
-date: '2026-05-25'
+published: ''
+date_basis: harvested
+harvested: '2026-05-25'
 query: '"Tribune Media" press release artificial intelligence'
 position: 4
 source: serpapi-google

@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: TMS OnConnect Celebrities Sports API
+  title: TMS OnConnect Sports API
   description: The Tribune Media Services (TMS) OnConnect API provides comprehensive entertainment metadata for TV programming, movies, celebrities, and sports. It delivers electronic programming guide (EPG) data, movie showtimes, celebrity information, and televised sports schedules. Originally developed by Tribune Media Services, the API is now operated by Gracenote (a Nielsen company) and powers content discovery for consumer electronics manufacturers, cable operators, and entertainment platforms.
   version: 1.1.0
   contact:
@@ -253,48 +253,43 @@ paths:
                   $ref: '#/components/schemas/SportsAiring'
 components:
   schemas:
-    SportsAiring:
+    Airing:
       type: object
       properties:
         startTime:
           type: string
           format: date-time
+          description: Airing start time in ISO 8601 format
         endTime:
           type: string
           format: date-time
         duration:
           type: integer
+          description: Duration in minutes
         stationId:
           type: string
-        liveEvent:
-          type: boolean
-        teams:
+        qualifiers:
           type: array
           items:
-            type: object
-            properties:
-              teamBrandId:
-                type: string
-              name:
-                type: string
+            type: string
+          description: Qualifiers such as New, Live, Finale, Repeat
         program:
           $ref: '#/components/schemas/Program'
-    Image:
+    Sport:
       type: object
       properties:
-        uri:
+        sportsId:
           type: string
-          description: Image URI
-        width:
-          type: integer
-        height:
-          type: integer
-        primary:
-          type: boolean
-        category:
+          description: Unique sport identifier
+        name:
           type: string
-        text:
-          type: boolean
+          description: Sport name
+        organizations:
+          type: array
+          items:
+            $ref: '#/components/schemas/SportOrganization'
+        preferredImage:
+          $ref: '#/components/schemas/Image'
     Program:
       type: object
       properties:
@@ -340,30 +335,6 @@ components:
             $ref: '#/components/schemas/Rating'
         preferredImage:
           $ref: '#/components/schemas/Image'
-    Sport:
-      type: object
-      properties:
-        sportsId:
-          type: string
-          description: Unique sport identifier
-        name:
-          type: string
-          description: Sport name
-        organizations:
-          type: array
-          items:
-            $ref: '#/components/schemas/SportOrganization'
-        preferredImage:
-          $ref: '#/components/schemas/Image'
-    SportOrganization:
-      type: object
-      properties:
-        organizationId:
-          type: string
-        name:
-          type: string
-        abbreviation:
-          type: string
     Rating:
       type: object
       properties:
@@ -373,28 +344,57 @@ components:
         code:
           type: string
           description: Rating code (e.g., PG-13, TV-14)
-    Airing:
+    SportsAiring:
       type: object
       properties:
         startTime:
           type: string
           format: date-time
-          description: Airing start time in ISO 8601 format
         endTime:
           type: string
           format: date-time
         duration:
           type: integer
-          description: Duration in minutes
         stationId:
           type: string
-        qualifiers:
+        liveEvent:
+          type: boolean
+        teams:
           type: array
           items:
-            type: string
-          description: Qualifiers such as New, Live, Finale, Repeat
+            type: object
+            properties:
+              teamBrandId:
+                type: string
+              name:
+                type: string
         program:
           $ref: '#/components/schemas/Program'
+    Image:
+      type: object
+      properties:
+        uri:
+          type: string
+          description: Image URI
+        width:
+          type: integer
+        height:
+          type: integer
+        primary:
+          type: boolean
+        category:
+          type: string
+        text:
+          type: boolean
+    SportOrganization:
+      type: object
+      properties:
+        organizationId:
+          type: string
+        name:
+          type: string
+        abbreviation:
+          type: string
   securitySchemes:
     apiKey:
       type: apiKey

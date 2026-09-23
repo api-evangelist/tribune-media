@@ -1,7 +1,9 @@
 ---
 title: tronc/Tribune
 url: https://www.usnewsdeserts.com/reports/expanding-news-desert/enduring-legacy-new-media-barons/tronc-tribune/
-date: '2026-05-25'
+published: ''
+date_basis: harvested
+harvested: '2026-05-25'
 query: '"Tribune Media" press release artificial intelligence'
 position: 3
 source: serpapi-google

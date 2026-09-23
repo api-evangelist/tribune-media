@@ -1,16 +1,7 @@
 {
   "provider": "tribune-media",
   "sources": [
-    "tribune-media-celebrities-api-openapi.yml",
-    "tribune-media-lineups-api-openapi.yml",
-    "tribune-media-movies-api-openapi.yml",
-    "tribune-media-online-video-api-openapi.yml",
-    "tribune-media-programs-api-openapi.yml",
-    "tribune-media-series-api-openapi.yml",
-    "tribune-media-social-api-openapi.yml",
-    "tribune-media-sports-api-openapi.yml",
-    "tribune-media-stations-api-openapi.yml",
-    "tribune-media-theatres-api-openapi.yml"
+    "_original/tms-onconnect-openapi.yml"
   ],
   "outputs": [
     "tribune-media-celebrities-api-openapi.yml",
@@ -27,6 +18,31 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "tms-onconnect-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "tms-onconnect-openapi.yml: declared missing tag: Celebrities",
+    "tms-onconnect-openapi.yml: declared missing tag: Lineups",
+    "tms-onconnect-openapi.yml: declared missing tag: Movies",
+    "tms-onconnect-openapi.yml: declared missing tag: Online Video",
+    "tms-onconnect-openapi.yml: declared missing tag: Programs",
+    "tms-onconnect-openapi.yml: declared missing tag: Series",
+    "tms-onconnect-openapi.yml: declared missing tag: Social",
+    "tms-onconnect-openapi.yml: declared missing tag: Sports",
+    "tms-onconnect-openapi.yml: declared missing tag: Stations",
+    "tms-onconnect-openapi.yml: declared missing tag: Theatres",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "tribune-media-celebrities-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "tribune-media-lineups-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "tribune-media-movies-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "tribune-media-online-video-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "tribune-media-programs-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "tribune-media-series-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "tribune-media-social-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "tribune-media-sports-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "tribune-media-stations-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "tribune-media-theatres-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

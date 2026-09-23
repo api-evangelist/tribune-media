@@ -1,7 +1,9 @@
 ---
 title: WGN Morning News Celebrates 25th Anniversary with Live Primetime Special
 url: http://www.tribunemedia.com/wgn-morning-news-celebrates-25th-anniversary-with-live-primetime-special/
-date: '2019-09-12'
+published: ''
+date_basis: harvested
+harvested: '2019-09-12'
 author: WGN-TV
 feed_url: http://www.tribunemedia.com/feed/
 ---

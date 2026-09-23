@@ -1,7 +1,9 @@
 ---
 title: 💻 Byron Allen on consolidating media assets and funding ...
 url: https://www.facebook.com/djenvy/posts/-byron-allen-on-consolidating-media-assets-and-funding-aidriven-local-news/1514662133360299/
-date: '2026-05-25'
+published: ''
+date_basis: harvested
+harvested: '2026-05-25'
 query: '"Tribune Media" press release artificial intelligence'
 position: 2
 source: serpapi-google

@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: TMS OnConnect Celebrities Programs API
+  title: TMS OnConnect Programs API
   description: The Tribune Media Services (TMS) OnConnect API provides comprehensive entertainment metadata for TV programming, movies, celebrities, and sports. It delivers electronic programming guide (EPG) data, movie showtimes, celebrity information, and televised sports schedules. Originally developed by Tribune Media Services, the API is now operated by Gracenote (a Nielsen company) and powers content discovery for consumer electronics manufacturers, cable operators, and entertainment platforms.
   version: 1.1.0
   contact:
@@ -258,22 +258,36 @@ paths:
                   $ref: '#/components/schemas/Airing'
 components:
   schemas:
-    Image:
+    Genre:
       type: object
       properties:
-        uri:
+        genreId:
           type: string
-          description: Image URI
-        width:
-          type: integer
-        height:
-          type: integer
-        primary:
-          type: boolean
-        category:
+        name:
           type: string
-        text:
-          type: boolean
+          description: Genre name
+    Airing:
+      type: object
+      properties:
+        startTime:
+          type: string
+          format: date-time
+          description: Airing start time in ISO 8601 format
+        endTime:
+          type: string
+          format: date-time
+        duration:
+          type: integer
+          description: Duration in minutes
+        stationId:
+          type: string
+        qualifiers:
+          type: array
+          items:
+            type: string
+          description: Qualifiers such as New, Live, Finale, Repeat
+        program:
+          $ref: '#/components/schemas/Program'
     Program:
       type: object
       properties:
@@ -319,14 +333,6 @@ components:
             $ref: '#/components/schemas/Rating'
         preferredImage:
           $ref: '#/components/schemas/Image'
-    Genre:
-      type: object
-      properties:
-        genreId:
-          type: string
-        name:
-          type: string
-          description: Genre name
     Rating:
       type: object
       properties:
@@ -336,28 +342,22 @@ components:
         code:
           type: string
           description: Rating code (e.g., PG-13, TV-14)
-    Airing:
+    Image:
       type: object
       properties:
-        startTime:
+        uri:
           type: string
-          format: date-time
-          description: Airing start time in ISO 8601 format
-        endTime:
-          type: string
-          format: date-time
-        duration:
+          description: Image URI
+        width:
           type: integer
-          description: Duration in minutes
-        stationId:
+        height:
+          type: integer
+        primary:
+          type: boolean
+        category:
           type: string
-        qualifiers:
-          type: array
-          items:
-            type: string
-          description: Qualifiers such as New, Live, Finale, Repeat
-        program:
-          $ref: '#/components/schemas/Program'
+        text:
+          type: boolean
   securitySchemes:
     apiKey:
       type: apiKey

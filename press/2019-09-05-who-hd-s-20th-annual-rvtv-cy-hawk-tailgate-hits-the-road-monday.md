@@ -1,7 +1,9 @@
 ---
 title: WHO-HD’s 20th Annual RVTV Cy-Hawk Tailgate Hits The Road Monday
 url: http://www.tribunemedia.com/who-hds-20th-annual-rvtv-cy-hawk-tailgate-hits-the-road-monday/
-date: '2019-09-05'
+published: ''
+date_basis: harvested
+harvested: '2019-09-05'
 author: Tribune Broadcasting
 feed_url: http://www.tribunemedia.com/feed/
 ---

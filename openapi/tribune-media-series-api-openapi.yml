@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: TMS OnConnect Celebrities Series API
+  title: TMS OnConnect Series API
   description: The Tribune Media Services (TMS) OnConnect API provides comprehensive entertainment metadata for TV programming, movies, celebrities, and sports. It delivers electronic programming guide (EPG) data, movie showtimes, celebrity information, and televised sports schedules. Originally developed by Tribune Media Services, the API is now operated by Gracenote (a Nielsen company) and powers content discovery for consumer electronics manufacturers, cable operators, and entertainment platforms.
   version: 1.1.0
   contact:
@@ -151,22 +151,50 @@ paths:
                   $ref: '#/components/schemas/Episode'
 components:
   schemas:
-    Image:
+    Airing:
       type: object
       properties:
-        uri:
+        startTime:
           type: string
-          description: Image URI
-        width:
-          type: integer
-        height:
-          type: integer
-        primary:
-          type: boolean
-        category:
+          format: date-time
+          description: Airing start time in ISO 8601 format
+        endTime:
           type: string
-        text:
-          type: boolean
+          format: date-time
+        duration:
+          type: integer
+          description: Duration in minutes
+        stationId:
+          type: string
+        qualifiers:
+          type: array
+          items:
+            type: string
+          description: Qualifiers such as New, Live, Finale, Repeat
+        program:
+          $ref: '#/components/schemas/Program'
+    Episode:
+      type: object
+      properties:
+        tmsId:
+          type: string
+        seriesId:
+          type: string
+        title:
+          type: string
+        episodeTitle:
+          type: string
+        description:
+          type: string
+        seasonNum:
+          type: integer
+        episodeNum:
+          type: integer
+        airDate:
+          type: string
+          format: date
+        preferredImage:
+          $ref: '#/components/schemas/Image'
     Program:
       type: object
       properties:
@@ -212,28 +240,6 @@ components:
             $ref: '#/components/schemas/Rating'
         preferredImage:
           $ref: '#/components/schemas/Image'
-    Episode:
-      type: object
-      properties:
-        tmsId:
-          type: string
-        seriesId:
-          type: string
-        title:
-          type: string
-        episodeTitle:
-          type: string
-        description:
-          type: string
-        seasonNum:
-          type: integer
-        episodeNum:
-          type: integer
-        airDate:
-          type: string
-          format: date
-        preferredImage:
-          $ref: '#/components/schemas/Image'
     Rating:
       type: object
       properties:
@@ -267,28 +273,22 @@ components:
             type: string
         preferredImage:
           $ref: '#/components/schemas/Image'
-    Airing:
+    Image:
       type: object
       properties:
-        startTime:
+        uri:
           type: string
-          format: date-time
-          description: Airing start time in ISO 8601 format
-        endTime:
-          type: string
-          format: date-time
-        duration:
+          description: Image URI
+        width:
           type: integer
-          description: Duration in minutes
-        stationId:
+        height:
+          type: integer
+        primary:
+          type: boolean
+        category:
           type: string
-        qualifiers:
-          type: array
-          items:
-            type: string
-          description: Qualifiers such as New, Live, Finale, Repeat
-        program:
-          $ref: '#/components/schemas/Program'
+        text:
+          type: boolean
   securitySchemes:
     apiKey:
       type: apiKey

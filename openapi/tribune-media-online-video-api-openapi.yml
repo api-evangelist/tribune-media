@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: TMS OnConnect Celebrities Online Video API
+  title: TMS OnConnect Online Video API
   description: The Tribune Media Services (TMS) OnConnect API provides comprehensive entertainment metadata for TV programming, movies, celebrities, and sports. It delivers electronic programming guide (EPG) data, movie showtimes, celebrity information, and televised sports schedules. Originally developed by Tribune Media Services, the API is now operated by Gracenote (a Nielsen company) and powers content discovery for consumer electronics manufacturers, cable operators, and entertainment platforms.
   version: 1.1.0
   contact:
@@ -104,22 +104,6 @@ paths:
                 $ref: '#/components/schemas/Movie'
 components:
   schemas:
-    Image:
-      type: object
-      properties:
-        uri:
-          type: string
-          description: Image URI
-        width:
-          type: integer
-        height:
-          type: integer
-        primary:
-          type: boolean
-        category:
-          type: string
-        text:
-          type: boolean
     Episode:
       type: object
       properties:
@@ -175,6 +159,22 @@ components:
             type: string
         preferredImage:
           $ref: '#/components/schemas/Image'
+    Image:
+      type: object
+      properties:
+        uri:
+          type: string
+          description: Image URI
+        width:
+          type: integer
+        height:
+          type: integer
+        primary:
+          type: boolean
+        category:
+          type: string
+        text:
+          type: boolean
     Movie:
       type: object
       properties:

@@ -2,7 +2,9 @@
 title: Covers Media Group Announces the Launch of their New Sportsbetting Podcast
   Lineup
 url: http://www.tribunemedia.com/covers-media-group-announces-the-launch-of-their-new-sportsbetting-podcast-lineup/
-date: '2019-09-10'
+published: ''
+date_basis: harvested
+harvested: '2019-09-10'
 author: Tribune Broadcasting
 feed_url: http://www.tribunemedia.com/feed/
 ---

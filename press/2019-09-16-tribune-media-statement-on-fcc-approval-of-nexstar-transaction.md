@@ -1,7 +1,9 @@
 ---
 title: Tribune Media Statement on FCC Approval of Nexstar Transaction
 url: http://www.tribunemedia.com/tribune-media-statement-on-fcc-approval-of-nexstar-transaction/
-date: '2019-09-16'
+published: ''
+date_basis: harvested
+harvested: '2019-09-16'
 author: Tribune Media
 feed_url: http://www.tribunemedia.com/feed/
 ---

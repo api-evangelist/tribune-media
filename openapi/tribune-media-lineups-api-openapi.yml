@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: TMS OnConnect Celebrities Lineups API
+  title: TMS OnConnect Lineups API
   description: The Tribune Media Services (TMS) OnConnect API provides comprehensive entertainment metadata for TV programming, movies, celebrities, and sports. It delivers electronic programming guide (EPG) data, movie showtimes, celebrity information, and televised sports schedules. Originally developed by Tribune Media Services, the API is now operated by Gracenote (a Nielsen company) and powers content discovery for consumer electronics manufacturers, cable operators, and entertainment platforms.
   version: 1.1.0
   contact:
@@ -173,22 +173,30 @@ paths:
                   $ref: '#/components/schemas/GridEntry'
 components:
   schemas:
-    Image:
+    Lineup:
       type: object
       properties:
-        uri:
+        lineupId:
           type: string
-          description: Image URI
-        width:
-          type: integer
-        height:
-          type: integer
-        primary:
-          type: boolean
-        category:
+          description: Unique lineup identifier
+        name:
           type: string
-        text:
-          type: boolean
+          description: Lineup display name
+        type:
+          type: string
+          description: Lineup type (e.g., cable, satellite, ota)
+        location:
+          type: string
+          description: Geographic location of the lineup
+        device:
+          type: string
+          description: Device or service type
+        postalCode:
+          type: string
+          description: Associated postal code
+        country:
+          type: string
+          description: Country code
     Program:
       type: object
       properties:
@@ -234,51 +242,6 @@ components:
             $ref: '#/components/schemas/Rating'
         preferredImage:
           $ref: '#/components/schemas/Image'
-    GridEntry:
-      type: object
-      properties:
-        startTime:
-          type: string
-          format: date-time
-        endTime:
-          type: string
-          format: date-time
-        duration:
-          type: integer
-        channel:
-          type: string
-        stationId:
-          type: string
-        qualifiers:
-          type: array
-          items:
-            type: string
-        program:
-          $ref: '#/components/schemas/Program'
-    Lineup:
-      type: object
-      properties:
-        lineupId:
-          type: string
-          description: Unique lineup identifier
-        name:
-          type: string
-          description: Lineup display name
-        type:
-          type: string
-          description: Lineup type (e.g., cable, satellite, ota)
-        location:
-          type: string
-          description: Geographic location of the lineup
-        device:
-          type: string
-          description: Device or service type
-        postalCode:
-          type: string
-          description: Associated postal code
-        country:
-          type: string
-          description: Country code
     Channel:
       type: object
       properties:
@@ -301,6 +264,43 @@ components:
         code:
           type: string
           description: Rating code (e.g., PG-13, TV-14)
+    Image:
+      type: object
+      properties:
+        uri:
+          type: string
+          description: Image URI
+        width:
+          type: integer
+        height:
+          type: integer
+        primary:
+          type: boolean
+        category:
+          type: string
+        text:
+          type: boolean
+    GridEntry:
+      type: object
+      properties:
+        startTime:
+          type: string
+          format: date-time
+        endTime:
+          type: string
+          format: date-time
+        duration:
+          type: integer
+        channel:
+          type: string
+        stationId:
+          type: string
+        qualifiers:
+          type: array
+          items:
+            type: string
+        program:
+          $ref: '#/components/schemas/Program'
   securitySchemes:
     apiKey:
       type: apiKey
