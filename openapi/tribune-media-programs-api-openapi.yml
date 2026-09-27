@@ -258,6 +258,22 @@ paths:
                   $ref: '#/components/schemas/Airing'
 components:
   schemas:
+    Image:
+      type: object
+      properties:
+        uri:
+          type: string
+          description: Image URI
+        width:
+          type: integer
+        height:
+          type: integer
+        primary:
+          type: boolean
+        category:
+          type: string
+        text:
+          type: boolean
     Genre:
       type: object
       properties:
@@ -266,28 +282,15 @@ components:
         name:
           type: string
           description: Genre name
-    Airing:
+    Rating:
       type: object
       properties:
-        startTime:
+        body:
           type: string
-          format: date-time
-          description: Airing start time in ISO 8601 format
-        endTime:
+          description: Rating body (e.g., MPAA, TV Parental Guidelines)
+        code:
           type: string
-          format: date-time
-        duration:
-          type: integer
-          description: Duration in minutes
-        stationId:
-          type: string
-        qualifiers:
-          type: array
-          items:
-            type: string
-          description: Qualifiers such as New, Live, Finale, Repeat
-        program:
-          $ref: '#/components/schemas/Program'
+          description: Rating code (e.g., PG-13, TV-14)
     Program:
       type: object
       properties:
@@ -333,31 +336,28 @@ components:
             $ref: '#/components/schemas/Rating'
         preferredImage:
           $ref: '#/components/schemas/Image'
-    Rating:
+    Airing:
       type: object
       properties:
-        body:
+        startTime:
           type: string
-          description: Rating body (e.g., MPAA, TV Parental Guidelines)
-        code:
+          format: date-time
+          description: Airing start time in ISO 8601 format
+        endTime:
           type: string
-          description: Rating code (e.g., PG-13, TV-14)
-    Image:
-      type: object
-      properties:
-        uri:
-          type: string
-          description: Image URI
-        width:
+          format: date-time
+        duration:
           type: integer
-        height:
-          type: integer
-        primary:
-          type: boolean
-        category:
+          description: Duration in minutes
+        stationId:
           type: string
-        text:
-          type: boolean
+        qualifiers:
+          type: array
+          items:
+            type: string
+          description: Qualifiers such as New, Live, Finale, Repeat
+        program:
+          $ref: '#/components/schemas/Program'
   securitySchemes:
     apiKey:
       type: apiKey

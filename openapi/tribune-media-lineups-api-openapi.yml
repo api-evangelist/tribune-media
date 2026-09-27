@@ -173,6 +173,56 @@ paths:
                   $ref: '#/components/schemas/GridEntry'
 components:
   schemas:
+    GridEntry:
+      type: object
+      properties:
+        startTime:
+          type: string
+          format: date-time
+        endTime:
+          type: string
+          format: date-time
+        duration:
+          type: integer
+        channel:
+          type: string
+        stationId:
+          type: string
+        qualifiers:
+          type: array
+          items:
+            type: string
+        program:
+          $ref: '#/components/schemas/Program'
+    Image:
+      type: object
+      properties:
+        uri:
+          type: string
+          description: Image URI
+        width:
+          type: integer
+        height:
+          type: integer
+        primary:
+          type: boolean
+        category:
+          type: string
+        text:
+          type: boolean
+    Channel:
+      type: object
+      properties:
+        stationId:
+          type: string
+        channel:
+          type: string
+        callSign:
+          type: string
+        name:
+          type: string
+        preferredImage:
+          $ref: '#/components/schemas/Image'
     Lineup:
       type: object
       properties:
@@ -197,6 +247,15 @@ components:
         country:
           type: string
           description: Country code
+    Rating:
+      type: object
+      properties:
+        body:
+          type: string
+          description: Rating body (e.g., MPAA, TV Parental Guidelines)
+        code:
+          type: string
+          description: Rating code (e.g., PG-13, TV-14)
     Program:
       type: object
       properties:
@@ -242,65 +301,6 @@ components:
             $ref: '#/components/schemas/Rating'
         preferredImage:
           $ref: '#/components/schemas/Image'
-    Channel:
-      type: object
-      properties:
-        stationId:
-          type: string
-        channel:
-          type: string
-        callSign:
-          type: string
-        name:
-          type: string
-        preferredImage:
-          $ref: '#/components/schemas/Image'
-    Rating:
-      type: object
-      properties:
-        body:
-          type: string
-          description: Rating body (e.g., MPAA, TV Parental Guidelines)
-        code:
-          type: string
-          description: Rating code (e.g., PG-13, TV-14)
-    Image:
-      type: object
-      properties:
-        uri:
-          type: string
-          description: Image URI
-        width:
-          type: integer
-        height:
-          type: integer
-        primary:
-          type: boolean
-        category:
-          type: string
-        text:
-          type: boolean
-    GridEntry:
-      type: object
-      properties:
-        startTime:
-          type: string
-          format: date-time
-        endTime:
-          type: string
-          format: date-time
-        duration:
-          type: integer
-        channel:
-          type: string
-        stationId:
-          type: string
-        qualifiers:
-          type: array
-          items:
-            type: string
-        program:
-          $ref: '#/components/schemas/Program'
   securitySchemes:
     apiKey:
       type: apiKey

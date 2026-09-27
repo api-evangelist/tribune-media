@@ -201,96 +201,6 @@ paths:
                 $ref: '#/components/schemas/MovieShowing'
 components:
   schemas:
-    Showing:
-      type: object
-      properties:
-        startTime:
-          type: string
-          format: date-time
-        endTime:
-          type: string
-          format: date-time
-        movieId:
-          type: string
-        theatreId:
-          type: string
-        format:
-          type: string
-          description: Format (e.g., 3D, IMAX, Standard)
-    MovieAiring:
-      type: object
-      properties:
-        startTime:
-          type: string
-          format: date-time
-        endTime:
-          type: string
-          format: date-time
-        duration:
-          type: integer
-        stationId:
-          type: string
-        movie:
-          $ref: '#/components/schemas/Movie'
-    Theatre:
-      type: object
-      properties:
-        theatreId:
-          type: string
-          description: Unique theatre identifier
-        name:
-          type: string
-          description: Theatre name
-        address:
-          type: string
-        city:
-          type: string
-        state:
-          type: string
-        postalCode:
-          type: string
-        distance:
-          type: number
-          format: float
-          description: Distance from search origin
-    MovieShowing:
-      type: object
-      properties:
-        movie:
-          $ref: '#/components/schemas/Movie'
-        theatres:
-          type: array
-          items:
-            $ref: '#/components/schemas/Theatre'
-        showtimes:
-          type: array
-          items:
-            $ref: '#/components/schemas/Showing'
-    Rating:
-      type: object
-      properties:
-        body:
-          type: string
-          description: Rating body (e.g., MPAA, TV Parental Guidelines)
-        code:
-          type: string
-          description: Rating code (e.g., PG-13, TV-14)
-    Image:
-      type: object
-      properties:
-        uri:
-          type: string
-          description: Image URI
-        width:
-          type: integer
-        height:
-          type: integer
-        primary:
-          type: boolean
-        category:
-          type: string
-        text:
-          type: boolean
     Movie:
       type: object
       properties:
@@ -321,6 +231,96 @@ components:
             $ref: '#/components/schemas/Rating'
         preferredImage:
           $ref: '#/components/schemas/Image'
+    Image:
+      type: object
+      properties:
+        uri:
+          type: string
+          description: Image URI
+        width:
+          type: integer
+        height:
+          type: integer
+        primary:
+          type: boolean
+        category:
+          type: string
+        text:
+          type: boolean
+    Showing:
+      type: object
+      properties:
+        startTime:
+          type: string
+          format: date-time
+        endTime:
+          type: string
+          format: date-time
+        movieId:
+          type: string
+        theatreId:
+          type: string
+        format:
+          type: string
+          description: Format (e.g., 3D, IMAX, Standard)
+    MovieShowing:
+      type: object
+      properties:
+        movie:
+          $ref: '#/components/schemas/Movie'
+        theatres:
+          type: array
+          items:
+            $ref: '#/components/schemas/Theatre'
+        showtimes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Showing'
+    MovieAiring:
+      type: object
+      properties:
+        startTime:
+          type: string
+          format: date-time
+        endTime:
+          type: string
+          format: date-time
+        duration:
+          type: integer
+        stationId:
+          type: string
+        movie:
+          $ref: '#/components/schemas/Movie'
+    Rating:
+      type: object
+      properties:
+        body:
+          type: string
+          description: Rating body (e.g., MPAA, TV Parental Guidelines)
+        code:
+          type: string
+          description: Rating code (e.g., PG-13, TV-14)
+    Theatre:
+      type: object
+      properties:
+        theatreId:
+          type: string
+          description: Unique theatre identifier
+        name:
+          type: string
+          description: Theatre name
+        address:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        postalCode:
+          type: string
+        distance:
+          type: number
+          format: float
+          description: Distance from search origin
   securitySchemes:
     apiKey:
       type: apiKey
