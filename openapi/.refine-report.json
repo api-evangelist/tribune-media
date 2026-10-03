@@ -31,7 +31,7 @@
     "tms-onconnect-openapi.yml: declared missing tag: Sports",
     "tms-onconnect-openapi.yml: declared missing tag: Stations",
     "tms-onconnect-openapi.yml: declared missing tag: Theatres",
-    "apis.yml register: written (+10 apis, 10 total)"
+    "apis.yml register: already-registered"
   ],
   "skipped": [
     "tribune-media-celebrities-api-openapi.yml: previously refined output, superseded by openapi/_original/",

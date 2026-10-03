@@ -274,23 +274,6 @@ components:
           type: string
         text:
           type: boolean
-    Genre:
-      type: object
-      properties:
-        genreId:
-          type: string
-        name:
-          type: string
-          description: Genre name
-    Rating:
-      type: object
-      properties:
-        body:
-          type: string
-          description: Rating body (e.g., MPAA, TV Parental Guidelines)
-        code:
-          type: string
-          description: Rating code (e.g., PG-13, TV-14)
     Program:
       type: object
       properties:
@@ -358,6 +341,23 @@ components:
           description: Qualifiers such as New, Live, Finale, Repeat
         program:
           $ref: '#/components/schemas/Program'
+    Genre:
+      type: object
+      properties:
+        genreId:
+          type: string
+        name:
+          type: string
+          description: Genre name
+    Rating:
+      type: object
+      properties:
+        body:
+          type: string
+          description: Rating body (e.g., MPAA, TV Parental Guidelines)
+        code:
+          type: string
+          description: Rating code (e.g., PG-13, TV-14)
   securitySchemes:
     apiKey:
       type: apiKey

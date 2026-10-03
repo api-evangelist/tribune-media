@@ -151,46 +151,6 @@ paths:
                   $ref: '#/components/schemas/Episode'
 components:
   schemas:
-    Series:
-      type: object
-      properties:
-        seriesId:
-          type: string
-          description: Unique series identifier
-        title:
-          type: string
-          description: Series title
-        description:
-          type: string
-          description: Series description
-        startAirDate:
-          type: string
-          format: date
-        endAirDate:
-          type: string
-          format: date
-        genres:
-          type: array
-          items:
-            type: string
-        preferredImage:
-          $ref: '#/components/schemas/Image'
-    Image:
-      type: object
-      properties:
-        uri:
-          type: string
-          description: Image URI
-        width:
-          type: integer
-        height:
-          type: integer
-        primary:
-          type: boolean
-        category:
-          type: string
-        text:
-          type: boolean
     Episode:
       type: object
       properties:
@@ -213,15 +173,22 @@ components:
           format: date
         preferredImage:
           $ref: '#/components/schemas/Image'
-    Rating:
+    Image:
       type: object
       properties:
-        body:
+        uri:
           type: string
-          description: Rating body (e.g., MPAA, TV Parental Guidelines)
-        code:
+          description: Image URI
+        width:
+          type: integer
+        height:
+          type: integer
+        primary:
+          type: boolean
+        category:
           type: string
-          description: Rating code (e.g., PG-13, TV-14)
+        text:
+          type: boolean
     Program:
       type: object
       properties:
@@ -267,6 +234,30 @@ components:
             $ref: '#/components/schemas/Rating'
         preferredImage:
           $ref: '#/components/schemas/Image'
+    Series:
+      type: object
+      properties:
+        seriesId:
+          type: string
+          description: Unique series identifier
+        title:
+          type: string
+          description: Series title
+        description:
+          type: string
+          description: Series description
+        startAirDate:
+          type: string
+          format: date
+        endAirDate:
+          type: string
+          format: date
+        genres:
+          type: array
+          items:
+            type: string
+        preferredImage:
+          $ref: '#/components/schemas/Image'
     Airing:
       type: object
       properties:
@@ -289,6 +280,15 @@ components:
           description: Qualifiers such as New, Live, Finale, Repeat
         program:
           $ref: '#/components/schemas/Program'
+    Rating:
+      type: object
+      properties:
+        body:
+          type: string
+          description: Rating body (e.g., MPAA, TV Parental Guidelines)
+        code:
+          type: string
+          description: Rating code (e.g., PG-13, TV-14)
   securitySchemes:
     apiKey:
       type: apiKey

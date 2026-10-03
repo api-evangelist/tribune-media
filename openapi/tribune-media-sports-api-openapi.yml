@@ -253,41 +253,6 @@ paths:
                   $ref: '#/components/schemas/SportsAiring'
 components:
   schemas:
-    SportsAiring:
-      type: object
-      properties:
-        startTime:
-          type: string
-          format: date-time
-        endTime:
-          type: string
-          format: date-time
-        duration:
-          type: integer
-        stationId:
-          type: string
-        liveEvent:
-          type: boolean
-        teams:
-          type: array
-          items:
-            type: object
-            properties:
-              teamBrandId:
-                type: string
-              name:
-                type: string
-        program:
-          $ref: '#/components/schemas/Program'
-    SportOrganization:
-      type: object
-      properties:
-        organizationId:
-          type: string
-        name:
-          type: string
-        abbreviation:
-          type: string
     Image:
       type: object
       properties:
@@ -304,30 +269,6 @@ components:
           type: string
         text:
           type: boolean
-    Sport:
-      type: object
-      properties:
-        sportsId:
-          type: string
-          description: Unique sport identifier
-        name:
-          type: string
-          description: Sport name
-        organizations:
-          type: array
-          items:
-            $ref: '#/components/schemas/SportOrganization'
-        preferredImage:
-          $ref: '#/components/schemas/Image'
-    Rating:
-      type: object
-      properties:
-        body:
-          type: string
-          description: Rating body (e.g., MPAA, TV Parental Guidelines)
-        code:
-          type: string
-          description: Rating code (e.g., PG-13, TV-14)
     Program:
       type: object
       properties:
@@ -373,6 +314,30 @@ components:
             $ref: '#/components/schemas/Rating'
         preferredImage:
           $ref: '#/components/schemas/Image'
+    SportOrganization:
+      type: object
+      properties:
+        organizationId:
+          type: string
+        name:
+          type: string
+        abbreviation:
+          type: string
+    Sport:
+      type: object
+      properties:
+        sportsId:
+          type: string
+          description: Unique sport identifier
+        name:
+          type: string
+          description: Sport name
+        organizations:
+          type: array
+          items:
+            $ref: '#/components/schemas/SportOrganization'
+        preferredImage:
+          $ref: '#/components/schemas/Image'
     Airing:
       type: object
       properties:
@@ -393,6 +358,41 @@ components:
           items:
             type: string
           description: Qualifiers such as New, Live, Finale, Repeat
+        program:
+          $ref: '#/components/schemas/Program'
+    Rating:
+      type: object
+      properties:
+        body:
+          type: string
+          description: Rating body (e.g., MPAA, TV Parental Guidelines)
+        code:
+          type: string
+          description: Rating code (e.g., PG-13, TV-14)
+    SportsAiring:
+      type: object
+      properties:
+        startTime:
+          type: string
+          format: date-time
+        endTime:
+          type: string
+          format: date-time
+        duration:
+          type: integer
+        stationId:
+          type: string
+        liveEvent:
+          type: boolean
+        teams:
+          type: array
+          items:
+            type: object
+            properties:
+              teamBrandId:
+                type: string
+              name:
+                type: string
         program:
           $ref: '#/components/schemas/Program'
   securitySchemes:

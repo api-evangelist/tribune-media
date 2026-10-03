@@ -132,6 +132,18 @@ paths:
                   $ref: '#/components/schemas/CelebrityAppearance'
 components:
   schemas:
+    CelebrityAppearance:
+      type: object
+      properties:
+        startTime:
+          type: string
+          format: date-time
+        stationId:
+          type: string
+        program:
+          $ref: '#/components/schemas/Program'
+        celebrity:
+          $ref: '#/components/schemas/Celebrity'
     Image:
       type: object
       properties:
@@ -148,45 +160,6 @@ components:
           type: string
         text:
           type: boolean
-    Celebrity:
-      type: object
-      properties:
-        personId:
-          type: string
-          description: Unique person identifier
-        name:
-          type: string
-          description: Celebrity name
-        biography:
-          type: string
-        birthDate:
-          type: string
-          format: date
-        birthPlace:
-          type: string
-        preferredImage:
-          $ref: '#/components/schemas/Image'
-    CelebrityAppearance:
-      type: object
-      properties:
-        startTime:
-          type: string
-          format: date-time
-        stationId:
-          type: string
-        program:
-          $ref: '#/components/schemas/Program'
-        celebrity:
-          $ref: '#/components/schemas/Celebrity'
-    Rating:
-      type: object
-      properties:
-        body:
-          type: string
-          description: Rating body (e.g., MPAA, TV Parental Guidelines)
-        code:
-          type: string
-          description: Rating code (e.g., PG-13, TV-14)
     Program:
       type: object
       properties:
@@ -254,6 +227,33 @@ components:
           description: Qualifiers such as New, Live, Finale, Repeat
         program:
           $ref: '#/components/schemas/Program'
+    Celebrity:
+      type: object
+      properties:
+        personId:
+          type: string
+          description: Unique person identifier
+        name:
+          type: string
+          description: Celebrity name
+        biography:
+          type: string
+        birthDate:
+          type: string
+          format: date
+        birthPlace:
+          type: string
+        preferredImage:
+          $ref: '#/components/schemas/Image'
+    Rating:
+      type: object
+      properties:
+        body:
+          type: string
+          description: Rating body (e.g., MPAA, TV Parental Guidelines)
+        code:
+          type: string
+          description: Rating code (e.g., PG-13, TV-14)
   securitySchemes:
     apiKey:
       type: apiKey

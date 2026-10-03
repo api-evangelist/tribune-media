@@ -112,22 +112,6 @@ paths:
                   $ref: '#/components/schemas/Showing'
 components:
   schemas:
-    Showing:
-      type: object
-      properties:
-        startTime:
-          type: string
-          format: date-time
-        endTime:
-          type: string
-          format: date-time
-        movieId:
-          type: string
-        theatreId:
-          type: string
-        format:
-          type: string
-          description: Format (e.g., 3D, IMAX, Standard)
     Theatre:
       type: object
       properties:
@@ -149,6 +133,22 @@ components:
           type: number
           format: float
           description: Distance from search origin
+    Showing:
+      type: object
+      properties:
+        startTime:
+          type: string
+          format: date-time
+        endTime:
+          type: string
+          format: date-time
+        movieId:
+          type: string
+        theatreId:
+          type: string
+        format:
+          type: string
+          description: Format (e.g., 3D, IMAX, Standard)
   securitySchemes:
     apiKey:
       type: apiKey
