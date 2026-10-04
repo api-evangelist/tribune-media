@@ -104,6 +104,69 @@ paths:
                 $ref: '#/components/schemas/Movie'
 components:
   schemas:
+    Movie:
+      type: object
+      properties:
+        tmsId:
+          type: string
+          description: TMS movie identifier
+        rootId:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        releaseYear:
+          type: integer
+        releaseDate:
+          type: string
+          format: date
+        genres:
+          type: array
+          items:
+            type: string
+        runTime:
+          type: string
+          description: Runtime in ISO 8601 duration format
+        ratings:
+          type: array
+          items:
+            $ref: '#/components/schemas/Rating'
+        preferredImage:
+          $ref: '#/components/schemas/Image'
+    Rating:
+      type: object
+      properties:
+        body:
+          type: string
+          description: Rating body (e.g., MPAA, TV Parental Guidelines)
+        code:
+          type: string
+          description: Rating code (e.g., PG-13, TV-14)
+    Series:
+      type: object
+      properties:
+        seriesId:
+          type: string
+          description: Unique series identifier
+        title:
+          type: string
+          description: Series title
+        description:
+          type: string
+          description: Series description
+        startAirDate:
+          type: string
+          format: date
+        endAirDate:
+          type: string
+          format: date
+        genres:
+          type: array
+          items:
+            type: string
+        preferredImage:
+          $ref: '#/components/schemas/Image'
     Episode:
       type: object
       properties:
@@ -142,69 +205,6 @@ components:
           type: string
         text:
           type: boolean
-    Series:
-      type: object
-      properties:
-        seriesId:
-          type: string
-          description: Unique series identifier
-        title:
-          type: string
-          description: Series title
-        description:
-          type: string
-          description: Series description
-        startAirDate:
-          type: string
-          format: date
-        endAirDate:
-          type: string
-          format: date
-        genres:
-          type: array
-          items:
-            type: string
-        preferredImage:
-          $ref: '#/components/schemas/Image'
-    Rating:
-      type: object
-      properties:
-        body:
-          type: string
-          description: Rating body (e.g., MPAA, TV Parental Guidelines)
-        code:
-          type: string
-          description: Rating code (e.g., PG-13, TV-14)
-    Movie:
-      type: object
-      properties:
-        tmsId:
-          type: string
-          description: TMS movie identifier
-        rootId:
-          type: string
-        title:
-          type: string
-        description:
-          type: string
-        releaseYear:
-          type: integer
-        releaseDate:
-          type: string
-          format: date
-        genres:
-          type: array
-          items:
-            type: string
-        runTime:
-          type: string
-          description: Runtime in ISO 8601 duration format
-        ratings:
-          type: array
-          items:
-            $ref: '#/components/schemas/Rating'
-        preferredImage:
-          $ref: '#/components/schemas/Image'
   securitySchemes:
     apiKey:
       type: apiKey

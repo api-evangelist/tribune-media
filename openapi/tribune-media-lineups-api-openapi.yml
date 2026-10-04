@@ -173,80 +173,6 @@ paths:
                   $ref: '#/components/schemas/GridEntry'
 components:
   schemas:
-    Channel:
-      type: object
-      properties:
-        stationId:
-          type: string
-        channel:
-          type: string
-        callSign:
-          type: string
-        name:
-          type: string
-        preferredImage:
-          $ref: '#/components/schemas/Image'
-    Image:
-      type: object
-      properties:
-        uri:
-          type: string
-          description: Image URI
-        width:
-          type: integer
-        height:
-          type: integer
-        primary:
-          type: boolean
-        category:
-          type: string
-        text:
-          type: boolean
-    Program:
-      type: object
-      properties:
-        tmsId:
-          type: string
-          description: TMS program identifier
-        rootId:
-          type: string
-        seriesId:
-          type: string
-        title:
-          type: string
-          description: Program title
-        titleLang:
-          type: string
-        description:
-          type: string
-          description: Program description
-        shortDescription:
-          type: string
-        entityType:
-          type: string
-          enum:
-          - Movie
-          - Show
-          - Special
-          - Sports
-          - Episode
-        subType:
-          type: string
-        genres:
-          type: array
-          items:
-            type: string
-        releaseYear:
-          type: integer
-        releaseDate:
-          type: string
-          format: date
-        ratings:
-          type: array
-          items:
-            $ref: '#/components/schemas/Rating'
-        preferredImage:
-          $ref: '#/components/schemas/Image'
     Rating:
       type: object
       properties:
@@ -301,6 +227,80 @@ components:
         country:
           type: string
           description: Country code
+    Channel:
+      type: object
+      properties:
+        stationId:
+          type: string
+        channel:
+          type: string
+        callSign:
+          type: string
+        name:
+          type: string
+        preferredImage:
+          $ref: '#/components/schemas/Image'
+    Program:
+      type: object
+      properties:
+        tmsId:
+          type: string
+          description: TMS program identifier
+        rootId:
+          type: string
+        seriesId:
+          type: string
+        title:
+          type: string
+          description: Program title
+        titleLang:
+          type: string
+        description:
+          type: string
+          description: Program description
+        shortDescription:
+          type: string
+        entityType:
+          type: string
+          enum:
+          - Movie
+          - Show
+          - Special
+          - Sports
+          - Episode
+        subType:
+          type: string
+        genres:
+          type: array
+          items:
+            type: string
+        releaseYear:
+          type: integer
+        releaseDate:
+          type: string
+          format: date
+        ratings:
+          type: array
+          items:
+            $ref: '#/components/schemas/Rating'
+        preferredImage:
+          $ref: '#/components/schemas/Image'
+    Image:
+      type: object
+      properties:
+        uri:
+          type: string
+          description: Image URI
+        width:
+          type: integer
+        height:
+          type: integer
+        primary:
+          type: boolean
+        category:
+          type: string
+        text:
+          type: boolean
   securitySchemes:
     apiKey:
       type: apiKey

@@ -151,6 +151,61 @@ paths:
                   $ref: '#/components/schemas/Episode'
 components:
   schemas:
+    Airing:
+      type: object
+      properties:
+        startTime:
+          type: string
+          format: date-time
+          description: Airing start time in ISO 8601 format
+        endTime:
+          type: string
+          format: date-time
+        duration:
+          type: integer
+          description: Duration in minutes
+        stationId:
+          type: string
+        qualifiers:
+          type: array
+          items:
+            type: string
+          description: Qualifiers such as New, Live, Finale, Repeat
+        program:
+          $ref: '#/components/schemas/Program'
+    Series:
+      type: object
+      properties:
+        seriesId:
+          type: string
+          description: Unique series identifier
+        title:
+          type: string
+          description: Series title
+        description:
+          type: string
+          description: Series description
+        startAirDate:
+          type: string
+          format: date
+        endAirDate:
+          type: string
+          format: date
+        genres:
+          type: array
+          items:
+            type: string
+        preferredImage:
+          $ref: '#/components/schemas/Image'
+    Rating:
+      type: object
+      properties:
+        body:
+          type: string
+          description: Rating body (e.g., MPAA, TV Parental Guidelines)
+        code:
+          type: string
+          description: Rating code (e.g., PG-13, TV-14)
     Episode:
       type: object
       properties:
@@ -173,22 +228,6 @@ components:
           format: date
         preferredImage:
           $ref: '#/components/schemas/Image'
-    Image:
-      type: object
-      properties:
-        uri:
-          type: string
-          description: Image URI
-        width:
-          type: integer
-        height:
-          type: integer
-        primary:
-          type: boolean
-        category:
-          type: string
-        text:
-          type: boolean
     Program:
       type: object
       properties:
@@ -234,61 +273,22 @@ components:
             $ref: '#/components/schemas/Rating'
         preferredImage:
           $ref: '#/components/schemas/Image'
-    Series:
+    Image:
       type: object
       properties:
-        seriesId:
+        uri:
           type: string
-          description: Unique series identifier
-        title:
-          type: string
-          description: Series title
-        description:
-          type: string
-          description: Series description
-        startAirDate:
-          type: string
-          format: date
-        endAirDate:
-          type: string
-          format: date
-        genres:
-          type: array
-          items:
-            type: string
-        preferredImage:
-          $ref: '#/components/schemas/Image'
-    Airing:
-      type: object
-      properties:
-        startTime:
-          type: string
-          format: date-time
-          description: Airing start time in ISO 8601 format
-        endTime:
-          type: string
-          format: date-time
-        duration:
+          description: Image URI
+        width:
           type: integer
-          description: Duration in minutes
-        stationId:
+        height:
+          type: integer
+        primary:
+          type: boolean
+        category:
           type: string
-        qualifiers:
-          type: array
-          items:
-            type: string
-          description: Qualifiers such as New, Live, Finale, Repeat
-        program:
-          $ref: '#/components/schemas/Program'
-    Rating:
-      type: object
-      properties:
-        body:
-          type: string
-          description: Rating body (e.g., MPAA, TV Parental Guidelines)
-        code:
-          type: string
-          description: Rating code (e.g., PG-13, TV-14)
+        text:
+          type: boolean
   securitySchemes:
     apiKey:
       type: apiKey
