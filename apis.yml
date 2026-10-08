@@ -156,6 +156,12 @@ solutions:
   - Entertainment platform providers building content discovery
   - Application developers integrating TV and movie information
 common:
+  - type: Plans
+    url: plans/tribune-media-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/tribune-media-rate-limits.yml
+  - type: FinOps
+    url: finops/tribune-media-finops.yml
   - type: ParentCompany
     url: https://apis.io/providers/nexstar-media-group/
     name: Nexstar Media Group
