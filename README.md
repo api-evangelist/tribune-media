@@ -1,4 +1,4 @@
-# Tribune Media (tribune-media)
+# Tribune Media
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,68 +64,143 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
+> **Acquired or rebranded.** This company was acquired, merged or renamed. Its API, if it still exists, is offered under another name. This profile is kept as a historical record and is not maintained or rated.
+
 Tribune Media was a diversified media and entertainment company with broadcasting, digital, and content businesses. Through Tribune Media Services (TMS), it provided comprehensive entertainment data APIs including TV programming, movie showtimes, celebrity information, and sports data. Tribune Media was acquired by Nexstar Media Group in 2019. The TMS OnConnect APIs are now operated by Gracenote (a Nielsen company), providing metadata for TV shows, movies, celebrities, and televised sports to consumer electronics manufacturers, cable operators, entertainment platforms, and application developers.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/tribune-media/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/tribune-media/refs/heads/main/apis.yml)
+**Areas:** Media · Entertainment · Broadcasting · Television · Movies · Sports · Celebrity · Fortune 1000
 
-## Scope
+## Tribune Media on APIs.io (historical record)
 
-- **Type:** Index
+Everything profiled for Tribune Media is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/tribune-media/](https://apis.io/providers/tribune-media/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (10)
 
-- Media
-- Entertainment
-- Broadcasting
-- Television
-- Movies
-- Sports
-- Celebrity
+- [Tribune Media Celebrities API](https://apis.io/apis/tribune-media/tribune-media-celebrities-api/) — The Celebrities API from Tribune Media — 3 operation(s) for celebrities.
+- [Tribune Media Lineups API](https://apis.io/apis/tribune-media/tribune-media-lineups-api/) — The Lineups API from Tribune Media — 4 operation(s) for lineups.
+- [Tribune Media Movies API](https://apis.io/apis/tribune-media/tribune-media-movies-api/) — The Movies API from Tribune Media — 3 operation(s) for movies.
+- [Tribune Media Online Video API](https://apis.io/apis/tribune-media/tribune-media-online-video-api/) — The Online Video API from Tribune Media — 3 operation(s) for online video.
+- [Tribune Media Programs API](https://apis.io/apis/tribune-media/tribune-media-programs-api/) — The Programs API from Tribune Media — 5 operation(s) for programs.
+- [Tribune Media Series API](https://apis.io/apis/tribune-media/tribune-media-series-api/) — The Series API from Tribune Media — 3 operation(s) for series.
+- [Tribune Media Social API](https://apis.io/apis/tribune-media/tribune-media-social-api/) — The Social API from Tribune Media — 1 operation(s) for social.
+- [Tribune Media Sports API](https://apis.io/apis/tribune-media/tribune-media-sports-api/) — The Sports API from Tribune Media — 5 operation(s) for sports.
+- [Tribune Media Stations API](https://apis.io/apis/tribune-media/tribune-media-stations-api/) — The Stations API from Tribune Media — 3 operation(s) for stations.
+- [Tribune Media Theatres API](https://apis.io/apis/tribune-media/tribune-media-theatres-api/) — The Theatres API from Tribune Media — 2 operation(s) for theatres.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-05-03
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Agentic access (1)
 
-### TMS OnConnect API
+Which operations an agent can call, which act, and which need a human in the loop.
 
-The Tribune Media Services (TMS) OnConnect API provides comprehensive entertainment metadata for TV programming, movies, celebrities, and sports. It delivers electronic programming guide (EPG) data, movie showtimes, celebrity information, and televised sports schedules. Originally developed by Tribune Media Services, the API is now operated by Gracenote (a Nielsen company) and powers content discovery for consumer electronics manufacturers, cable operators, and entertainment platforms.
+- [Tribune Media Agentic Access](https://apis.io/agentic-access/tribune-media/tribune-media-agentic-access/)
 
-- **Human URL:** [https://developer.tmsapi.com/](https://developer.tmsapi.com/)
+#### JSON Schema (2)
 
-#### Tags
+The data models the API reads and writes.
 
-- Entertainment
-- Television
-- Movies
-- Sports
-- Celebrity
-- Programming Guide
-- Metadata
+- [TMS Airing](https://apis.io/schemas/tribune-media/tms-airing/)
+- [TMS Program](https://apis.io/schemas/tribune-media/tms-program/)
 
-#### Properties
+#### JSON Structure (2)
 
-- [Documentation](https://developer.tmsapi.com/docs)
-- [Getting Started](https://developer.tmsapi.com/Getting_Started)
-- [Terms of Service](https://developer.tmsapi.com/page/API_Terms_of_Use)
-- [F A Q](https://developer.tmsapi.com/page/Frequently_Asked_Questions)
-- [OpenAPI](openapi/tms-onconnect-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/tms-onconnect.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/tms-onconnect.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Data models expressed in JSON Structure.
 
-## Common Properties
+- [Tms Airing Structure](https://apis.io/json-structure/tribune-media/tms-airing-structure/)
+- [Tms Program Structure](https://apis.io/json-structure/tribune-media/tms-program-structure/)
 
-- [LinkedIn](https://www.linkedin.com/company/tribune-company)
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Tribune Media Context](https://apis.io/jsonld/tribune-media/tribune-media-context/)
+
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [Tribune Media Vocabulary](https://apis.io/vocabularies/tribune-media/tribune-media-vocabulary/)
+
+#### Examples (4)
+
+Example requests and responses.
+
+- [Tms Onconnect Get Lineup Grid Example](https://apis.io/examples/tribune-media/tms-onconnect-get-lineup-grid-example/)
+- [Tms Onconnect Get Lineups Example](https://apis.io/examples/tribune-media/tms-onconnect-get-lineups-example/)
+- [Tms Onconnect Get Movie Showings Example](https://apis.io/examples/tribune-media/tms-onconnect-get-movie-showings-example/)
+- [Tms Onconnect Search Programs Example](https://apis.io/examples/tribune-media/tms-onconnect-search-programs-example/)
+
+#### Collections (11)
+
+Postman and Open Collection request collections.
+
+- [TMS OnConnect API](https://apis.io/collections/tribune-media/open-tms-onconnect/)
+- [Moved to /collections/gracenote/open-gracenote-celebrities-api/](https://apis.io/collections/tribune-media/open-tribune-media-celebrities-api/)
+- [Moved to /collections/gracenote/open-gracenote-lineups-api/](https://apis.io/collections/tribune-media/open-tribune-media-lineups-api/)
+- [Moved to /collections/gracenote/open-gracenote-movies-api/](https://apis.io/collections/tribune-media/open-tribune-media-movies-api/)
+- [Moved to /apis/gracenote/gracenote-online-video-api/](https://apis.io/collections/tribune-media/open-tribune-media-online-video-api/)
+- [Moved to /collections/gracenote/open-gracenote-programs-api/](https://apis.io/collections/tribune-media/open-tribune-media-programs-api/)
+- [Moved to /collections/gracenote/open-gracenote-series-api/](https://apis.io/collections/tribune-media/open-tribune-media-series-api/)
+- [Moved to /apis/gracenote/gracenote-online-social-api/](https://apis.io/collections/tribune-media/open-tribune-media-social-api/)
+- [Moved to /collections/gracenote/open-gracenote-sports-api/](https://apis.io/collections/tribune-media/open-tribune-media-sports-api/)
+- [Moved to /collections/gracenote/open-gracenote-stations-api/](https://apis.io/collections/tribune-media/open-tribune-media-stations-api/)
+- [Moved to /apis/gracenote/gracenote-movies-in-theatres-api/](https://apis.io/collections/tribune-media/open-tribune-media-theatres-api/)
+
+#### Governance rules (2)
+
+Spectral rulesets for the provider's contracts.
+
+- [Tribune Media — tms onconnect rules](https://apis.io/rules/tribune-media/tms-onconnect-rules/)
+- [Tribune Media — jsonschema rules](https://apis.io/rules/tribune-media/tribune-media-jsonschema-spectral-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Tribune Media Authentication](https://apis.io/security/tribune-media/tribune-media-authentication/)
+- [Tribune Media Domain Security](https://apis.io/security/tribune-media/tribune-media-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Tribune Media Plans Pricing](https://apis.io/plans/tribune-media/tribune-media-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Tribune Media Rate Limits](https://apis.io/rate-limits/tribune-media/tribune-media-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Tribune Media Finops](https://apis.io/finops/tribune-media/tribune-media-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
 - [Website](https://www.tribunemedia.com/)
-- [Developer Portal](https://developer.tmsapi.com/)
 - [Documentation](https://developer.tmsapi.com/docs)
-- [Getting Started](https://developer.tmsapi.com/Getting_Started)
-- [Terms of Service](https://developer.tmsapi.com/page/API_Terms_of_Use)
-- [Sign Up](https://developer.tmsapi.com/member/register)
+- [Getting started](https://developer.tmsapi.com/Getting_Started)
+- [Terms of service](https://developer.tmsapi.com/page/API_Terms_of_Use)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Not rated** — this company is recorded as acquired or rebranded, so no score is published. If it is in fact operating, say so on this repository and it will be re-profiled.
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Tribune Media: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/tribune-media/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
